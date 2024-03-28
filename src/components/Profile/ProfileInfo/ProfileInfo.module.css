@@ -1,0 +1,56 @@
+.profile {
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+}
+
+.overPageCover {
+	position: relative;
+	height: 277px;
+	font-size: 0;
+}
+
+.overPageCover img {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+
+	z-index: -1;
+}
+
+.profileHeader {
+	display: flex;
+	padding: 20px;
+	background-color: rgba(255, 255, 255);
+	border-radius: 20px;
+	box-shadow: 0 0 0 rgb(220, 225, 230);
+}
+
+.profileHeaderImg {
+	position: relative;
+	width: 150px;
+	height: 100%;
+}
+
+.wrapperImg {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 5px solid white;
+}
+
+.profileHeader img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.profileInfo {
+	margin-left: 16px;
+}

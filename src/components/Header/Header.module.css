@@ -1,0 +1,32 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 60px;
+	grid-area: header;
+	background-color: rgba(255, 255, 255);
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+	z-index: 10;
+}
+
+.contentWrapper {
+	margin: 0 auto;
+	padding: 0 15px;
+	display: flex;
+	width: 1200px;
+}
+
+img {
+	width: 50px;
+}
+
+h1 {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	height: 50px;
+	font-size: 20px;
+}

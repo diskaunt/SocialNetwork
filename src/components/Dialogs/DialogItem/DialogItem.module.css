@@ -1,0 +1,42 @@
+.dialog {
+	padding: 0 20px;
+	min-height: 63px;
+	border-bottom: 1px solid rgb(220, 225, 230);
+}
+
+.dialog:last-child {
+	border-bottom: none;
+}
+
+a {
+	display: grid;
+	grid-template-columns: auto 4fr;
+	text-decoration: none;
+	color: inherit;
+	gap: 7px;
+}
+
+.active {
+	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+}
+
+.ava {
+	width: 46px;
+	height: 46px;
+	margin: 9px 0 7px 0;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.dialog img {
+	object-fit: cover;
+}
+
+.name {
+	align-self: flex-start;
+	color: rgb(0, 0, 0);
+	font-size: 12.5px;
+	font-weight: 500;
+	line-height: 14.425px;
+	padding: 8px 0;
+}

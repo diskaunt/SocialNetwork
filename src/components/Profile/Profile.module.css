@@ -1,0 +1,7 @@
+.content {
+	position: relative;
+	background-color: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}

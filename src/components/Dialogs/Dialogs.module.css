@@ -1,0 +1,17 @@
+.dialogs {
+	height: calc(100vh - 80px);
+	display: grid;
+	grid-template-columns: 2fr 10fr;
+	background-color: rgba(255, 255, 255);
+	border-radius: 20px;
+	border: 1px solid rgb(220, 225, 230);
+	box-shadow: 0 0 0 rgb(220, 225, 230);
+}
+
+.dialogsItems {
+	border-right: 1px solid rgb(220, 225, 230);
+}
+
+.messages {
+	height: 100%;
+}
