@@ -2,40 +2,47 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	padding: 20px 0;
-	background-color: rgba(255, 255, 255);
-	border-radius: 20px;
-	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
-	margin-bottom: 20px;
 }
 
 .newPost {
-	gap: 20px;
-	padding: 20px 20px 0 20px;
-	border-top: 1px solid rgb(220, 225, 230);
+	background-color: rgba(255, 255, 255);
+	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+	border-radius: 20px;
+	padding: 20px 0;
 }
 
-.newPost textarea {
+.textareaWrapper {
+	border-top: 1px solid rgb(220, 225, 230);
+	padding: 20px 20px 0 20px;
+}
+
+.textareaWrapper textarea {
 	width: 100%;
 	min-height: 48px;
 	border: 1px solid rgb(220, 225, 230);
 	border-radius: 10px;
 	margin-bottom: 9px;
-	padding: 8px;
+	padding: 8px 8px;
 	resize: none;
-	overflow: hidden;
+}
 
+.newPost textarea:focus {
+	outline: none;
+}
+
+.newPost textarea:active {
+	outline: none;
 }
 
 .btnWrapper {
-}
+padding: 0 20px;}
 
 .newPost button {
 	display: block;
 	margin-left: auto;
 	cursor: pointer;
 	min-width: 118px;
-	min-height: 32px;
+	min-height: 36px;
 	background-color: #447bba;
 	border: none;
 	color: #FFF;
@@ -45,10 +52,15 @@
 
 .header {
 	padding: 0 20px;
+	margin-bottom: 20px;
 }
 
 .posts {
-	padding: 0 20px;
+	background-color: rgba(255, 255, 255);
+	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+	border-radius: 20px;
+	margin-bottom: 20px;
+	padding: 20px 20px;
 }
 
 h3 {margin: 0;}

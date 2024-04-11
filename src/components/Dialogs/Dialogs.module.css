@@ -1,11 +1,13 @@
 .dialogs {
-	height: calc(100vh - 80px);
+	height: calc(100vh - 100px);
 	display: grid;
 	grid-template-columns: 2fr 10fr;
 	background-color: rgba(255, 255, 255);
 	border-radius: 20px;
 	border: 1px solid rgb(220, 225, 230);
 	box-shadow: 0 0 0 rgb(220, 225, 230);
+	overflow: hidden;
+	margin-bottom: 20px;
 }
 
 .dialogsItems {
@@ -13,5 +15,67 @@
 }
 
 .messages {
-	height: 100%;
+	width: 100%;
+	max-height: calc(100vh - 100px);
+	height: calc(100vh - 100px);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	position: relative;
+}
+
+.messages_content {
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.messagesElements {
+	margin-bottom: 34px;
+}
+
+.textareaWrapper {
+	display: flex;
+	align-items: center;
+	border-top: 1px solid rgb(220, 225, 230);;
+	padding: 12px 0 0 52px;
+	background-color: #f9f9f9;
+	flex-shrink: 1;
+}
+
+.textareaWrapper textarea {
+	display: flex;
+	margin: 0 56px 12px 7px;
+	width: 480px;
+	min-height: 36px;
+	height: 36px;
+	max-height: 201px;
+	border: 1px solid rgb(220, 225, 230);
+	border-radius: 10px;
+	padding: 9px 74px 10px 13px;
+	resize: none;
+	overflow: hidden;
+	line-height: 17px;
+}
+
+.textareaWrapper textarea:focus {
+	outline: none;
+}
+
+.textareaWrapper textarea:active {
+	outline: none;
+}
+
+.btnWrapper {
+	margin-bottom: 9px;
+}
+
+button {
+	cursor: pointer;
+	min-width: 118px;
+	min-height: 32px;
+	background-color: #447bba;
+	border: none;
+	color: #FFF;
+	border-radius: 10px;
+	font-size: 13px;
 }
