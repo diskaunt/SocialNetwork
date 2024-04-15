@@ -2,14 +2,9 @@ import React from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {
-  addMessageActionCreator,
-  autoSizeActionCreator,
-  updateNewMessageTextActionCreator,
-} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-  let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
+  let dialogsElements = props.dialogs.map((dialog) => (
     <DialogItem
       key={dialog.id}
       id={dialog.id}
@@ -21,7 +16,7 @@ const Dialogs = (props) => {
     />
   ));
 
-  let messagesElements = props.dialogsPage.messages.map((message) => (
+  let messagesElements = props.messages.map((message) => (
     <Message
       key={message.id}
       message={message.message}
@@ -34,21 +29,21 @@ const Dialogs = (props) => {
 	const scrollTo =React.createRef()
   const newMessageElement = React.createRef();
 
-  const addMessage = () => {
+  const onAddMessage = () => {
     const textarea = newMessageElement.current;
 		const scroll = scrollTo.current;
-    props.dispatch(addMessageActionCreator(textarea, scroll));
+    props.addMessage(textarea, scroll)
   };
 
   const onMessageChange = () => {
     const text = newMessageElement.current.value;
 		const scroll = scrollTo.current;
-    props.dispatch(updateNewMessageTextActionCreator(text, scroll));
+    props.updateNewMessageText(text, scroll);
   };
 
-  const autoSize = () => {
+  const onAutoSize = () => {
     const textarea = newMessageElement.current;
-    props.dispatch(autoSizeActionCreator(textarea));
+    props.autoSize(textarea);
   };
 
   return (
@@ -59,14 +54,14 @@ const Dialogs = (props) => {
           <div className={classes.messagesElements}>{messagesElements}</div>
           <div className={classes.textareaWrapper}>
             <textarea
-              onInput={autoSize}
+              onInput={onAutoSize}
               onChange={onMessageChange}
               ref={newMessageElement}
-              value={props.dialogsPage.newMessageText}
+              value={props.newMessageText}
               placeholder="Write a message..."
             />
             <div className={classes.btnWrapper}>
-              <button onClick={addMessage}>Send</button>
+              <button onClick={onAddMessage}>Send</button>
             </div>
           </div>
 					<div ref={scrollTo}> </div>

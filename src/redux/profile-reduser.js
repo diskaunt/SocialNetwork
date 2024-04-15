@@ -1,13 +1,36 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const AUTO_SIZE = "AUTO-SIZE";
 
-const profileReducer = (state, action) => {
+const initialState = {
+  posts: [
+    {
+      id: "0",
+      name: "name",
+      likesCount: "16",
+      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      message:
+        "Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi",
+    },
+    {
+      id: "1",
+      name: "name",
+      likesCount: "32",
+      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      message: "I love Bananas ",
+    },
+  ],
+  newPostText: "",
+};
+
+const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
-      if (state.newPostText !== "") {
-        let date = new Date();
-        let newPost = {
+      let newPost;
+      let date = new Date();
+      if (state.newPostText.trim().length) {
+        newPost = {
           id: state.posts.length,
           name: "",
           date:
@@ -19,33 +42,14 @@ const profileReducer = (state, action) => {
           message: state.newPostText,
           likesCount: 0,
         };
-        state.posts.unshift(newPost);
-        state.newPostText = "";
-        action.textarea.style.cssText += "height: 36px; overflow: hidden;";
+        return { ...state, posts: [...state.posts, newPost], newPostText: "" };
       }
-      return state;
+      return {...state};
 
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
-      return state;
-
-    case AUTO_SIZE:
-      const textarea = action.textarea;
-      textarea.style.height = "auto";
-      if (textarea.clientHeight < 54) {
-        textarea.style.height = 36 + "px";
-      }
-      if (textarea.scrollHeight > 201) {
-        textarea.style.overflow = "auto";
-        textarea.style.height = 201 + "px";
-      } else {
-        textarea.style.overflow = "hidden";
-        textarea.style.height = textarea.scrollHeight + "px";
-      }
-      return state;
-
+      return { ...state, newPostText: action.newText };
     default:
-      return state;
+      return { ...state };
   }
 };
 
@@ -56,10 +60,6 @@ export const addPostActionCreator = (textarea) => ({
 export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
-});
-export const autoSizeActionCreator = (textarea) => ({
-  type: AUTO_SIZE,
-  textarea,
 });
 
 export default profileReducer;

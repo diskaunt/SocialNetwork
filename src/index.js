@@ -1,5 +1,5 @@
 import reportWebVitals from "./reportWebVitals";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -13,8 +13,7 @@ let renderEntireTree = () => {
     <React.StrictMode>
       <BrowserRouter>
         <App
-          dispatch={store.dispatch.bind(store)}
-          state={store.getState()}
+          store={store}
         />
       </BrowserRouter>
     </React.StrictMode>
