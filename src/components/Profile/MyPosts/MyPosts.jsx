@@ -1,14 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {
-  addPostActionCreator,
-  autoSizeActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profile-reduser";
 
 const MyPosts = (props) => {
-  let postsElements = props.profilePage.posts.map((post) => (
+  let postsElements = props.posts.map((post) => (
     <Post
       key={post.id}
       name={post.name || "name"}
@@ -24,19 +19,15 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  const autoSize = () => {
-    const textarea = newPostElement.current;
-    props.dispatch(autoSizeActionCreator(textarea));
-  };
-
-  const addPost = () => {
-    const textarea = newPostElement.current;
-    props.dispatch(addPostActionCreator(textarea));
+  const onAddPost = () => {
+    let text = newPostElement.current;
+    props.addPost();
+    text.innerText = "";
   };
 
   const onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.dispatch(updateNewPostTextActionCreator(text));
+    let text = newPostElement.current.innerText;
+    props.updateNewPostText(text);
   };
 
   return (
@@ -44,16 +35,19 @@ const MyPosts = (props) => {
       <div className={classes.newPost}>
         <h3 className={classes.header}>My posts</h3>
         <div className={classes.textareaWrapper}>
-          <textarea
+          <div
+            className={classes.textarea}
             ref={newPostElement}
-            onInput={autoSize}
-            onChange={onPostChange}
-            placeholder="What's new for you?"
-            value={props.profilePage.newPostText}
-          />
+            onKeyUp={onPostChange}
+            contenteditable="true"
+            role="textbox"
+            aria-labelledby="post"
+            aria-multiline="true"
+            aria-placeholder="What's new for you?"
+          ></div>
         </div>
         <div className={classes.btnWrapper}>
-          <button onClick={addPost}>Add post</button>
+          <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
       <div className={classes.posts}>{postsElements}</div>

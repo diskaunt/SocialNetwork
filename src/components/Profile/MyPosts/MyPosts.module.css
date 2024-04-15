@@ -16,7 +16,8 @@
 	padding: 20px 20px 0 20px;
 }
 
-.textareaWrapper textarea {
+.textareaWrapper .textarea {
+	height: auto;
 	width: 100%;
 	min-height: 48px;
 	border: 1px solid rgb(220, 225, 230);
@@ -26,11 +27,11 @@
 	resize: none;
 }
 
-.newPost textarea:focus {
+.newPost .textarea:focus {
 	outline: none;
 }
 
-.newPost textarea:active {
+.newPost .textarea:active {
 	outline: none;
 }
 
@@ -56,6 +57,8 @@ padding: 0 20px;}
 }
 
 .posts {
+	display: flex;
+	flex-direction: column-reverse;
 	background-color: rgba(255, 255, 255);
 	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
 	border-radius: 20px;
