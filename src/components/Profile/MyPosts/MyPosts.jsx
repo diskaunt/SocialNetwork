@@ -18,11 +18,20 @@ const MyPosts = (props) => {
   ));
 
   let newPostElement = React.createRef();
+  let placeholder = React.createRef();
 
   const onAddPost = () => {
     let text = newPostElement.current;
     props.addPost();
     text.innerText = "";
+    placeholder.current.style.display = "block";
+  };
+
+  const onPlaceholder = () => {
+    let text = newPostElement.current.innerText;
+    text
+      ? (placeholder.current.style.display = "none")
+      : (placeholder.current.style.display = "block");
   };
 
   const onPostChange = () => {
@@ -36,15 +45,23 @@ const MyPosts = (props) => {
         <h3 className={classes.header}>My posts</h3>
         <div className={classes.textareaWrapper}>
           <div
+            id="postField"
             className={classes.textarea}
             ref={newPostElement}
+            onInput={onPlaceholder}
             onKeyUp={onPostChange}
-            contenteditable="true"
+            contentEditable="true"
             role="textbox"
-            aria-labelledby="post"
             aria-multiline="true"
-            aria-placeholder="What's new for you?"
+            aria-label="What's new for you?"
           ></div>
+          <div ref={placeholder} className={classes.placeholder}>
+            <div className={classes.phInput}>
+              <label htmlFor="postField" className={classes.phContent}>
+                What's new for you?
+              </label>
+            </div>
+          </div>
         </div>
         <div className={classes.btnWrapper}>
           <button onClick={onAddPost}>Add post</button>

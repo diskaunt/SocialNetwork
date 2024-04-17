@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./SideBar.module.css";
+import classes from "./Navbar.module.css";
 import IconProfile from "./svg/IconProfile";
 import IconMessage from "./svg/IconMessage";
 import IconNews from "./svg/IconNews";
@@ -7,7 +7,7 @@ import IconMusic from "./svg/IconMusic";
 import IconSetting from "./svg/IconSetting";
 import { NavLink } from "react-router-dom";
 
-const SideBar = () => {
+const Navbar = () => {
   return (
     <div className={classes.SideBar}>
       <div className={classes.item}>
@@ -59,4 +59,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default Navbar;

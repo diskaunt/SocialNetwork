@@ -6,7 +6,7 @@
 
 .newPost {
 	background-color: rgba(255, 255, 255);
-	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
 	border-radius: 20px;
 	padding: 20px 0;
 }
@@ -35,6 +35,33 @@
 	outline: none;
 }
 
+.placeholder {
+	position: relative;
+	z-index: 2;
+	cursor: text;
+	pointer-events: none;
+}
+
+.phInput {
+	position: absolute;
+	height: auto;
+	top: -57px;
+	width: 100%;
+	min-height: 48px;
+	border: 1px solid rgb(220, 225, 230);
+	border-radius: 10px;
+	margin-bottom: 9px;
+	padding: 8px 8px;
+	resize: none;
+
+}
+
+.phContent {
+	padding: 0;
+	color: #818c99;
+	line-height: 1.462;
+}
+
 .btnWrapper {
 padding: 0 20px;}
 
@@ -54,13 +81,16 @@ padding: 0 20px;}
 .header {
 	padding: 0 20px;
 	margin-bottom: 20px;
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 26px;
 }
 
 .posts {
 	display: flex;
 	flex-direction: column-reverse;
 	background-color: rgba(255, 255, 255);
-	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
+	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
 	border-radius: 20px;
 	margin-bottom: 20px;
 	padding: 20px 20px;
