@@ -5,16 +5,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "./StoreContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 let renderEntireTree = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App
-          store={store}
-        />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>
   );

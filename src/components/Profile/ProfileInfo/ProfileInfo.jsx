@@ -20,9 +20,9 @@ const ProfileInfo = () => {
           </div>
         </div>
         <div className={classes.profileInfo}>
-          <div>Name</div>
-          <div>Age</div>
-          <div>City</div>
+          <div className={classes.name}>Name</div>
+          <div className={classes.age}>Age</div>
+          <div className={classes.city}>City</div>
         </div>
       </div>
     </div>
