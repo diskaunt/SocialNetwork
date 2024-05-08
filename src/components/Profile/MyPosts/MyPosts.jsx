@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map((post) => (
+  let postsElements = props.profilePage.posts.map((post) => (
     <Post
       key={post.id}
       name={post.name || "name"}
@@ -11,7 +11,7 @@ const MyPosts = (props) => {
       likesCount={post.likesCount}
       src={
         post.src ||
-        "https://avatars.mds.yandex.net/i?id=91892a34e5229181f6a458b4befb7c883c863201-11944133-images-thumbs&n=13"
+        "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
       }
       message={post.message}
     />

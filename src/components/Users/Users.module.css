@@ -1,0 +1,35 @@
+.users {
+	position: relative;
+	border-radius: var(--content-border-radius);
+	/* max-height: calc(100vh - 100px); */
+	min-height: 175px;
+	max-width: 550px;
+	overflow: hidden;
+	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
+	background-color: rgba(255, 255, 255);
+	padding: 8px;
+	/* overflow-y: auto; */
+	margin-bottom: 20px;
+}
+
+.header {
+	margin-bottom: 20px;
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 26px;
+	padding: 8px 12px;
+	border-bottom: 1px solid rgb(220, 225, 230);
+}
+
+.pages {
+	cursor: pointer;
+}
+
+.selectedPage {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.preloader {
+
+}

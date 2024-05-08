@@ -3,7 +3,7 @@
 	display: grid;
 	grid-template-columns: 2fr 10fr;
 	background-color: rgba(255, 255, 255);
-	border-radius: 20px;
+	border-radius: var(--content-border-radius);
 	border: 1px solid rgb(220, 225, 230);
 	box-shadow: 0 0 0 rgb(220, 225, 230);
 	overflow: hidden;
@@ -57,14 +57,6 @@
 	line-height: 17px;
 }
 
-.textareaWrapper textarea:focus {
-	outline: none;
-}
-
-.textareaWrapper textarea:active {
-	outline: none;
-}
-
 .btnWrapper {
 	margin-bottom: 9px;
 }
@@ -73,7 +65,7 @@ button {
 	cursor: pointer;
 	min-width: 118px;
 	min-height: 32px;
-	background-color: #447bba;
+	background-color: var(--main-color);
 	border: none;
 	color: #FFF;
 	border-radius: 10px;

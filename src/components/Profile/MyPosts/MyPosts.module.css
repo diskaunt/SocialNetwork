@@ -7,13 +7,13 @@
 .newPost {
 	background-color: rgba(255, 255, 255);
 	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
-	border-radius: 20px;
-	padding: 20px 0;
+	border-radius: var(--content-border-radius);
+	padding: 8px;
 }
 
 .textareaWrapper {
 	border-top: 1px solid rgb(220, 225, 230);
-	padding: 20px 20px 0 20px;
+	padding: 20px 13px 0 20px;
 }
 
 .textareaWrapper .textarea {
@@ -25,15 +25,12 @@
 	margin-bottom: 9px;
 	padding: 8px 8px;
 	resize: none;
+
+	&:focus {
+		outline: none;
+	}
 }
 
-.newPost .textarea:focus {
-	outline: none;
-}
-
-.newPost .textarea:active {
-	outline: none;
-}
 
 .placeholder {
 	position: relative;
@@ -63,7 +60,8 @@
 }
 
 .btnWrapper {
-padding: 0 20px;}
+padding: 0 16px;
+}
 
 .newPost button {
 	display: block;
@@ -71,16 +69,15 @@ padding: 0 20px;}
 	cursor: pointer;
 	min-width: 118px;
 	min-height: 36px;
-	background-color: #447bba;
+	background-color: var(--main-color);
 	border: none;
 	color: #FFF;
 	border-radius: 10px;
 	font-size: 13px;
-}
+	}
 
 .header {
-	padding: 0 20px;
-	margin-bottom: 20px;
+	padding: 0 13px 12px 20px;
 	font-size: 21px;
 	font-weight: 600;
 	line-height: 26px;
@@ -91,7 +88,7 @@ padding: 0 20px;}
 	flex-direction: column-reverse;
 	background-color: rgba(255, 255, 255);
 	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
-	border-radius: 20px;
+	border-radius: var(--content-border-radius);
 	margin-bottom: 20px;
 	padding: 20px 20px;
 }

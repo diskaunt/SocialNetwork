@@ -1,12 +1,16 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
 
-const ProfileInfo = () => {
-	return (
+const ProfileInfo = (props) => {
+  return (
     <div className={classes.profile}>
       <div className={classes.overPageCover}>
         <img
-          src="https://www.svoiludi.ru/images/tb/3998/seul-1687959208276_w687h357.jpg"
+          src={
+            props.src
+              ? props.src
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png"
+          }
           alt="Seul"
         />
       </div>
@@ -14,7 +18,7 @@ const ProfileInfo = () => {
         <div className={classes.profileHeaderImg}>
           <div className={classes.wrapperImg}>
             <img
-              src="https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg"
+              src= {props.src || "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"}
               alt="avatar"
             />
           </div>
@@ -27,6 +31,6 @@ const ProfileInfo = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ProfileInfo;

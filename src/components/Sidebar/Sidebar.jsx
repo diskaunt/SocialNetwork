@@ -1,13 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar/Navbar";
 import classes from "./Sidebar.module.css";
-import FriendsContainer from "./Friends/FriendsContainer";
+import Navbar from "./Navbar/Navbar"
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   return (
     <nav className={classes.nav}>
       <Navbar />
-      <FriendsContainer />
     </nav>
   );
 };

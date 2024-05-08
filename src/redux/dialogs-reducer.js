@@ -7,45 +7,45 @@ const initialState = {
     {
       id: "0",
       name: "Dimych",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "1",
       name: "Misha",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "2",
       name: "Alina",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "3",
       name: "Pasha",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "4",
       name: "Vanes",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
   ],
   messages: [
     {
       id: "0",
       message: "Hi, how are you?",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "1",
       message:
         "how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
     {
       id: "2",
       message: "yo",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
     },
   ],
   newMessageText: "",
@@ -81,9 +81,11 @@ const dialogsReducer = (state = initialState, action) => {
         src: null,
       };
       action.textarea.style.cssText += "height: 36px; overflow: hidden;";
-      setTimeout(() =>
-        action.endOfPage.scrollIntoView({ behavior: "smooth", block: "end" })
-      );
+      // setTimeout(
+      //   () =>
+      //     action.endOfPage.scrollIntoView({ behavior: "smooth", block: "end" }),
+      //   0
+      // );
 
       return {
         ...state,

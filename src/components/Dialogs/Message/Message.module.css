@@ -20,12 +20,13 @@
 }
 
 .ava img {
+	width: 100%;
 	object-fit: cover;
 }
 
 .name {
 	grid-area: name;
-	color: #2a5885;
+	color: var(--main-color);
 	font-size: 12.5px;
 	font-weight: 500;
 	line-height: 14.425px;
