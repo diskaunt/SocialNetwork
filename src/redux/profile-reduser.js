@@ -9,7 +9,7 @@ const initialState = {
       id: "0",
       name: "name",
       likesCount: "16",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
       message:
         "Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi",
     },
@@ -17,7 +17,7 @@ const initialState = {
       id: "1",
       name: "name",
       likesCount: "32",
-      src: "https://photogora.ru/img/product/thumb/4897/5d2efa2ce25635320511549050122246.jpg",
+      src: "",
       message: "I love Bananas ",
     },
   ],

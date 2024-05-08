@@ -1,6 +1,6 @@
-import * as React from "react";
 
-function IconProfile(props) {
+import * as React from "react";
+const IconProfile = (props) => {
   return (
     <svg fill="none" viewBox="0 0 24 24" height="1em" width="1em" {...props}>
       <path
@@ -15,6 +15,8 @@ function IconProfile(props) {
       />
     </svg>
   );
-}
+};
 
 export default IconProfile;
+
+

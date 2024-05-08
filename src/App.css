@@ -1,15 +1,46 @@
 * {
 	box-sizing: border-box;
+	--main-color: rgb(25, 154, 195);
+	--content-border-radius: 20px;
 }
 
 html {
-  overflow-x: hidden;
-  margin-right: calc(-1 * (100vw - 100%));
+	overflow-x: hidden;
+	margin-right: calc(-1 * (100vw - 100%));
 }
 
 body {
 	background-color: #edeef0;
 	font-size: 13px;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+button {
+	--opacity: 1;
+	transition: opacity 0.3s;
+	opacity: var(--opacity);
+
+	&:hover {
+		--opacity: 0.7;
+	}
+
+	&:active {
+		--opacity: 0.9;
+	}
+}
+
+textarea {
+	&:focus {
+		outline: none;
+	}
+
+	&:active {
+		outline: none;
+	}
 }
 
 .App {
@@ -23,13 +54,15 @@ body {
 	display: grid;
 	width: 1200px;
 	grid-template-areas:
-	"header header"
-	"nav content";
+		"header header"
+		"nav content";
 	grid-template-rows: 60px 1fr;
 	grid-template-columns: 1fr 10fr;
 	grid-gap: 16px;
 }
 
 .appWrapperContent {
+	position: relative;
 	grid-area: content;
+
 }

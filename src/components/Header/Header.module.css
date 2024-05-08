@@ -1,26 +1,36 @@
 .header {
 	position: fixed;
+	display: flex;
+	align-items: center;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 100vw;
 	height: 60px;
 	grid-area: header;
 	background-color: rgba(255, 255, 255);
-	display: flex;
-	align-items: center;
 	box-shadow: 0 1px 3px rgb(0, 0, 0, 0.40);
 	z-index: 10;
 }
 
 .contentWrapper {
 	margin: 0 auto;
-	padding: 0 15px;
-	display: flex;
 	width: 1200px;
-}
+	padding: 0 15px;
+	gap: 0;
 
-img {
-	width: 50px;
+	& a {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	& h1 {
+		font-size: 20px;
+	}
+
+	& img {
+		width: 50px;
+		object-fit: cover;
+	}
 }
 
 h1 {

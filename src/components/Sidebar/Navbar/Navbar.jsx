@@ -1,18 +1,19 @@
 import React from "react";
 import classes from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+import IconSettings from "./svg/IconSetting";
 import IconProfile from "./svg/IconProfile";
-import IconMessage from "./svg/IconMessage";
 import IconNews from "./svg/IconNews";
 import IconMusic from "./svg/IconMusic";
-import IconSetting from "./svg/IconSetting";
-import { NavLink } from "react-router-dom";
+import IconMessage from "./svg/IconMessage";
+import IconUsers from "./svg/IconUsers";
 
 const Navbar = () => {
   return (
     <div className={classes.SideBar}>
       <div className={classes.item}>
         <NavLink
-          to="/"
+          to="/profile"
           className={({ isActive }) => (isActive ? classes.active : "")}
         >
           <IconProfile className={classes.svg} />
@@ -25,12 +26,12 @@ const Navbar = () => {
           className={({ isActive }) => (isActive ? classes.active : "")}
         >
           <IconMessage className={classes.svg} />
-          <span>Message</span>
+          <span>Dialogs</span>
         </NavLink>
       </div>
       <div className={classes.item}>
         <NavLink
-          to="/News"
+          to="/news"
           className={({ isActive }) => (isActive ? classes.active : "")}
         >
           <IconNews className={classes.svg} />
@@ -39,7 +40,7 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to="/Music"
+          to="/music"
           className={({ isActive }) => (isActive ? classes.active : "")}
         >
           <IconMusic className={classes.svg} />
@@ -48,11 +49,20 @@ const Navbar = () => {
       </div>
       <div className={classes.item}>
         <NavLink
-          to="/Settings"
+          to="/settings"
           className={({ isActive }) => (isActive ? classes.active : "")}
         >
-          <IconSetting className={classes.svg} />
+          <IconSettings className={classes.svg} />
           <span>Settings</span>
+        </NavLink>
+      </div>
+      <div className={classes.item}>
+        <NavLink
+          to="/users"
+          className={({ isActive }) => (isActive ? classes.active : "")}
+        >
+          <IconUsers className={classes.svg} />
+          <span>Find users</span>
         </NavLink>
       </div>
     </div>
