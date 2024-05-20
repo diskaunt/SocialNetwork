@@ -67,7 +67,11 @@ const MyPosts = (props) => {
           <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
-      <div className={classes.posts}>{postsElements}</div>
+      <div
+        className={postsElements.length ? classes.posts : "display: none"}
+      >
+        {postsElements}
+      </div>
     </div>
   );
 };

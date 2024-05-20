@@ -7,57 +7,52 @@ import {
   setTotalUsersCount,
   togleIsFetching,
 } from "../../redux/users-reduser";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Users from "./Users";
 
-class UsersComponent extends React.Component {
-  componentDidMount() {
-    this.props.togleIsFetching();
-    if (!this.props.users.length) {
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users/?page=${this.props.currentPage}&count=${this.props.pageSize}`
-        )
-        .then((response) => {
-          this.props.togleIsFetching();
-          this.props.setUsers(response.data.items);
-          this.props.setTotalUsersCount(response.data.totalCount);
-        });
-    }
-  }
-
-  onFollow = (userId) => {
-    this.props.follow(userId);
-  };
-
-  onPageChanged = (pageNumber) => {
-    this.props.togleIsFetching();
-    this.props.setCurrentPage(pageNumber);
+const UsersComponent = (props) => {
+  useEffect(() => {
+    props.togleIsFetching();
     axios
       .get(
-        `https://social-network.samuraijs.com/api/1.0/users/?page=${pageNumber}&count=${this.props.pageSize}`
+        `https://social-network.samuraijs.com/api/1.0/users/?page=${props.currentPage}&count=${props.pageSize}`,
+        { withCredentials: true }
       )
       .then((response) => {
-        this.props.togleIsFetching();
-        this.props.setUsers(response.data.items);
+        props.togleIsFetching();
+        props.setUsers(response.data.items);
+        props.setTotalUsersCount(response.data.totalCount);
+      });
+  }, []);
+
+  const onPageChanged = (pageNumber) => {
+    props.togleIsFetching();
+    props.setCurrentPage(pageNumber);
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${props.pageSize}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        props.togleIsFetching();
+        props.setUsers(response.data.items);
       });
   };
 
-  render() {
-    return (
-      <Users
-        totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        users={this.props.users}
-        follow={this.onFollow}
-        onPageChanged={this.onPageChanged}
-        currentPage={this.props.currentPage}
-        isFetching={this.props.isFetching}
-      />
-    );
-  }
-}
+  return (
+    <Users
+      totalUsersCount={props.totalUsersCount}
+      pageSize={props.pageSize}
+      users={props.users}
+      follow={props.follow}
+			unfollow={props.unfollow}
+      onPageChanged={onPageChanged}
+      currentPage={props.currentPage}
+      isFetching={props.isFetching}
+    />
+  );
+};
 
 let mapStateToProps = (state) => {
   return {
@@ -71,7 +66,7 @@ let mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   follow,
-  unfollow,
+	unfollow,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,

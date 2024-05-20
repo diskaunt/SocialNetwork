@@ -23,13 +23,16 @@
 
 .pages {
 	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .selectedPage {
 	font-weight: bold;
-	cursor: pointer;
 }
 
 .preloader {
-
+	text-align: center;
 }

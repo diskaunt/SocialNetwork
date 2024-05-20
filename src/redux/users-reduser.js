@@ -25,16 +25,16 @@ const usersReduser = (state = initialState, action) => {
           return u;
         }),
       };
-    case UNFOLLOW:
-      return {
-        ...state,
-        users: state.users.map((u) => {
-          if (u.id === action.userId) {
-            return { ...u, followed: !u.followed };
-          }
-          return u;
-        }),
-      };
+    // case UNFOLLOW:
+    //   return {
+    //     ...state,
+    //     users: state.users.map((u) => {
+    //       if (u.id === action.userId) {
+    //         return { ...u, followed: false };
+    //       }
+    //       return u;
+    //     }),
+    //   };
     case SET_USERS: {
       return { ...state, users: [...action.users] };
     }
@@ -58,7 +58,7 @@ const usersReduser = (state = initialState, action) => {
     }
 
     default:
-      return { ...state };
+      return state ;
   }
 };
 
