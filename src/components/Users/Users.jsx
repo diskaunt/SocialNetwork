@@ -14,20 +14,25 @@ let Users = (props) => {
       <h1 className={classes.header}>Users</h1>
       <div className={classes.user}>
         {props.isFetching ? (
-          <Preloader />
+          <div className={classes.preloader}>
+            <Preloader />
+          </div>
         ) : (
-          props.users.map((u) => <User u={u} follow={props.follow} />)
+          props.users.map((u) => <User u={u} unfollow={props.unfollow} follow={props.follow} />)
         )}
       </div>
-      <div className={classes.pages}>
+      <div className={classes.pagesWrapper}>
         {pages.map((p) => (
-          <span
-            onClick={() => props.onPageChanged(p)}
-            className={
-              props.currentPage === p ? classes.selectedPage : classes.pages
-            }
-          >
-            {p},{" "}
+          <span>
+            <span
+              onClick={() => props.onPageChanged(p)}
+              className={
+                props.currentPage === p ? classes.selectedPage : classes.pages
+              }
+            >
+              {p}
+            </span>
+            <span>, </span>
           </span>
         ))}
       </div>

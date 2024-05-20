@@ -15,13 +15,12 @@
 		top: 0px;
 		width: 100%;
 		height: 300px;
-		object-fit: contain;
+		object-fit: cover;
 		object-position: center;
-		background-color: rgb(242,242,242);
+		background-color: rgb(242, 242, 242);
 		z-index: -1;
 	}
 }
-
 
 .profileHeader {
 	display: flex;
@@ -47,37 +46,56 @@
 	box-shadow: 0 -1px 2px rgb(220, 225, 230);
 	overflow: hidden;
 	border: 5px solid white;
+	background-color: rgb(242, 242, 242);
 
 	& img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: center;
-		background-color: rgb(242, 242, 242)
 	}
 }
 
-
 .profileInfo {
-	display: grid;
-	grid-template-areas:
-	"name name"
-	"age city";
 	margin-left: 16px;
 }
 
-.profileInfo .name {
-	grid-area: name;
+.fullName {
 	font-size: 21px;
 	font-weight: 600;
 	line-height: 26px;
 }
 
-.profileInfo .age {
-	grid-area: age;
-
+.infoSection {
+	padding: 8px 0;
 }
 
-.profileInfo .city {
-	grid-area: city;
+.infoHeadline {
+	padding-bottom: 8px;
+	color: rgb(0, 0, 0);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.info {
+	color: #000;
+}
+
+.contacts {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.infoName {
+	color: #626D7A;
+}
+
+.job {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
 }

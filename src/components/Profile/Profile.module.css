@@ -5,3 +5,10 @@
 	flex-direction: column;
 	gap: 20px;
 }
+
+.preloader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100dvh;
+}

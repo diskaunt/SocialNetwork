@@ -4,6 +4,11 @@
 	--content-border-radius: 20px;
 }
 
+html, body {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+}
+
 html {
 	overflow-x: hidden;
 	margin-right: calc(-1 * (100vw - 100%));
@@ -16,7 +21,8 @@ body {
 
 a {
 	text-decoration: none;
-	color: #000000;
+	color: inherit;
+	cursor: pointer;
 }
 
 button {
@@ -65,4 +71,8 @@ textarea {
 	position: relative;
 	grid-area: content;
 
+}
+
+p {
+margin: 0;
 }

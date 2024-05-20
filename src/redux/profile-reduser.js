@@ -1,27 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 
 const initialState = {
-  posts: [
-    {
-      id: "0",
-      name: "name",
-      likesCount: "16",
-      src: "",
-      message:
-        "Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi, how are you?Hi",
-    },
-    {
-      id: "1",
-      name: "name",
-      likesCount: "32",
-      src: "",
-      message: "I love Bananas ",
-    },
-  ],
+  posts: [],
   newPostText: "",
+	profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -44,22 +28,31 @@ const profileReducer = (state = initialState, action) => {
         };
         return { ...state, posts: [...state.posts, newPost], newPostText: "" };
       }
-      return {...state};
+      return { ...state };
 
     case UPDATE_NEW_POST_TEXT:
       return { ...state, newPostText: action.newText };
+
+		case SET_USER_PROFILE:
+			return {...state, profile: action.profile}
+
     default:
-      return { ...state };
+      return state ;
   }
 };
 
-export const addPostActionCreator = (textarea) => ({
+export const addPost = (textarea) => ({
   type: ADD_POST,
   textarea,
 });
-export const updateNewPostTextActionCreator = (text) => ({
+export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
+});
+
+export const setUserProfile = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
 });
 
 export default profileReducer;

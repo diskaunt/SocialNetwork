@@ -13,6 +13,10 @@
 }
 
 .contentWrapper {
+	display: flex;
+	height: 50px;
+	align-items: center;
+	justify-content: space-between;
 	margin: 0 auto;
 	width: 1200px;
 	padding: 0 15px;
@@ -25,6 +29,11 @@
 
 	& h1 {
 		font-size: 20px;
+		display: flex;
+		align-items: center;
+		margin: 0;
+		height: 50px;
+		font-size: 20px;
 	}
 
 	& img {
@@ -33,10 +42,21 @@
 	}
 }
 
-h1 {
+.loginBlock {
 	display: flex;
-	align-items: center;
-	margin: 0;
-	height: 50px;
-	font-size: 20px;
+	height: 100%;
+	color: rgb(0, 0, 0);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+
+	& a {
+		padding-left: 10px;
+		padding-right: 8px;
+	}
+
+	& img {
+		width: 32px;
+		margin-right: 6px;
+	}
 }
