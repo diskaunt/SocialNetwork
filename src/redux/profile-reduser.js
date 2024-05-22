@@ -17,12 +17,7 @@ const profileReducer = (state = initialState, action) => {
         newPost = {
           id: state.posts.length,
           name: "",
-          date:
-            ["0" + date.getDay(), "0" + (date.getMonth() + 1)]
-              .map((component) => component.slice(-2))
-              .join(".") +
-            "." +
-            date.getFullYear(),
+          date: date.toLocaleString('ru-RU'),
           message: state.newPostText,
           likesCount: 0,
         };

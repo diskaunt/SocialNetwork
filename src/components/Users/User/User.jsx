@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./User.module.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { followApi } from "../../../api/api";
 
 let User = (props) => {
   return (
@@ -30,47 +30,30 @@ let User = (props) => {
         <div className={classes.btn}>
           {props.u.followed ? (
             <button
+              disabled={props.followingInProgress.some((id) => id === props.u.id)}
               onClick={() => {
-                axios
-                  .delete(
-                    "https://social-network.samuraijs.com/api/1.0/follow/" +
-                      props.u.id,
-                    {
-                      withCredentials: true,
-                      headers: {
-                        "API-KEY": "bfaf3a0b-5031-4e47-b170-c742ccf66d46",
-                      },
-                    }
-                  )
-                  .then((response) => {
-                    if (!response.data.resultCode) {
-                      props.follow(props.u.id);
-                    }
-                  });
+                props.toggleFollowingProgress(props.u.id, true);
+                followApi.delete(props.u.id).then((response) => {
+                  if (!response.resultCode) {
+                    props.follow(props.u.id);
+                  }
+                  props.toggleFollowingProgress(props.u.id, false);
+                });
               }}
             >
               Unfollow
             </button>
           ) : (
             <button
+              disabled={props.followingInProgress.some((id) => id === props.u.id)}
               onClick={() => {
-                axios
-                  .post(
-                    "https://social-network.samuraijs.com/api/1.0/follow/" +
-                      props.u.id,
-                    {},
-                    {
-                      withCredentials: true,
-                      headers: {
-                        "API-KEY": "bfaf3a0b-5031-4e47-b170-c742ccf66d46",
-                      },
-                    }
-                  )
-                  .then((response) => {
-                    if (!response.data.resultCode) {
-                      props.follow(props.u.id);
-                    }
-                  });
+                props.toggleFollowingProgress(props.u.id, true);
+                followApi.follow(props.u.id).then((response) => {
+                  if (!response.resultCode) {
+                    props.follow(props.u.id);
+                  }
+                  props.toggleFollowingProgress(props.u.id, false);
+                });
               }}
             >
               Follow

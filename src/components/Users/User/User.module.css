@@ -1,6 +1,6 @@
 .user {
 	padding: 8px 12px;
-	min-height: 60px;
+	min-height: 96px;
 	display: flex;
 	align-items: center;
 }
@@ -66,5 +66,13 @@
 
 .btn {
 	grid-area: btn;
+
+	& button{
+
+		&:disabled {
+			opacity: 30%;
+		}
+	}
 }
+
 
