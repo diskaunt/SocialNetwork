@@ -18,7 +18,15 @@ let Users = (props) => {
             <Preloader />
           </div>
         ) : (
-          props.users.map((u) => <User u={u} unfollow={props.unfollow} follow={props.follow} />)
+          props.users.map((u) => (
+            <User
+              u={u}
+              unfollow={props.unfollow}
+              follow={props.follow}
+              toggleFollowingProgress={props.toggleFollowingProgress}
+							followingInProgress={props.followingInProgress}
+            />
+          ))
         )}
       </div>
       <div className={classes.pagesWrapper}>

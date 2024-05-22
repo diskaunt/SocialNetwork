@@ -81,11 +81,6 @@ const dialogsReducer = (state = initialState, action) => {
         src: null,
       };
       action.textarea.style.cssText += "height: 36px; overflow: hidden;";
-      // setTimeout(
-      //   () =>
-      //     action.endOfPage.scrollIntoView({ behavior: "smooth", block: "end" }),
-      //   0
-      // );
 
       return {
         ...state,
