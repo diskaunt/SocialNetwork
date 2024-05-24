@@ -3,7 +3,7 @@ import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-  let postsElements = props.profilePage.posts.map((post) => (
+  let postsElements = props.posts.map((post) => (
     <Post
       key={post.id}
       name={post.name || "name"}
@@ -11,7 +11,7 @@ const MyPosts = (props) => {
       likesCount={post.likesCount}
       src={
         post.src ||
-        "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
+        "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
       }
       message={post.message}
     />
@@ -67,9 +67,7 @@ const MyPosts = (props) => {
           <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
-      <div
-        className={postsElements.length ? classes.posts : "display: none"}
-      >
+      <div className={postsElements.length ? classes.posts : "display: none"}>
         {postsElements}
       </div>
     </div>

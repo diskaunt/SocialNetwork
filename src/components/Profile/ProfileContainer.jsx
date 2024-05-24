@@ -1,22 +1,18 @@
 import {
   addPost,
   updateNewPostText,
-  setUserProfile,
+  getUserProfile,
 } from "../../redux/profile-reduser";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { Route, Routes, useMatch } from "react-router-dom";
-import { profileApi } from "../../api/api";
 
 let ProfileContainer = (props) => {
   let userId = useMatch("/profile/:userId?").params.userId;
   userId ??= props.auth.userId;
   useEffect(() => {
-    profileApi.getProfile(userId)
-      .then((response) => {
-        props.setUserProfile(response.data);
-      });
+    userId && props.getUserProfile(userId);
     return () => {};
   }, [userId]);
 
@@ -37,5 +33,5 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   addPost,
   updateNewPostText,
-  setUserProfile,
+  getUserProfile,
 })(ProfileContainer);

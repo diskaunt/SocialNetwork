@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./User.module.css";
 import { Link } from "react-router-dom";
-import { followApi } from "../../../api/api";
 
 let User = (props) => {
   return (
@@ -12,7 +11,7 @@ let User = (props) => {
             src={
               props.u.photos.small
                 ? props.u.photos.small
-                : "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
+                : "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
             }
             alt=""
           />
@@ -32,13 +31,7 @@ let User = (props) => {
             <button
               disabled={props.followingInProgress.some((id) => id === props.u.id)}
               onClick={() => {
-                props.toggleFollowingProgress(props.u.id, true);
-                followApi.delete(props.u.id).then((response) => {
-                  if (!response.resultCode) {
-                    props.follow(props.u.id);
-                  }
-                  props.toggleFollowingProgress(props.u.id, false);
-                });
+                props.unfollow(props.u.id)
               }}
             >
               Unfollow
@@ -47,13 +40,7 @@ let User = (props) => {
             <button
               disabled={props.followingInProgress.some((id) => id === props.u.id)}
               onClick={() => {
-                props.toggleFollowingProgress(props.u.id, true);
-                followApi.follow(props.u.id).then((response) => {
-                  if (!response.resultCode) {
-                    props.follow(props.u.id);
-                  }
-                  props.toggleFollowingProgress(props.u.id, false);
-                });
+                props.follow(props.u.id)
               }}
             >
               Follow
