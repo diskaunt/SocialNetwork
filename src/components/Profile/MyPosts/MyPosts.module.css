@@ -14,23 +14,22 @@
 .textareaWrapper {
 	border-top: 1px solid rgb(220, 225, 230);
 	padding: 20px 13px 0 20px;
-}
+	margin-bottom: 12px;
 
-.textareaWrapper .textarea {
-	height: auto;
-	width: 100%;
-	min-height: 48px;
-	border: 1px solid rgb(220, 225, 230);
-	border-radius: 10px;
-	margin-bottom: 9px;
-	padding: 8px 8px;
-	resize: none;
+	& .textarea {
+		height: auto;
+		width: 100%;
+		min-height: 48px;
+		border: 1px solid rgb(220, 225, 230);
+		border-radius: 10px;
+		padding: 8px 8px;
+		resize: none;
 
-	&:focus {
-		outline: none;
+		&:focus {
+			outline: none;
+		}
 	}
 }
-
 
 .placeholder {
 	position: relative;
@@ -42,12 +41,11 @@
 .phInput {
 	position: absolute;
 	height: auto;
-	top: -57px;
+	top: -48px;
 	width: 100%;
 	min-height: 48px;
 	border: 1px solid rgb(220, 225, 230);
 	border-radius: 10px;
-	margin-bottom: 9px;
 	padding: 8px 8px;
 	resize: none;
 
@@ -60,7 +58,7 @@
 }
 
 .btnWrapper {
-padding: 0 16px;
+	padding: 0 13px 4px;
 }
 
 .newPost button {
@@ -74,7 +72,7 @@ padding: 0 16px;
 	color: #FFF;
 	border-radius: 10px;
 	font-size: 13px;
-	}
+}
 
 .header {
 	padding: 0 13px 12px 20px;
@@ -93,4 +91,6 @@ padding: 0 16px;
 	padding: 20px 20px;
 }
 
-h3 {margin: 0;}
+h3 {
+	margin: 0;
+}

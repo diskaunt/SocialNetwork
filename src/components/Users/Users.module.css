@@ -21,16 +21,28 @@
 	border-bottom: 1px solid rgb(220, 225, 230);
 }
 
+.pagesWrapper {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
 .pages {
 	cursor: pointer;
+	padding: 8px 16px;
+	border-radius: 2px;
 
 	&:hover {
 		text-decoration: underline;
+		background-color: #edeef0;
+
 	}
 }
 
-.selectedPage {
-	font-weight: bold;
+.activePage {
+	color: #fff;
+	padding: 8px 16px;
+	background-color: var(--main-color);
+	border-radius: 2px;
 }
 
 .preloader {

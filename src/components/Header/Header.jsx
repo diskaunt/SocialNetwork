@@ -19,7 +19,7 @@ const Header = (props) => {
               <img
                 alt="avatar"
                 src={
-                   props.profile?.photos.small || "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
+                   props.profile?.photos.small || "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
                 }
               ></img>{" "}
               {props.login}

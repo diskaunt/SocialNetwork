@@ -1,24 +1,11 @@
 import React, { useEffect } from "react";
 import Header from "./Header";
-import { setUserData, setUserProfile } from "../../redux/auth-reduser";
+import { getAuthUserData } from "../../redux/auth-reduser";
 import { connect } from "react-redux";
-import { authApi, profileApi } from "../../api/api";
 
 const HeaderContainer = (props) => {
   useEffect(() => {
-    authApi.getAuth()
-      .then((response) => {
-        if (!response.resultCode) {
-          props.setUserData(response.data);
-        }
-      })
-      .then(() => {
-        if (props.userId !== null) {
-          profileApi.getProfile(props.userId).then((response) => {
-            props.setUserProfile(response);
-          });
-        }
-      });
+    props.getAuthUserData();
   }, [props.isAuth]);
 
   return <Header {...props} />;
@@ -36,6 +23,5 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  setUserData,
-  setUserProfile,
+  getAuthUserData,
 })(HeaderContainer);

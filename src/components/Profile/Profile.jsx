@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
 
-const Profile = (props) => {
+const Profile = (props) => {debugger
 
   if (!props.profilePage.profile) {
     return (
@@ -17,7 +17,9 @@ const Profile = (props) => {
     <div className={classes.content}>
       <ProfileInfo profile={props.profilePage.profile} />
       <MyPosts
-        profilePage={props.profilePage}
+        posts={props.profilePage.posts}
+				newPostText={props.profilePage.newPostText}
+				profile={props.profilePage.profile}
         addPost={props.addPost}
         updateNewPostText={props.updateNewPostText}
       />
