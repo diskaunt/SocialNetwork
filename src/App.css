@@ -6,11 +6,9 @@
 
 html, body {
   font-family: 'Roboto Mono', monospace;
-  font-size: 16px;
 }
 
 html {
-	overflow-x: hidden;
 	margin-right: calc(-1 * (100vw - 100%));
 }
 
@@ -56,21 +54,19 @@ textarea {
 .app-wrapper {
 	position: relative;
 	margin: 0 auto;
-	padding: 0 15px;
+	padding: 0 30px;
 	display: grid;
-	width: 1200px;
-	grid-template-areas:
-		"header header"
-		"nav content";
-	grid-template-rows: 60px 1fr;
-	grid-template-columns: 1fr 10fr;
+	width: 1136px;
+	grid-template:
+	"header header" 60px
+	"nav content"  auto
+	/ 164px auto;
 	grid-gap: 16px;
 }
 
 .appWrapperContent {
 	position: relative;
 	grid-area: content;
-
 }
 
 p {

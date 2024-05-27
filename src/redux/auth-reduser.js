@@ -1,7 +1,7 @@
 import { authApi, usersApi } from "../api/api";
 
 const SET_USER_DATA = "SET-USER-DATA";
-const SET_USER_PHOTO = "SET-USER-PROFILE";
+const SET_USER_PHOTO = "SET-USER-PHOTO";
 
 const initialState = {
   userId: null,

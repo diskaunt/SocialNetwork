@@ -1,7 +1,8 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
@@ -31,7 +32,7 @@ const Dialogs = (props) => {
 
   const onAddMessage = () => {
     const textarea = newMessageElement.current;
-		const scroll = scrollTo.current
+    const scroll = scrollTo.current;
     props.addMessage(textarea, scroll);
   };
 
@@ -46,9 +47,12 @@ const Dialogs = (props) => {
     props.autoSize(textarea);
   };
 
- useEffect( () => {
-    scrollTo.current.scrollIntoView({ behavior: "smooth", block: "end" });
-  });
+  useEffect(() => {
+    scrollTo.current && scrollTo.current.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, []);
+
+
+  if (!props.isAuth) return <Navigate to={"/login"} />;
 
   return (
     <div className={classes.dialogs}>

@@ -20,8 +20,6 @@
 	border-bottom: none;
 }
 
-
-
 .active {
 	box-shadow: 0 0px 2px rgb(0, 0, 0, 0.40);
 	background-color: rgb(0, 0, 0, 0.1);
