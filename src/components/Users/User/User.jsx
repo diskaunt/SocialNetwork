@@ -9,9 +9,7 @@ let User = (props) => {
         <Link to={"/profile/" + props.u.id}>
           <img
             src={
-              props.u.photos.small
-                ? props.u.photos.small
-                : "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
+              props.u.photos.small || "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
             }
             alt=""
           />

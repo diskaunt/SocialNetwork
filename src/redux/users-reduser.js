@@ -10,7 +10,7 @@ const TOGLE_IS_FOLLOWING_PROGRESS = "TOGLE-IS-FOLLOWING-PROGRESS";
 
 const initialState = {
   users: [],
-  pageSize: 27,
+  pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
@@ -40,7 +40,7 @@ const usersReduser = (state = initialState, action) => {
     //     }),
     //   };
     case SET_USERS: {
-      return { ...state, users: [...action.users] };
+      return { ...state, users: !state.users.every((user, index) => user === action.users[index])? [...state.users]: [...state.users, ...action.users] };
     }
 
     case SET_CURRENT_PAGE: {

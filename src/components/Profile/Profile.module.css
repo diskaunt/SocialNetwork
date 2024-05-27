@@ -1,6 +1,6 @@
 .content {
 	position: relative;
-	background-color: auto;
+	background-color: inherit;
 	display: flex;
 	flex-direction: column;
 	gap: 20px;

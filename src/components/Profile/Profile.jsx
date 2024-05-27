@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
 
-const Profile = (props) => {debugger
+const Profile = (props) => {
 
   if (!props.profilePage.profile) {
     return (
