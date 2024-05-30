@@ -2,20 +2,23 @@ import {
   addPost,
   updateNewPostText,
   getUserProfile,
+  getUserStatus,
+	updateUserStatus,
 } from "../../redux/profile-reduser";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import Profile from "./Profile";
-import { Navigate, Route, Routes, useMatch } from "react-router-dom";
+import { Route, Routes, useMatch } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 let ProfileContainer = (props) => {
   let userId = useMatch("/profile/:userId?").params.userId;
   userId ??= props.auth.userId;
   useEffect(() => {
     userId && props.getUserProfile(userId);
+    userId && props.getUserStatus(userId);
   }, [userId]);
-
-	if (!props.isAuth) return <Navigate to={"/login"} />;
 
   return (
     <Routes>
@@ -27,12 +30,16 @@ let ProfileContainer = (props) => {
 let mapStateToProps = (state) => {
   return {
     profilePage: state.profilePage,
-    auth: state.auth,
   };
 };
 
-export default connect(mapStateToProps, {
-  addPost,
-  updateNewPostText,
-  getUserProfile,
-})(ProfileContainer);
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, {
+    addPost,
+    updateNewPostText,
+    getUserProfile,
+    getUserStatus,
+		updateUserStatus,
+  })
+)(ProfileContainer);

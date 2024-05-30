@@ -5,31 +5,18 @@ import {
   updateNewMessageTextActionCreator,
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
+
 
 let mapStateToProps = (state) => {
-  return {
-    dialogsPage: state.dialogsPage,
-    isAuth: state.auth.isAuth,
+	return {
+		dialogsPage: state.dialogsPage,
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    addMessage: (textarea, scroll) => {
-      dispatch(addMessageActionCreator(textarea, scroll));
-    },
-    updateNewMessageText: (text, scroll) => {
-      dispatch(updateNewMessageTextActionCreator(text, scroll));
-    },
-    autoSize: (textarea) => {
-      dispatch(autoSizeActionCreator(textarea));
-    },
-  };
-};
-
-const DialogsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dialogs);
-
-export default DialogsContainer;
+export default compose(withAuthRedirect,
+	connect(
+		mapStateToProps,
+		{addMessageActionCreator, updateNewMessageTextActionCreator, autoSizeActionCreator}
+	))(Dialogs)

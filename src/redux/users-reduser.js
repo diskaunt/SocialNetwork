@@ -1,4 +1,4 @@
-import { usersApi } from "../api/api";
+import { usersAPI } from "../api/api";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -10,7 +10,7 @@ const TOGLE_IS_FOLLOWING_PROGRESS = "TOGLE-IS-FOLLOWING-PROGRESS";
 
 const initialState = {
   users: [],
-  pageSize: 5,
+  pageSize: 16,
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
@@ -40,7 +40,7 @@ const usersReduser = (state = initialState, action) => {
     //     }),
     //   };
     case SET_USERS: {
-      return { ...state, users: !state.users.every((user, index) => user === action.users[index])? [...state.users]: [...state.users, ...action.users] };
+      return { ...state, users:  [...action.users]};
     }
 
     case SET_CURRENT_PAGE: {
@@ -112,7 +112,7 @@ export const toggleFollowingProgress = (id, isFetching) => ({
 
 export const getUsers = (currentPage, pageSize) => (dispatch) => {
   dispatch(toggleIsFetching());
-  usersApi.getUsers(currentPage, pageSize).then((data) => {
+  usersAPI.getUsers(currentPage, pageSize).then((data) => {
     dispatch(setCurrentPage(currentPage));
     dispatch(toggleIsFetching());
     dispatch(setUsers(data.items));
@@ -122,7 +122,7 @@ export const getUsers = (currentPage, pageSize) => (dispatch) => {
 
 export const unfollow = (id) => (dispatch) => {
   dispatch(toggleFollowingProgress(id, true));
-  usersApi.delete(id).then((data) => {
+  usersAPI.delete(id).then((data) => {
     if (!data.resultCode) {
       dispatch(followSucces(id));
     }
@@ -132,7 +132,7 @@ export const unfollow = (id) => (dispatch) => {
 
 export const follow = (id) => (dispatch) => {
   dispatch(toggleFollowingProgress(id, true));
-  usersApi.follow(id).then((data) => {
+  usersAPI.follow(id).then((data) => {
     if (!data.resultCode) {
       dispatch(followSucces(id));
     }

@@ -27,13 +27,14 @@
 	padding: 20px;
 	background-color: rgba(255, 255, 255);
 	border-radius: var(--content-border-radius);
-	box-shadow: 0 -1px 2px rgb(220, 225, 230)
+	box-shadow: var(--shadow-effect)
 }
 
 .profileHeaderImg {
 	position: relative;
 	width: 150px;
 	height: 100%;
+	flex-shrink: 0;
 }
 
 .wrapperImg {
@@ -43,7 +44,7 @@
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
-	box-shadow: 0 -1px 2px rgb(220, 225, 230);
+	box-shadow: var(--shadow-effect);
 	overflow: hidden;
 	border: 5px solid white;
 	background-color: rgb(242, 242, 242);
@@ -57,6 +58,7 @@
 }
 
 .profileInfo {
+	width: 100%;
 	margin-left: 16px;
 }
 
@@ -64,6 +66,7 @@
 	font-size: 21px;
 	font-weight: 600;
 	line-height: 26px;
+
 }
 
 .infoSection {
@@ -90,7 +93,7 @@
 }
 
 .infoName {
-	color: #626D7A;
+	color: var(--text-color-subhead-gray);
 }
 
 .job {
@@ -98,4 +101,41 @@
 	grid-template-columns: 130px auto;
 	gap: 12px;
 	margin-bottom: 8px;
+}
+
+.statusField {
+position: relative;
+width: 100%;
+min-height: 43px;
+
+}
+
+.statusFildActive {
+	position: absolute;
+	width: 100%;
+	left: -8px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	color: var(--text-color-subhead-gray);
+	padding: 8px;
+	background-color: #fff;
+	border: var(--border-text-area);
+
+
+	& input {
+		width: 100%;
+		border: var(--border-text-area);
+		border-radius: 5px;
+		padding: 5px;
+	}
+}
+
+.statusFildStatic {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	color: var(--text-color-subhead-gray);
+	padding: 8px 0;
 }

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 const HeaderContainer = (props) => {
   useEffect(() => {
-    props.isAuth && props.getAuthUserData();
+    !props.isAuth && props.getAuthUserData();
   }, []);
 
   return <Header {...props} />;

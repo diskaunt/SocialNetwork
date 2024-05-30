@@ -1,15 +1,25 @@
 * {
 	box-sizing: border-box;
-	--main-color: rgb(25, 154, 195);
-	--content-border-radius: 20px;
 }
 
-html, body {
-  font-family: 'Roboto Mono', monospace;
+:root {
+	--main-color-blue: rgb(25, 154, 195);
+	--content-border-radius: 20px;
+	--text-color-subhead-gray: #626d7a;
+	--text-color-secondary-gray: #818c99;
+	--text-color-link-blue: rgb(11, 73, 105);
+	--shadow-effect: 0 -1px 2px rgb(220, 225, 230);
+	--border-text-area: 1px solid rgb(220, 225, 230);
+}
+
+html,
+body {
+	font-family: 'Roboto Mono', monospace;
 }
 
 html {
 	margin-right: calc(-1 * (100vw - 100%));
+	overflow-x: hidden;
 }
 
 body {
@@ -24,20 +34,27 @@ a {
 }
 
 button {
-	--opacity: 1;
 	transition: opacity 0.3s;
-	opacity: var(--opacity);
+	opacity: 1;
+	cursor: pointer;
+	min-width: 118px;
+	min-height: 34px;
+	background-color: var(--main-color-blue);
+	border: none;
+	color: #FFF;
+	border-radius: 10px;
+	font-size: 13px;
 
 	&:hover {
-		--opacity: 0.7;
+		opacity: 0.7;
 	}
 
 	&:active {
-		--opacity: 0.9;
+		opacity: 0.9;
 	}
 }
 
-textarea {
+input, textarea {
 	&:focus {
 		outline: none;
 	}
@@ -58,9 +75,9 @@ textarea {
 	display: grid;
 	width: 1136px;
 	grid-template:
-	"header header" 60px
-	"nav content"  auto
-	/ 164px auto;
+		"header header" 60px
+		"nav content" auto
+		/ 164px auto;
 	grid-gap: 16px;
 }
 
@@ -70,5 +87,5 @@ textarea {
 }
 
 p {
-margin: 0;
+	margin: 0;
 }

@@ -7,8 +7,6 @@ const Login = (props) => {
 			Login
 		</div>
 	)
-
-
 };
 
 export default Login;

@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./User.module.css";
 import { Link } from "react-router-dom";
+import FollowIcon from "./follow";
+import Unfollow from "./unfollow";
 
 let User = (props) => {
   return (
@@ -9,7 +11,7 @@ let User = (props) => {
         <Link to={"/profile/" + props.u.id}>
           <img
             src={
-              props.u.photos.small || "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
+              props.u.photos.large || "http://dummyimage.com/205"
             }
             alt=""
           />
@@ -19,10 +21,8 @@ let User = (props) => {
         <div className={classes.name}>
           <Link to={"/profile/" + props.u.id}>{props.u.name}</Link>
         </div>
-        <div className={classes.location}>
-          {/* {props.u.location.country || "country"} */}
-          {/* {props.u.location.city || "city"} */}
-        </div>
+        {/* <div className={classes.location}>
+        </div> */}
         <div className={classes.status}>{props.u.status}</div>
         <div className={classes.btn}>
           {props.u.followed ? (
@@ -32,7 +32,7 @@ let User = (props) => {
                 props.unfollow(props.u.id)
               }}
             >
-              Unfollow
+              <Unfollow />
             </button>
           ) : (
             <button
@@ -41,7 +41,7 @@ let User = (props) => {
                 props.follow(props.u.id)
               }}
             >
-              Follow
+              <FollowIcon />
             </button>
           )}
         </div>

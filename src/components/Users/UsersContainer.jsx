@@ -18,16 +18,7 @@ const UsersComponent = (props) => {
   };
 
   return (
-    <Users
-      totalUsersCount={props.totalUsersCount}
-      pageSize={props.pageSize}
-      users={props.users}
-      follow={props.follow}
-      unfollow={props.unfollow}
-      onPageChanged={onPageChanged}
-      currentPage={props.currentPage}
-      isFetching={props.isFetching}
-      followingInProgress={props.followingInProgress}
+    <Users {...props} onPageChanged={onPageChanged}
     />
   );
 };
