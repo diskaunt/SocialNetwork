@@ -3,13 +3,13 @@
 	grid-template-columns: 229px auto;
 	background-color: rgba(255, 255, 255);
 	border-radius: var(--content-border-radius);
-	border: 1px solid rgb(220, 225, 230);
+	border: var(--border-text-area);
 	box-shadow: 0 0 0 rgb(220, 225, 230);
 	overflow: hidden;
 }
 
 .dialogsItems {
-	border-right: 1px solid rgb(220, 225, 230);
+	border-right: var(--border-text-area);
 }
 
 .messages {
@@ -34,7 +34,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-top: 1px solid rgb(220, 225, 230);
+	border-top: var(--border-text-area);
 	padding: 12px 12px 0 52px;
 	background-color: #f9f9f9;
 }
@@ -46,7 +46,7 @@
 	min-height: 36px;
 	height: 36px;
 	max-height: 201px;
-	border: 1px solid rgb(220, 225, 230);
+	border: var(--border-text-area);
 	border-radius: 10px;
 	padding: 9px 74px 10px 13px;
 	resize: none;
@@ -56,15 +56,4 @@
 
 .btnWrapper {
 	margin-bottom: 9px;
-}
-
-button {
-	cursor: pointer;
-	min-width: 118px;
-	min-height: 32px;
-	background-color: var(--main-color);
-	border: none;
-	color: #FFF;
-	border-radius: 10px;
-	font-size: 13px;
 }

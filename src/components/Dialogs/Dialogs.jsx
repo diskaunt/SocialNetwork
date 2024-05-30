@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
@@ -50,9 +49,6 @@ const Dialogs = (props) => {
   useEffect(() => {
     scrollTo.current && scrollTo.current.scrollIntoView({ behavior: "smooth", block: "end" });
   }, []);
-
-
-  if (!props.isAuth) return <Navigate to={"/login"} />;
 
   return (
     <div className={classes.dialogs}>

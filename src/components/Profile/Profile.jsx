@@ -5,7 +5,6 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
 
 const Profile = (props) => {
-
   if (!props.profilePage.profile) {
     return (
       <div className={classes.preloader}>
@@ -15,11 +14,15 @@ const Profile = (props) => {
   }
   return (
     <div className={classes.content}>
-      <ProfileInfo profile={props.profilePage.profile} />
+      <ProfileInfo
+        profile={props.profilePage.profile}
+        status={props.profilePage.status}
+        updateUserStatus={props.updateUserStatus}
+      />
       <MyPosts
         posts={props.profilePage.posts}
-				newPostText={props.profilePage.newPostText}
-				profile={props.profilePage.profile}
+        newPostText={props.profilePage.newPostText}
+        profile={props.profilePage.profile}
         addPost={props.addPost}
         updateNewPostText={props.updateNewPostText}
       />

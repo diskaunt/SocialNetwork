@@ -2,16 +2,14 @@ import React from "react";
 import classes from "./ProfileInfo.module.css";
 import Contacts from "./Contacts";
 import Job from "./Job";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   return (
     <div className={classes.profile}>
       <div className={classes.overPageCover}>
         <img
-          src={
-            props.profile.photos.large ||
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png"
-          }
+          src={props.profile.photos.large || "http://dummyimage.com/600x400"}
           alt="profile-background"
         />
       </div>
@@ -19,16 +17,14 @@ const ProfileInfo = (props) => {
         <div className={classes.profileHeaderImg}>
           <div className={classes.wrapperImg}>
             <img
-              src={
-                props.profile.photos.small ||
-                "https://i4.imageban.ru/out/2024/05/22/5fcfc3ee519160aab17e3a871818a423.jpeg"
-              }
+              src={props.profile.photos.small || "http://dummyimage.com/140"}
               alt="avatar"
             />
           </div>
         </div>
         <div className={classes.profileInfo}>
           <div className={classes.fullName}>{props.profile.fullName}</div>
+          <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
           <div className={classes.infoSection}>
             <div className={classes.infoHeadline}>About me:</div>
             <div className={classes.info}>{props.profile.aboutMe}</div>

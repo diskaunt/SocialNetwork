@@ -12,7 +12,7 @@
 }
 
 .textareaWrapper {
-	border-top: 1px solid rgb(220, 225, 230);
+	border-top: var(--border-text-area);
 	padding: 20px 13px 0 20px;
 	margin-bottom: 12px;
 
@@ -20,7 +20,7 @@
 		height: auto;
 		width: 100%;
 		min-height: 48px;
-		border: 1px solid rgb(220, 225, 230);
+		border: var(--border-text-area);
 		border-radius: 10px;
 		padding: 8px 8px;
 		resize: none;
@@ -44,7 +44,7 @@
 	top: -48px;
 	width: 100%;
 	min-height: 48px;
-	border: 1px solid rgb(220, 225, 230);
+	border: var(--border-text-area);
 	border-radius: 10px;
 	padding: 8px 8px;
 	resize: none;
@@ -53,25 +53,18 @@
 
 .phContent {
 	padding: 0;
-	color: #818c99;
+	color: var(--text-color-secondary-gray);
 	line-height: 1.462;
 }
 
 .btnWrapper {
 	padding: 0 13px 4px;
-}
 
-.newPost button {
-	display: block;
-	margin-left: auto;
-	cursor: pointer;
-	min-width: 118px;
-	min-height: 36px;
-	background-color: var(--main-color);
-	border: none;
-	color: #FFF;
-	border-radius: 10px;
-	font-size: 13px;
+	& button {
+		display: block;
+		margin-left: auto;
+		min-height: 36px;
+	}
 }
 
 .header {

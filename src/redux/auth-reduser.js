@@ -1,4 +1,4 @@
-import { authApi, usersApi } from "../api/api";
+import { authAPI, usersAPI } from "../api/api";
 
 const SET_USER_DATA = "SET-USER-DATA";
 const SET_USER_PHOTO = "SET-USER-PHOTO";
@@ -42,9 +42,7 @@ export const setUserProfile = (profile) => ({
 });
 
 export const getAuthUserData = () => (dispatch) => {
-  authApi
-    .me()
-    .then((data) => {
+  authAPI.me().then((data) => {
       if (!data.resultCode) {
         dispatch(setAuthUserData(data.data));
       }
@@ -52,7 +50,7 @@ export const getAuthUserData = () => (dispatch) => {
     })
     .then((data) => {
       if (data.data.id !== null) {
-        usersApi.getProfile(data.data.id).then((data) => {
+        usersAPI.getProfile(data.data.id).then((data) => {
           dispatch(setUserProfile(data));
         });
       }

@@ -6,8 +6,9 @@ import User from "./User/User";
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
-	let startIndex = props.currentPage - 3 > 0 ? props.currentPage - 3 : 1;
-	let endIndex = props.currentPage + 3 <= pagesCount ? props.currentPage + 3 : pagesCount
+  let startIndex = props.currentPage - 3 > 0 ? props.currentPage - 3 : 1;
+  let endIndex =
+    props.currentPage + 3 <= pagesCount ? props.currentPage + 3 : pagesCount;
   for (let i = startIndex; i <= endIndex; i++) {
     pages.push(i);
   }
@@ -25,22 +26,20 @@ let Users = (props) => {
               u={u}
               unfollow={props.unfollow}
               follow={props.follow}
-							followingInProgress={props.followingInProgress}
+              followingInProgress={props.followingInProgress}
             />
           ))
         )}
       </div>
       <div className={classes.pagesWrapper}>
         {pages.map((p) => (
-          <span>
-            <span
-              onClick={() => props.onPageChanged(p)}
-              className={
-                props.currentPage === p ? classes.activePage : classes.pages
-              }
-            >
-              {p}
-            </span>
+          <span
+            onClick={() => props.onPageChanged(p)}
+            className={
+              props.currentPage === p ? classes.activePage : classes.pages
+            }
+          >
+            {p}
           </span>
         ))}
       </div>
