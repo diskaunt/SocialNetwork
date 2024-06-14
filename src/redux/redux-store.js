@@ -5,6 +5,7 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReduser from "./users-reduser";
 import authReduser from "./auth-reduser";
+import appReducer from "./app-reduser";
 
 const store = configureStore({
   reducer: {
@@ -13,9 +14,10 @@ const store = configureStore({
     sidebarPage: sidebarReducer,
     usersPage: usersReduser,
     auth: authReduser,
+    app: appReducer,
   },
 });
 
-window.store = store;
+window.store = store.getState();
 
 export default store;

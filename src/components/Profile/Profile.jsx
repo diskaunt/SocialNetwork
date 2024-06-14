@@ -5,27 +5,26 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
 
 const Profile = (props) => {
-  if (!props.profilePage.profile) {
-    return (
-      <div className={classes.preloader}>
-        <Preloader />
-      </div>
-    );
-  }
   return (
     <div className={classes.content}>
-      <ProfileInfo
-        profile={props.profilePage.profile}
-        status={props.profilePage.status}
-        updateUserStatus={props.updateUserStatus}
-      />
-      <MyPosts
-        posts={props.profilePage.posts}
-        newPostText={props.profilePage.newPostText}
-        profile={props.profilePage.profile}
-        addPost={props.addPost}
-        updateNewPostText={props.updateNewPostText}
-      />
+      {props.profilePage.profile === null || props.profilePage.isFetching ? (
+        <div className={classes.preloader}>
+          <Preloader />
+        </div>
+      ) : (
+        <>
+          <ProfileInfo
+            profile={props.profilePage.profile}
+            status={props.profilePage.status}
+            updateUserStatus={props.updateUserStatus}
+          />
+          <MyPosts
+            posts={props.profilePage.posts}
+            profile={props.profilePage.profile}
+            addPost={props.addPost}
+          />
+        </>
+      )}
     </div>
   );
 };

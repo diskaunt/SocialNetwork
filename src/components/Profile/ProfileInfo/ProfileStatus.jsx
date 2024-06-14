@@ -7,7 +7,7 @@ const ProfileStatus = (props) => {
 
 	useEffect(() => {
 		setStatusValue(props.status)
-	},[props.status, statusValue])
+	},[editMode])
 
   return (
     <div className={classes.statusField}>

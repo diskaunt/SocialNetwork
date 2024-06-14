@@ -1,50 +1,32 @@
 import "./App.css";
-import React from "react";
-import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  Outlet,
+} from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import NoMatch from "./components/ErrorPage/NoMatch";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginPage from "./components/Login/Login";
+import { connect } from "react-redux";
+import { initializedApp } from "./redux/app-reduser";
+import CirclePreloader from "./components/common/preloader/CirclePrelloader";
 
-export default function App() {
-  return <RouterProvider router={router} />;
-}
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <NoMatch />,
-    children: [
-      {
-        path: "/profile/*",
-        element: <ProfileContainer />,
-        errorElement: <NoMatch />,
-      },
-      { path: "dialogs/*", element: <DialogsContainer /> },
-      { path: "news/", element: <News /> },
-      { path: "music/", element: <Music /> },
-      { path: "settings/", element: <Settings /> },
-      { path: "users/", element: <UsersContainer /> },
-      { path: "login", element: <LoginPage /> },
-    ],
-  },
-]);
-
-function Root() {
+function App(props) {
+	useEffect(() => {
+    props.initializedApp();
+  }, [props.initialized]);
   return (
-    <div className="app-wrapper">
-      <HeaderContainer />
-      <Sidebar />
-      <div className="appWrapperContent">
-        <Outlet />
-      </div>
-    </div>
-  );
+	<div className="app-wrapper">
+	<HeaderContainer />
+	{props.initialized? <><Sidebar />
+	<div className="appWrapperContent">
+		<Outlet />
+	</div></>: <CirclePreloader />}
+</div>
+	)
 }
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+  initialized: state.app.initialized,
+});
+
+export default connect(mapStateToProps, { initializedApp })(App);

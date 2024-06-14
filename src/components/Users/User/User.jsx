@@ -5,14 +5,18 @@ import FollowIcon from "./follow";
 import Unfollow from "./unfollow";
 
 let User = (props) => {
+  let sliceStatus = (status) => {
+    if (status) {
+      return status.length >= 34 ? status.slice(0, 34) + "..." : status;
+    }
+  };
+
   return (
     <div className={classes.user} key={props.u.id}>
       <div className={classes.avatar}>
         <Link to={"/profile/" + props.u.id}>
           <img
-            src={
-              props.u.photos.large || "http://dummyimage.com/205"
-            }
+            src={props.u.photos.large || "http://dummyimage.com/205"}
             alt=""
           />
         </Link>
@@ -23,22 +27,26 @@ let User = (props) => {
         </div>
         {/* <div className={classes.location}>
         </div> */}
-        <div className={classes.status}>{props.u.status}</div>
+        <div className={classes.status}>{sliceStatus(props.u.status)}</div>
         <div className={classes.btn}>
           {props.u.followed ? (
             <button
-              disabled={props.followingInProgress.some((id) => id === props.u.id)}
+              disabled={props.followingInProgress.some(
+                (id) => id === props.u.id
+              )}
               onClick={() => {
-                props.unfollow(props.u.id)
+                props.unfollow(props.u.id);
               }}
             >
               <Unfollow />
             </button>
           ) : (
             <button
-              disabled={props.followingInProgress.some((id) => id === props.u.id)}
+              disabled={props.followingInProgress.some(
+                (id) => id === props.u.id
+              )}
               onClick={() => {
-                props.follow(props.u.id)
+                props.follow(props.u.id);
               }}
             >
               <FollowIcon />

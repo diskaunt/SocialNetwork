@@ -1,27 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "./Header";
-import { getAuthUserData } from "../../redux/auth-reduser";
+import { logout } from "../../redux/auth-reduser";
 import { connect } from "react-redux";
 
 const HeaderContainer = (props) => {
-  useEffect(() => {
-    !props.isAuth && props.getAuthUserData();
-  }, []);
-
   return <Header {...props} />;
 };
 
 let mapStateToProps = (state) => {
   return {
-    userId: state.auth.userId,
-    email: state.auth.email,
-    login: state.auth.login,
-    isFetching: state.auth.isFetching,
-    isAuth: state.auth.isAuth,
-    profile: state.auth.profile,
+    auth: state.auth,
   };
 };
 
 export default connect(mapStateToProps, {
-  getAuthUserData,
+  logout,
 })(HeaderContainer);
