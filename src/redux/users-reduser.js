@@ -5,7 +5,7 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET-USERS";
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE";
 const SET_TOTAL_USER_COUNT = "SET-TOTAL-USER-COUNT";
-const TOGLE_IS_FETCHING = "TOGLE-IS-FETCHING";
+const USER_TOGLE_IS_FETCHING = "TOGLE-IS-FETCHING";
 const TOGLE_IS_FOLLOWING_PROGRESS = "TOGLE-IS-FOLLOWING-PROGRESS";
 
 const initialState = {
@@ -57,7 +57,7 @@ const usersReduser = (state = initialState, action) => {
       };
     }
 
-    case TOGLE_IS_FETCHING: {
+    case USER_TOGLE_IS_FETCHING: {
       return { ...state, isFetching: !state.isFetching };
     }
 
@@ -101,7 +101,7 @@ export const setTotalUsersCount = (totalUserCount) => ({
 });
 
 export const toggleIsFetching = () => ({
-  type: TOGLE_IS_FETCHING,
+  type: USER_TOGLE_IS_FETCHING,
 });
 
 export const toggleFollowingProgress = (id, isFetching) => ({

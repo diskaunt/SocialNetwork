@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import { Field, Form } from "react-final-form";
+import { Textarea } from "../common/FormsControls/FormsControls";
+import { composeValidators, maxLength, required } from "../../utils/validators/validators";
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
@@ -9,8 +12,8 @@ const Dialogs = (props) => {
       key={dialog.id}
       id={dialog.id}
       name={dialog.name || "name"}
-      src={
-        dialog.src ||
+      avatar={
+        dialog.avatar ||
         "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
       }
     />
@@ -20,58 +23,71 @@ const Dialogs = (props) => {
     <Message
       key={message.id}
       message={message.message}
-      src={
-        message.src ||
+      avatar={
+        message.avatar ||
         "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
       }
+			date={message.date}
     />
   ));
-  const scrollTo = React.createRef();
-  const newMessageElement = React.createRef();
 
-  const onAddMessage = () => {
-    const textarea = newMessageElement.current;
-    const scroll = scrollTo.current;
-    props.addMessage(textarea, scroll);
-  };
+  const scrollTo = useRef(undefined);
 
-  const onMessageChange = () => {
-    const text = newMessageElement.current.value;
-    const scroll = scrollTo.current;
-    props.updateNewMessageText(text, scroll);
-  };
+  const onSubmit = async (values) => {
+		await props.addMessage(values.newMessageBody);
+    scrollTo.current.scrollIntoView({ behavior: "smooth", block: "start" });
+	}
 
-  const onAutoSize = () => {
-    const textarea = newMessageElement.current;
-    props.autoSize(textarea);
-  };
-
-  useEffect(() => {
-    scrollTo.current && scrollTo.current.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, []);
 
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogsItems}>{dialogsElements}</div>
       <div className={classes.messages}>
-        <div className={classes.messages_content}>
+        <div className={classes.content}>
           <div className={classes.messagesElements}>{messagesElements}</div>
-          <div className={classes.textareaWrapper}>
-            <textarea
-              onInput={onAutoSize}
-              onChange={onMessageChange}
-              ref={newMessageElement}
-              value={props.dialogsPage.newMessageText}
-              placeholder="Write a message..."
-            />
-            <div className={classes.btnWrapper}>
-              <button onClick={onAddMessage}>Send</button>
-            </div>
-          </div>
-          <div ref={scrollTo}> </div>
+          <AddMessageForm onSubmit={onSubmit} />
+          <div ref={scrollTo}></div>
         </div>
       </div>
     </div>
+  );
+};
+
+const AddMessageForm = (props) => {
+  useEffect(() => {
+		// textarea.style.height = "auto";
+    // if (textarea.clientHeight < 54) {
+    //   textarea.style.height = 36 + "px";
+    // }
+    // if (textarea.scrollHeight > 201) {
+    //   textarea.style.overflow = "auto";
+    //   textarea.style.height = 201 + "px";
+    // } else {
+    //   textarea.style.overflow = "hidden";
+    //   textarea.style.height = textarea.scrollHeight + "px";
+    // }
+	},[]);
+  return (
+    <Form
+      onSubmit={props.onSubmit}
+      initialValues={{}}
+      render={({ handleSubmit, form, submitting, pristine, values }) => (
+        <form onSubmit={handleSubmit} className={classes.chatInputForm}>
+          <Field
+            name="newMessageBody"
+            component={Textarea}
+						validate={composeValidators(required, maxLength(100))}
+            type="text"
+            placeholder="Write a message..."
+          />
+          <div className={classes.btnWrapper}>
+            <button type="submit" disabled={submitting || pristine}>
+              Send
+            </button>
+          </div>
+        </form>
+      )}
+    />
   );
 };
 

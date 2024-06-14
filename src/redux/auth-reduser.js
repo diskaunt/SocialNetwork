@@ -2,6 +2,7 @@ import { authAPI, usersAPI } from "../api/api";
 
 const SET_USER_DATA = "SET-USER-DATA";
 const SET_USER_PHOTO = "SET-USER-PHOTO";
+const SET_ERROR = "SET_ERROR";
 
 const initialState = {
   userId: null,
@@ -10,6 +11,7 @@ const initialState = {
   isFetching: false,
   isAuth: false,
   photo: null,
+  error: null,
 };
 
 const authReduser = (state = initialState, action) => {
@@ -17,8 +19,7 @@ const authReduser = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.data,
-        isAuth: true,
+        ...action.payload,
       };
     case SET_USER_PHOTO:
       return {
@@ -26,14 +27,20 @@ const authReduser = (state = initialState, action) => {
         photo: action.photo,
       };
 
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.errorMessage,
+      };
+
     default:
       return { ...state };
   }
 };
 
-export const setAuthUserData = ({ id, email, login }) => ({
+export const setAuthUserData = (email, id, login, isAuth) => ({
   type: SET_USER_DATA,
-  data: { userId: id, email, login },
+  payload: { email, userId: id, login, isAuth },
 });
 
 export const setUserProfile = (profile) => ({
@@ -41,20 +48,49 @@ export const setUserProfile = (profile) => ({
   photo: profile.photos.small,
 });
 
+export const setError = (errorMessage) => ({
+  type: SET_ERROR,
+  errorMessage,
+});
+
 export const getAuthUserData = () => (dispatch) => {
-  authAPI.me().then((data) => {
+  return authAPI
+    .me()
+    .then((data) => {
       if (!data.resultCode) {
-        dispatch(setAuthUserData(data.data));
+        let { email, id, login } = data.data;
+        dispatch(setAuthUserData(email, id, login, true));
       }
       return data;
     })
     .then((data) => {
-      if (data.data.id !== null) {
+      if (data.data.id) {
         usersAPI.getProfile(data.data.id).then((data) => {
           dispatch(setUserProfile(data));
         });
       }
     });
+};
+
+export const login =
+  ({ email, password, rememberMe }) =>
+  (dispatch) => {
+    return authAPI.login(email, password, rememberMe).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(getAuthUserData());
+        dispatch(setError(null));
+      } else {
+        const errorMessage = data.messages[0];
+        dispatch(setError(errorMessage));
+      }
+    });
+  };
+export const logout = () => (dispatch) => {
+  authAPI.logout().then((data) => {
+    if (!data.resultCode) {
+      dispatch(setAuthUserData(null, null, null, false));
+    }
+  });
 };
 
 export default authReduser;

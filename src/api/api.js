@@ -1,12 +1,12 @@
 import axios from "axios";
-
-const accessToken = "80572901-f17f-42b6-94db-9ac9a1774813";
+import accessToken from "./AccessToken";
 
 const instance = axios.create({
   withCredentials: true,
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
   headers: {
     "API-KEY": "bfaf3a0b-5031-4e47-b170-c742ccf66d46",
+    Authorization: accessToken,
   },
 });
 
@@ -51,5 +51,13 @@ export const profileAPI = {
 export const authAPI = {
   me() {
     return instance.get("auth/me").then((response) => response.data);
+  },
+  login(email, password, rememberMe = false) {
+    return instance
+      .post("auth/login", { email, password, rememberMe })
+      .then((response) => response.data);
+  },
+  logout() {
+    return instance.delete("auth/login").then((response) => response.data);
   },
 };

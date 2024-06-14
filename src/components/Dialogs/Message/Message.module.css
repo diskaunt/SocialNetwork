@@ -1,9 +1,9 @@
 .message {
 	display: grid;
 	grid-template-areas:
-	"ava name"
-	"ava text";
-	grid-template-columns: 1fr 12fr;
+	"ava name date"
+	"ava text text";
+	grid-template-columns: 1fr 1fr 12fr;
 	gap: 7px;
 	padding: 6px 30px 7px 0;
   position: relative;
@@ -31,6 +31,13 @@
 	font-weight: 700;
 	line-height: 14.425px;
 	padding-top: 3px;
+}
+
+.date {
+	grid-area: date;
+	color: var(--text-color-secondary-gray);
+	font-size: 12px;
+	padding-top: 4px;
 }
 
 .text {

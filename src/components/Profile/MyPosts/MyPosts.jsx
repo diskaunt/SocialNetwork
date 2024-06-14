@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import { Field, Form } from "react-final-form";
+import {
+  composeValidators,
+  maxLength,
+  required,
+} from "../../../utils/validators/validators";
+import { Textarea } from "../../common/FormsControls/FormsControls";
 
 const MyPosts = (props) => {
   let postsElements = props.posts.map((post) => (
@@ -16,61 +23,48 @@ const MyPosts = (props) => {
       message={post.message}
     />
   ));
+  const scrollTo = useRef(undefined);
 
-  let newPostElement = React.createRef();
-  let placeholder = React.createRef();
-
-  const onAddPost = () => {
-    let text = newPostElement.current;
-    props.addPost();
-    text.innerText = "";
-    placeholder.current.style.display = "block";
-  };
-
-  const onPlaceholder = () => {
-    let text = newPostElement.current.innerText;
-    text
-      ? (placeholder.current.style.display = "none")
-      : (placeholder.current.style.display = "block");
-  };
-
-  const onPostChange = () => {
-    let text = newPostElement.current.innerText;
-    props.updateNewPostText(text);
+  const onSubmit = async (value) => {
+    await props.addPost(value.newPostText);
+    scrollTo.current.scrollIntoView({ behavior: "smooth", block: "end" });
   };
 
   return (
     <div className={classes.Myposts}>
       <div className={classes.newPost}>
         <h3 className={classes.header}>My posts</h3>
-        <div className={classes.textareaWrapper}>
-          <div
-            id="postField"
-            className={classes.textarea}
-            ref={newPostElement}
-            onInput={onPlaceholder}
-            onKeyUp={onPostChange}
-            contentEditable="true"
-            role="textbox"
-            aria-multiline="true"
-            aria-label="What's new for you?"
-          ></div>
-          <div ref={placeholder} className={classes.placeholder}>
-            <div className={classes.phInput}>
-              <label htmlFor="postField" className={classes.phContent}>
-                What's new for you?
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className={classes.btnWrapper}>
-          <button onClick={onAddPost}>Add post</button>
-        </div>
+        <AddNewPostForm onSubmit={onSubmit} />
       </div>
       <div className={postsElements.length ? classes.posts : "display: none"}>
         {postsElements}
+			<div className={classes.scrollTo} ref={scrollTo}></div>
       </div>
     </div>
+  );
+};
+
+const AddNewPostForm = (props) => {
+  return (
+    <Form
+      onSubmit={props.onSubmit}
+      render={({ handleSubmit, form, submitting, pristine, value }) => (
+        <form onSubmit={handleSubmit}>
+          <Field
+            name="newPostText"
+            component={Textarea}
+            placeholder="What's new for you?"
+            type="text"
+            validate={composeValidators(required, maxLength(100))}
+          />
+          <div className={classes.btnWrapper}>
+            <button type="submit" disabled={form.error || pristine}>
+              Add post
+            </button>
+          </div>
+        </form>
+      )}
+    />
   );
 };
 

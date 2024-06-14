@@ -7,8 +7,6 @@
 }
 
 .preloader {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100dvh;
+	width: clamp(50px, 7.5dvw, 80px);
+	margin: 0 auto;
 }

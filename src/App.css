@@ -3,13 +3,18 @@
 }
 
 :root {
+	--backgraund-color-hover-gray: rgba(0, 16, 61, 0.04);
 	--main-color-blue: rgb(25, 154, 195);
 	--content-border-radius: 20px;
 	--text-color-subhead-gray: #626d7a;
 	--text-color-secondary-gray: #818c99;
 	--text-color-link-blue: rgb(11, 73, 105);
-	--shadow-effect: 0 -1px 2px rgb(220, 225, 230);
+	--shadow-effect: 0px 0px 5px rgb(220, 225, 230);
 	--border-text-area: 1px solid rgb(220, 225, 230);
+	--main-block-background-color: rgba(255, 255, 255);
+	--user-cart-background-color: rgba(25, 155, 195, 0.1);
+	--body-background-color: #edeef0;
+	--line-background-color: rgb(220, 225, 230);
 }
 
 html,
@@ -25,6 +30,15 @@ html {
 body {
 	background-color: #edeef0;
 	font-size: 13px;
+}
+
+h1, h2, h3, h4 {
+	margin: 0;
+}
+
+img {
+	width: 100%;
+	height: 100%;
 }
 
 a {

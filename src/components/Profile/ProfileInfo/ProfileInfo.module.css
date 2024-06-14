@@ -1,8 +1,7 @@
 .profile {
 	border-radius: var(--content-border-radius);
-	;
 	overflow: hidden;
-	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
+	box-shadow: var(--shadow-effect);
 }
 
 .overPageCover {
@@ -25,7 +24,7 @@
 .profileHeader {
 	display: flex;
 	padding: 20px;
-	background-color: rgba(255, 255, 255);
+	background-color: var(--main-block-background-color);
 	border-radius: var(--content-border-radius);
 	box-shadow: var(--shadow-effect)
 }

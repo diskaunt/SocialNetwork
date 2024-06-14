@@ -3,8 +3,8 @@
 	border-radius: var(--content-border-radius);
 	min-height: 175px;
 	overflow: hidden;
-	box-shadow: 0 0 5px rgb(0, 0, 0, 0.40);
-	background-color: rgba(255, 255, 255);
+	box-shadow: var(--shadow-effect);
+	background-color: var(--main-block-background-color);
 	padding: 8px;
 	margin-bottom: 20px;
 }
@@ -45,7 +45,8 @@
 }
 
 .preloader {
-	text-align: center;
+	width: clamp(50px, 7.5dvw, 80px);
+	margin: 0 auto;
 }
 
 .user {
