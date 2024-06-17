@@ -8,8 +8,6 @@ import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { Navigate, useParams } from "react-router-dom";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
 
 let ProfileContainer = (props) => {
   let userId = useParams().userId;
