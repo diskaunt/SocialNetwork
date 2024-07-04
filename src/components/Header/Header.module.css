@@ -95,7 +95,6 @@
 				opacity: 1;
 				background-color: var(--backgraund-color-hover-gray);
 			}
-
 		}
 
 		& svg {
@@ -178,6 +177,4 @@
 		border-radius: 50%;
 		overflow: hidden;
 	}
-
-
 }
