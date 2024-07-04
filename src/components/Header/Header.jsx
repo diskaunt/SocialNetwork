@@ -12,9 +12,9 @@ const Header = ({ logout, auth }) => {
   };
 
   const menuRef = useRef(null);
-	const buttonRef = useRef(null)
+  const buttonRef = useRef(null);
 
-  useClickOutside(menuRef, buttonRef, ()=>setMenuBlockСondition(false));
+  useClickOutside(menuRef, buttonRef, () => setMenuBlockСondition(false));
 
   return (
     <header className={classes.header}>
@@ -29,20 +29,22 @@ const Header = ({ logout, auth }) => {
         <div className={classes.loginBlock}>
           {auth.isAuth ? (
             <div
-						className={
-							menuBlockСondition
-							? classes.button_isActive + " " + classes.menuBtn
-							: classes.menuBtn
-						}
-            >	<div className={classes.btnWrapper} ref={buttonRef}>
-              <MenuButton
-                auth={auth}
-                onSwitch={setMenuBlockСondition}
-                menuBlockСondition={menuBlockСondition}
-								/>
-						</div>
+              className={
+                menuBlockСondition
+                  ? classes.button_isActive + " " + classes.menuBtn
+                  : classes.menuBtn
+              }
+            >
+              {" "}
+              <div className={classes.btnWrapper} ref={buttonRef}>
+                <MenuButton
+                  auth={auth}
+                  onSwitch={setMenuBlockСondition}
+                  menuBlockСondition={menuBlockСondition}
+                />
+              </div>
               <div
-								ref={menuRef}
+                ref={menuRef}
                 className={
                   menuBlockСondition
                     ? classes.menuBlock

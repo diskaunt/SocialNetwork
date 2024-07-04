@@ -11,14 +11,16 @@ let User = ({
   follow,
   unfollow,
 }) => {
-
-	let newStatus = statusSlicer(status, 27)
+  let newStatus = statusSlicer(status, 27);
 
   return (
-		<div className={classes.userContainer} >
+    <div className={classes.userContainer}>
       <div className={classes.avatar}>
         <Link to={"/profile/" + id}>
-          <img src={photos.large ? photos.large : "http://dummyimage.com/205"} alt="" />
+          <img
+            src={photos.large ? photos.large : "http://dummyimage.com/205"}
+            alt=""
+          />
         </Link>
       </div>
       <div className={classes.content}>

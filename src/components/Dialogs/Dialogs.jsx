@@ -4,7 +4,11 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Field, Form } from "react-final-form";
 import { Textarea } from "../common/FormsControls/FormsControls";
-import { composeValidators, maxLength, required } from "../../utils/validators/validators";
+import {
+  composeValidators,
+  maxLength,
+  required,
+} from "../../utils/validators/validators";
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsPage.dialogs.map((dialog) => (
@@ -27,16 +31,16 @@ const Dialogs = (props) => {
         message.avatar ||
         "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
       }
-			date={message.date}
+      date={message.date}
     />
   ));
 
   const scrollTo = useRef(undefined);
 
   const onSubmit = async (values) => {
-		await props.addMessage(values.newMessageBody);
+    await props.addMessage(values.newMessageBody);
     scrollTo.current.scrollIntoView({ behavior: "smooth", block: "start" });
-	}
+  };
 
   return (
     <div className={classes.dialogs}>
@@ -54,7 +58,7 @@ const Dialogs = (props) => {
 
 const AddMessageForm = (props) => {
   useEffect(() => {
-		// textarea.style.height = "auto";
+    // textarea.style.height = "auto";
     // if (textarea.clientHeight < 54) {
     //   textarea.style.height = 36 + "px";
     // }
@@ -65,9 +69,9 @@ const AddMessageForm = (props) => {
     //   textarea.style.overflow = "hidden";
     //   textarea.style.height = textarea.scrollHeight + "px";
     // }
-	},[]);
+  }, []);
   return (
-		<Form
+    <Form
       onSubmit={props.onSubmit}
       initialValues={{}}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
@@ -75,7 +79,7 @@ const AddMessageForm = (props) => {
           <Field
             name="newMessageBody"
             component={Textarea}
-						validate={composeValidators(required, maxLength(100))}
+            validate={composeValidators(required, maxLength(100))}
             type="text"
             placeholder="Write a message..."
           />
