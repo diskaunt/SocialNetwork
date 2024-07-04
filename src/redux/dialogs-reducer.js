@@ -1,4 +1,4 @@
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "3RACHA/dialogs/ADD-MESSAGE";
 
 const initialState = {
   dialogs: [

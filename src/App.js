@@ -19,7 +19,7 @@ function App(props) {
 	{props.initialized? <><Sidebar />
 	<div className="appWrapperContent">
 		<Outlet />
-	</div></>: <CirclePreloader />}
+	</div></> : <CirclePreloader />}
 </div>
 	)
 }
@@ -29,4 +29,6 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default connect(mapStateToProps, { initializedApp })(App);
+const ReactJsApp = connect(mapStateToProps, { initializedApp })(App);
+
+export default ReactJsApp

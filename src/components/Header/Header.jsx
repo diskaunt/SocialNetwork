@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./Header.module.css";
 import { Link } from "react-router-dom";
 import IconLogout from "./LogoutIcon";
+import useClickOutside from "../../hooks/useClickOutside";
 
-const Header = (props) => {
-	const [menuBlockСondition, changeСondition] = useState(false)
-	const onSwitch = () => changeСondition(!menuBlockСondition);
-	const onLogout = () => {
-		props.logout()
-		changeСondition(!menuBlockСondition)
-	}
+const Header = ({ logout, auth }) => {
+  const [menuBlockСondition, setMenuBlockСondition] = useState(false);
+  const onLogout = () => {
+    logout();
+    setMenuBlockСondition(!menuBlockСondition);
+  };
+
+  const menuRef = useRef(null);
+	const buttonRef = useRef(null)
+
+  useClickOutside(menuRef, buttonRef, ()=>setMenuBlockСondition(false));
+
   return (
     <header className={classes.header}>
       <div className={classes.contentWrapper}>
@@ -21,11 +27,29 @@ const Header = (props) => {
           <h1>3RACHA</h1>
         </Link>
         <div className={classes.loginBlock}>
-          {props.auth.isAuth ? (
-            <div className={menuBlockСondition? classes.button_isactive + " " + classes.menuBtn : classes.menuBtn}>
-              <MenuButton {...props} onSwitch={onSwitch} />
-              <div className={menuBlockСondition? classes.menuBlock: classes.menuBlock + " " + classes.invisible}>
-                <MenuBlock {...props} onLogout = {onLogout} />
+          {auth.isAuth ? (
+            <div
+						className={
+							menuBlockСondition
+							? classes.button_isActive + " " + classes.menuBtn
+							: classes.menuBtn
+						}
+            >	<div className={classes.btnWrapper} ref={buttonRef}>
+              <MenuButton
+                auth={auth}
+                onSwitch={setMenuBlockСondition}
+                menuBlockСondition={menuBlockСondition}
+								/>
+						</div>
+              <div
+								ref={menuRef}
+                className={
+                  menuBlockСondition
+                    ? classes.menuBlock
+                    : classes.menuBlock + " " + classes.invisible
+                }
+              >
+                <MenuBlock auth={auth} onLogout={onLogout} />
               </div>
             </div>
           ) : (
@@ -39,13 +63,13 @@ const Header = (props) => {
   );
 };
 
-const MenuButton = (props) => {
+const MenuButton = ({ auth, onSwitch, menuBlockСondition }) => {
   return (
-    <button onClick={props.onSwitch}>
+    <button onClick={() => onSwitch(!menuBlockСondition)}>
       <div className={classes.menuButton_avatar}>
         <img
           alt="avatar"
-          src={props.profile?.photos.small || "http://dummyimage.com/32"}
+          src={(auth.photo && auth.photo) || "http://dummyimage.com/32"}
         ></img>
       </div>
       <svg
@@ -60,18 +84,21 @@ const MenuButton = (props) => {
   );
 };
 
-const MenuBlock = (props) => {
+const MenuBlock = ({ auth, onLogout }) => {
   return (
     <>
       <div className={classes.menuBlock_avatar}>
         <img
-          src={props.profile?.photos.small || "http://dummyimage.com/56"}
+          src={(auth.photo && auth.photo) || "http://dummyimage.com/56"}
           alt="avater"
         />
       </div>
-      <div className={classes.loginName}>{props.auth.login}</div>
+      <div className={classes.loginName}>{auth.login}</div>
       <div className={classes.logoutBtn}>
-        <button onClick={props.onLogout}><IconLogout />Logout</button>
+        <button onClick={onLogout}>
+          <IconLogout />
+          Logout
+        </button>
       </div>
     </>
   );

@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import classes from "./ProfileInfo.module.css";
 
-const ProfileStatus = (props) => {
-  const [editMode, setIsEdit] = useState(false);
-  const [statusValue, setStatusValue] = useState(props.status);
+const ProfileStatus = ({status,updateUserStatus}) => {
+  const [editMode, setEditMode] = useState(false);
+  const [newStatus, setStatus] = useState(status);
 
 	useEffect(() => {
-		setStatusValue(props.status)
-	},[editMode])
+		setStatus(status)
+	},[status])
 
   return (
     <div className={classes.statusField}>
       {editMode ? (
         <div className={classes.statusFildActive}>
           <input
-            onChange={(event) => setStatusValue(event.target.value)}
-            // onBlur={(event) => setIsEdit(!editMode)}
+            onChange={(event) => setStatus(event.target.value)}
+            // onBlur={(event) => setEditMode(!editMode)}
             autoFocus={true}
-            value={statusValue}
+            value={newStatus}
           />
           <button
             onClick={() => {
-              props.updateUserStatus(statusValue);
-              setIsEdit(!editMode);
+              updateUserStatus(newStatus);
+              setEditMode(!editMode);
             }}
           >
             Accept
           </button>
-          <button onClick={() => setIsEdit(!editMode)}>Close</button>
+          <button onClick={() => setEditMode(!editMode)}>Close</button>
         </div>
       ) : (
         <div className={classes.statusFildStatic}>
-          <span onDoubleClick={() => setIsEdit(!editMode)}>
-            {props.status || "Изменить статус..."}
+          <span onDoubleClick={() => setEditMode(!editMode)}>
+            {status || "Изменить статус..."}
           </span>
         </div>
       )}
@@ -40,4 +40,4 @@ const ProfileStatus = (props) => {
   );
 };
 
-export default ProfileStatus;
+export default memo(ProfileStatus);

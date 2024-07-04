@@ -1,32 +1,39 @@
 import { connect } from "react-redux";
-import {
-  follow,
-  unfollow,
-  requestUsers,
-} from "../../redux/users-reduser";
+import { follow, unfollow, requestUsers } from "../../redux/users-reduser";
 import React, { useEffect } from "react";
 import Users from "./Users";
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from "../../redux/users-selector";
+import {
+  getCurrentPage,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers,
+} from "../../redux/users-selector";
 
-const UsersComponent = (props) => {
+const UsersComponent = ({ currentPage, pageSize, requestUsers, ...props }) => {
   useEffect(() => {
-    props.requestUsers(props.currentPage, props.pageSize);
-  }, []);
+    requestUsers(currentPage, pageSize);
+  }, [currentPage, pageSize]);
 
   const onPageChanged = (pageNumber) => {
-    if (props.currentPage === pageNumber) return;
-    props.requestUsers(pageNumber, props.pageSize);
+    if (currentPage === pageNumber) return;
+    requestUsers(pageNumber, pageSize);
   };
 
   return (
-    <Users {...props} onPageChanged={onPageChanged}
+    <Users
+      {...props}
+      currentPage={currentPage}
+      pageSize={pageSize}
+      onPageChanged={onPageChanged}
     />
   );
 };
 
 let mapStateToProps = (state) => {
   return {
-		users: getUsers(state),
+    users: getUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),

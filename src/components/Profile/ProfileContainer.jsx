@@ -1,5 +1,6 @@
 import {
   addPost,
+  deletePost,
   getUserProfile,
   getUserStatus,
   updateUserStatus,
@@ -9,20 +10,27 @@ import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { Navigate, useParams } from "react-router-dom";
 
-let ProfileContainer = (props) => {
+let fullsum = 0;
+
+let ProfileContainer = ({ getUserProfile, getUserStatus, auth, ...props }) => {
   let userId = useParams().userId;
-  userId ??= props.auth.userId;
+  userId ??= auth.userId;
   useEffect(() => {
-    userId && props.getUserProfile(userId);
-    userId && props.getUserStatus(userId);
+    userId && getUserProfile(userId);
+    userId && getUserStatus(userId);
   }, [userId]);
-  return userId? <Profile {...props} />: <Navigate to={"/login"} />;
+
+	return userId ? (
+    <Profile auth={auth} {...props} />
+  ) : (
+    <Navigate to={"/login"} />
+  );
 };
 
 const mapStateToProps = (state) => {
   return {
     profilePage: state.profilePage,
-		auth: state.auth,
+    auth: state.auth,
   };
 };
 
@@ -31,4 +39,5 @@ export default connect(mapStateToProps, {
   getUserProfile,
   getUserStatus,
   updateUserStatus,
+  deletePost,
 })(ProfileContainer);

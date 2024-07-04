@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./Login.module.css";
 import RememberIcon from "./RememberIcon";
 import { Form, Field } from "react-final-form";
@@ -13,8 +13,8 @@ import {
 import { Navigate } from "react-router-dom";
 import { FORM_ERROR } from "final-form";
 
-const Login = (props) => {
-  return props.isAuth ? (
+const Login = ({ isAuth, login }) => {
+  return isAuth ? (
     <Navigate to={"/profile"} />
   ) : (
     <div className={classes.container}>
@@ -26,19 +26,19 @@ const Login = (props) => {
           />
           <h1 className={classes.header}>3RACHA</h1>
         </div>
-        <LoginForm login={props.login} error={props.error} />
+        <LoginForm login={login} />
       </div>
     </div>
   );
 };
 
-const LoginForm = (props) => {
+const LoginForm = ({ login }) => {
   return (
     <Form
       onSubmit={async (values) => {
-        await props.login(values);
-        if (props.error) {
-          return { [FORM_ERROR]: props.error };
+        let errorMessage = await login(values);
+        if (errorMessage) {
+          return { [FORM_ERROR]: errorMessage };
         }
       }}
       initialValues={{ rememberMe: false }}
@@ -111,7 +111,6 @@ const LoginForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
-    error: state.auth.error,
   };
 };
 

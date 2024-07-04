@@ -1,4 +1,4 @@
-.users {
+.usersContainer {
 	position: relative;
 	border-radius: var(--content-border-radius);
 	min-height: 175px;
@@ -16,32 +16,6 @@
 	line-height: 26px;
 	padding: 8px 12px;
 	border-bottom: 1px solid rgb(220, 225, 230);
-}
-
-.pagesWrapper {
-	display: block;
-	text-align: center;
-	margin-bottom: 10px;
-}
-
-.pages {
-	display: inline-block;
-	cursor: pointer;
-	padding: 8px 16px;
-	border-radius: 2px;
-
-	&:hover {
-		text-decoration: underline;
-		background-color: #edeef0;
-
-	}
-}
-
-.activePage {
-	color: #fff;
-	padding: 8px 16px;
-	background-color: var(--main-color-blue);
-	border-radius: 2px;
 }
 
 .preloader {

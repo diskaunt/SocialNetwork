@@ -1,10 +1,11 @@
-.Myposts {
+.myPostsContainer {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 }
 
 .newPost {
+	min-height: 203px;
 	background-color: var(--main-block-background-color);
 	box-shadow: var(--shadow-effect);
 	border-radius: var(--content-border-radius);
@@ -44,7 +45,10 @@
 
 .posts {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 169px;
 	background-color: var(--main-block-background-color);
 	box-shadow: var(--shadow-effect);
 	border-radius: var(--content-border-radius);
@@ -54,6 +58,32 @@
 	&>.scrollTo {
 		position: relative;
 		top: 138px;
+	}
+}
+
+.post {
+	display: grid;
+	min-height: 119px;
+	width: 100%;
+	grid-template-areas:
+		"avatar name options"
+		"message message message"
+		"like like like";
+	grid-template-columns: 52px auto 52px;
+	grid-template-rows: 56px auto 32px;
+	align-items: center;
+	justify-items: start;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+
+.noPosts {
+	color: var(--text-color-secondary-gray);
+	text-align: center;
+
+	& svg {
+		margin: 0 auto;
+		margin-bottom: 12px;
 	}
 }
 

@@ -1,8 +1,8 @@
 import { authAPI, usersAPI } from "../api/api";
 
-const SET_USER_DATA = "SET-USER-DATA";
-const SET_USER_PHOTO = "SET-USER-PHOTO";
-const SET_ERROR = "SET_ERROR";
+const SET_USER_DATA = "3RACHA/auth/SET-USER-DATA";
+const SET_USER_PHOTO = "3RACHA/auth/SET-USER-PHOTO";
+const SET_ERROR = "3RACHA/auth/SET_ERROR";
 
 const initialState = {
   userId: null,
@@ -53,44 +53,38 @@ export const setError = (errorMessage) => ({
   errorMessage,
 });
 
-export const getAuthUserData = () => (dispatch) => {
-  return authAPI
-    .me()
-    .then((data) => {
-      if (!data.resultCode) {
-        let { email, id, login } = data.data;
-        dispatch(setAuthUserData(email, id, login, true));
-      }
-      return data;
-    })
-    .then((data) => {
-      if (data.data.id) {
-        usersAPI.getProfile(data.data.id).then((data) => {
-          dispatch(setUserProfile(data));
-        });
-      }
-    });
+export const getAuthUserData = () => async (dispatch) => {
+  let data = await authAPI.me();
+  if (data.resultCode === 0) {
+    let { email, id, login } = data.data;
+    dispatch(setAuthUserData(email, id, login, true));
+  }
+  if (data.data.id) {
+    let profileId = await usersAPI.getProfile(data.data.id);
+    dispatch(setUserProfile(profileId));
+  }
+  return data;
 };
 
 export const login =
   ({ email, password, rememberMe }) =>
-  (dispatch) => {
-    return authAPI.login(email, password, rememberMe).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(getAuthUserData());
-        dispatch(setError(null));
-      } else {
-        const errorMessage = data.messages[0];
-        dispatch(setError(errorMessage));
-      }
-    });
-  };
-export const logout = () => (dispatch) => {
-  authAPI.logout().then((data) => {
-    if (!data.resultCode) {
-      dispatch(setAuthUserData(null, null, null, false));
+  async (dispatch) => {
+    let errorMessage;
+    let data = await authAPI.login(email, password, rememberMe);
+    if (data.resultCode === 0) {
+      dispatch(getAuthUserData());
+      dispatch(setError(null));
+    } else {
+      errorMessage = data.messages[0];
+      dispatch(setError(errorMessage));
     }
-  });
+    return errorMessage;
+  };
+export const logout = () => async (dispatch) => {
+  let data = await authAPI.logout();
+  if (!data.resultCode) {
+    dispatch(setAuthUserData(null, null, null, false));
+  }
 };
 
 export default authReduser;

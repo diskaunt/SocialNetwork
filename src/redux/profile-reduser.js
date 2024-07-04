@@ -1,12 +1,44 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD_POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET_USER_STATUS";
-const PROFILE_TOGGLE_IS_FETCHING = "PROFILE_TOGGLE_IS_FETCHING";
+const ADD_POST = "3RACHA/profile/ADD_POST";
+const SET_USER_PROFILE = "3RACHA/profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "3RACHA/profile/SET_USER_STATUS";
+const PROFILE_TOGGLE_IS_FETCHING = "3RACHA/profile/PROFILE_TOGGLE_IS_FETCHING";
+const DELETE_POST = "3RACHA/profile/DELETE_POST";
 
 const initialState = {
-  posts: [],
+  posts: [
+    {
+      id: 0,
+      name: "DiggerNigger",
+      date: new Date(Math.round(new Date() * Math.random())).toLocaleString(
+        "ru-RU"
+      ),
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      likesCount: Math.round(Math.random() * 100),
+    },
+    {
+      id: 1,
+      name: "DiggerNigger",
+      date: new Date(Math.round(new Date() * Math.random())).toLocaleString(
+        "ru-RU"
+      ),
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      likesCount: Math.round(Math.random() * 100),
+    },
+    {
+      id: 2,
+      name: "DiggerNigger",
+      date: new Date(Math.round(new Date() * Math.random())).toLocaleString(
+        "ru-RU"
+      ),
+      message:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      likesCount: Math.round(Math.random() * 100),
+    },
+  ],
   profile: null,
   status: "",
   isFetching: false,
@@ -20,14 +52,13 @@ const profileReducer = (state = initialState, action) => {
       if (action.newPostText.trim().length) {
         newPost = {
           id: state.posts.length,
-          name: state.profile.fullName,
+          name: action.fullName,
           date: date.toLocaleString("ru-RU"),
           message: action.newPostText,
-          likesCount: 0,
+          likesCount: Math.round(Math.random() * 100),
         };
         return { ...state, posts: [...state.posts, newPost] };
-      }
-      return { ...state };
+      } else return { ...state };
 
     case SET_USER_PROFILE:
       return { ...state, profile: action.profile };
@@ -38,14 +69,21 @@ const profileReducer = (state = initialState, action) => {
     case PROFILE_TOGGLE_IS_FETCHING:
       return { ...state, isFetching: !state.isFetching };
 
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.id),
+      };
+
     default:
       return state;
   }
 };
 
-export const addPost = (newPostText) => ({
+export const addPost = (newPostText, fullName) => ({
   type: ADD_POST,
   newPostText,
+  fullName,
 });
 
 export const setUserProfile = (profile) => ({
@@ -62,26 +100,28 @@ export const toggleIsFetching = () => ({
   type: PROFILE_TOGGLE_IS_FETCHING,
 });
 
-export const getUserProfile = (userId) => (dispatch) => {
+export const deletePost = (id) => ({
+  type: DELETE_POST,
+  id,
+});
+
+export const getUserProfile = (userId) => async (dispatch) => {
   dispatch(toggleIsFetching());
-  profileAPI.getProfile(userId).then((data) => {
-    dispatch(toggleIsFetching());
-    dispatch(setUserProfile(data));
-  });
+  let data = await profileAPI.getProfile(userId);
+  dispatch(toggleIsFetching());
+  dispatch(setUserProfile(data));
 };
 
-export const getUserStatus = (userId) => (dispatch) => {
-  profileAPI.getStatus(userId).then((data) => {
-    dispatch(setUserStatus(data));
-  });
+export const getUserStatus = (userId) => async (dispatch) => {
+  let data = await profileAPI.getStatus(userId);
+  dispatch(setUserStatus(data));
 };
 
-export const updateUserStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((data) => {
-    if (!data.resultCode) {
-      dispatch(setUserStatus(status));
-    }
-  });
+export const updateUserStatus = (status) => async (dispatch) => {
+  let data = await profileAPI.updateStatus(status);
+  if (!data.resultCode) {
+    dispatch(setUserStatus(status));
+  }
 };
 
 export default profileReducer;

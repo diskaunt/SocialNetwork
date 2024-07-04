@@ -1,0 +1,38 @@
+.pagesWrapper {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.pages {
+	display: inline-block;
+	cursor: pointer;
+	padding: 8px 16px;
+	border-radius: 2px;
+
+	&:hover {
+		text-decoration: underline;
+		background-color: #edeef0;
+	}
+}
+
+.activePage {
+	color: #fff;
+	padding: 8px 16px;
+	background-color: var(--main-color-blue);
+	border-radius: 2px;
+}
+
+.chevronIcons {
+	min-width: auto;
+	background-color: inherit;
+	color: inherit;
+	padding: 8px 16px;
+	border-radius: 2px;
+
+	&:hover {
+		text-decoration: underline;
+		background-color: #edeef0;
+	}
+}

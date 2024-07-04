@@ -1,15 +1,15 @@
-import React from "react";
+import React, { memo } from "react";
 import classes from "./ProfileInfo.module.css";
 
-const Job = (props) => (
+const Job = ({lookingForAJob, lookingForAJobDescription}) => (
   <div className={classes.info}>
               <div className={classes.lookingForAJob}>
-                {props.lookingForAJob ? (
+                {lookingForAJob ? (
                   <div className={classes.job}>
                     <div className={classes.infoName}>looking for a job:</div>
                     <div>&#10004;</div>
                     <div className={classes.infoName}>kind of job:</div>
-                    <div>{props.lookingForAJobDescription}</div>
+                    <div>{lookingForAJobDescription}</div>
                   </div>
                 ) : (
                   <div className={classes.job}>
@@ -21,4 +21,4 @@ const Job = (props) => (
             </div>
   );
 
-export default Job;
+export default memo(Job);

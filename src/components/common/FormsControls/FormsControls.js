@@ -1,28 +1,31 @@
 import React from "react";
 import classes from "./FormsControls.module.css";
-export const Textarea = ({ input, meta, ...props }) => {
+
+export const Textarea = ({ input, meta: { error, touched }, ...props }) => {
+  const hasError = error && touched;
   return (
     <div
       className={
-        classes.textareaWrapper +
-        " " +
-        (meta.error && meta.touched ? classes.error : "")
+        classes.textareaWrapper + " " + (hasError ? classes.error : "")
       }
     >
       <textarea {...input} {...props} />
-      <span className={classes.errorText}>
-        {meta.error && meta.touched ? meta.error : ""}
-      </span>
+      <span className={classes.errorText}>{hasError ? error : ""}</span>
     </div>
   );
 };
 
-export const Input = ({ input, meta, ...props }) => {
+export const Input = ({
+  input,
+  meta: { error, submitError, touched },
+  ...props
+}) => {
+  const hasError = (error || submitError) && touched;
   return (
-    <div className={meta.error && meta.touched ? classes.error : ""}>
+    <div className={hasError ? classes.error : ""}>
       <input {...input} {...props} />
       <span className={classes.errorText}>
-        {(meta.error || meta.submitError) && meta.touched ? meta.error || meta.submitError : ""}
+        {hasError ? error || submitError : ""}
       </span>
     </div>
   );

@@ -1,6 +1,6 @@
 import { getAuthUserData } from "./auth-reduser";
 
-const SET_INITIALIZED = "SET_INITIALIZED";
+const SET_INITIALIZED = "3RACHA/app/SET_INITIALIZED";
 
 const initialState = {
   initialized: false,
@@ -19,12 +19,12 @@ const appReducer = (state = initialState, action) => {
 };
 
 export const setInitialized = () => ({
-	type: SET_INITIALIZED,
-})
+  type: SET_INITIALIZED,
+});
 
 export const initializedApp = () => (dispatch) => {
-	let promise  = [dispatch(getAuthUserData())];
-	Promise.all(promise).then(() => dispatch(setInitialized()));
-}
+  let promise = [dispatch(getAuthUserData())];
+  Promise.all(promise).then(() => setTimeout(()=> dispatch(setInitialized()), 1000));
+};
 
 export default appReducer;

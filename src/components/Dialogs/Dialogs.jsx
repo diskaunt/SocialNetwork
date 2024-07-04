@@ -38,7 +38,6 @@ const Dialogs = (props) => {
     scrollTo.current.scrollIntoView({ behavior: "smooth", block: "start" });
 	}
 
-
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogsItems}>{dialogsElements}</div>
@@ -68,7 +67,7 @@ const AddMessageForm = (props) => {
     // }
 	},[]);
   return (
-    <Form
+		<Form
       onSubmit={props.onSubmit}
       initialValues={{}}
       render={({ handleSubmit, form, submitting, pristine, values }) => (

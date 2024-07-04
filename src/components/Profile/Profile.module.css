@@ -1,4 +1,4 @@
-.content {
+.container {
 	position: relative;
 	background-color: inherit;
 	display: flex;
@@ -6,7 +6,29 @@
 	gap: 20px;
 }
 
-.preloader {
-	width: clamp(50px, 7.5dvw, 80px);
-	margin: 0 auto;
+
+.profileInfo {
+	min-height: 537px;
+	border-radius: var(--content-border-radius);
+	box-shadow: var(--shadow-effect);
+	background-color: var(--main-block-background-color);
+	overflow: hidden;
+	z-index: 0;
+
+	&>.preloader {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+}
+
+.myPosts {
+	min-height: 203px;
+
+	&>.preloader {
+		height: 100%;
+		background-color: var(--main-block-background-color);
+		box-shadow: var(--shadow-effect);
+		border-radius: var(--content-border-radius);
+	}
 }

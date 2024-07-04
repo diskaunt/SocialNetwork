@@ -2,51 +2,45 @@ import React from "react";
 import classes from "./User.module.css";
 import { Link } from "react-router-dom";
 import FollowIcon from "./follow";
-import Unfollow from "./unfollow";
+import UnfollowIcon from "./unfollow";
+import { statusSlicer } from "../../../utils/object-helper";
 
-let User = (props) => {
-  let sliceStatus = (status) => {
-    if (status) {
-      return status.length >= 34 ? status.slice(0, 34) + "..." : status;
-    }
-  };
+let User = ({
+  user: { id, name, status, followed, photos },
+  followingInProgress,
+  follow,
+  unfollow,
+}) => {
+
+	let newStatus = statusSlicer(status, 27)
 
   return (
-    <div className={classes.user} key={props.u.id}>
+		<div className={classes.userContainer} >
       <div className={classes.avatar}>
-        <Link to={"/profile/" + props.u.id}>
-          <img
-            src={props.u.photos.large || "http://dummyimage.com/205"}
-            alt=""
-          />
+        <Link to={"/profile/" + id}>
+          <img src={photos.large ? photos.large : "http://dummyimage.com/205"} alt="" />
         </Link>
       </div>
       <div className={classes.content}>
         <div className={classes.name}>
-          <Link to={"/profile/" + props.u.id}>{props.u.name}</Link>
+          <Link to={"/profile/" + id}>{name}</Link>
         </div>
-        {/* <div className={classes.location}>
-        </div> */}
-        <div className={classes.status}>{sliceStatus(props.u.status)}</div>
+        <div className={classes.status}>{newStatus}</div>
         <div className={classes.btn}>
-          {props.u.followed ? (
+          {followed ? (
             <button
-              disabled={props.followingInProgress.some(
-                (id) => id === props.u.id
-              )}
+              disabled={followingInProgress.some((i) => i === id)}
               onClick={() => {
-                props.unfollow(props.u.id);
+                unfollow(id);
               }}
             >
-              <Unfollow />
+              <UnfollowIcon />
             </button>
           ) : (
             <button
-              disabled={props.followingInProgress.some(
-                (id) => id === props.u.id
-              )}
+              disabled={followingInProgress.some((i) => i === id)}
               onClick={() => {
-                props.follow(props.u.id);
+                follow(id);
               }}
             >
               <FollowIcon />

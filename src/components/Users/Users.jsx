@@ -2,47 +2,46 @@ import React from "react";
 import classes from "./Users.module.css";
 import Preloader from "../common/preloader/Preloader";
 import User from "./User/User";
+import Paginator from "../common/paginator/Paginator";
 
-let Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-  let startIndex = props.currentPage - 3 > 0 ? props.currentPage - 3 : 1;
-  let endIndex =
-    props.currentPage + 3 <= pagesCount ? props.currentPage + 3 : pagesCount;
-  for (let i = startIndex; i <= endIndex; i++) {
-    pages.push(i);
-  }
+let Users = ({
+  totalUsersCount,
+  pageSize,
+  currentPage,
+  isFetching,
+  users,
+  follow,
+  unfollow,
+  followingInProgress,
+  onPageChanged,
+}) => {
+
   return (
-    <div className={classes.users}>
+    <div className={classes.usersContainer}>
       <h1 className={classes.header}>Users</h1>
       <div className={classes.user}>
-        {props.isFetching ? (
+        {isFetching ? (
           <div className={classes.preloader}>
             <Preloader />
           </div>
         ) : (
-          props.users.map((u) => (
+          users.map((u) => (
             <User
-              u={u}
-              unfollow={props.unfollow}
-              follow={props.follow}
-              followingInProgress={props.followingInProgress}
+							key={u.id}
+              user={u}
+              follow={follow}
+              unfollow={unfollow}
+              followingInProgress={followingInProgress}
             />
           ))
         )}
       </div>
-      <div className={classes.pagesWrapper}>
-        {pages.map((p) => (
-          <span
-            onClick={() => props.onPageChanged(p)}
-            className={
-              props.currentPage === p ? classes.activePage : classes.pages
-            }
-          >
-            {p}
-          </span>
-        ))}
-      </div>
+      <Paginator
+        onPageChanged={onPageChanged}
+        currentPage={currentPage}
+        totalItemsCount={totalUsersCount}
+				pageSize={pageSize}
+      />
     </div>
   );
 };

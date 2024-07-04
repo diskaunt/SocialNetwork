@@ -65,6 +65,10 @@
 		}
 	}
 
+	.btnWrapper {
+		height: 100%;
+		width: 100%;
+	}
 
 	.menuBtn {
 		position: relative;
@@ -97,6 +101,8 @@
 		& svg {
 			display: inline-block;
 			fill: var(--text-color-secondary-gray);
+			transform: rotate(180deg);
+			transition: transform .3s ease-in-out;
 			margin: 0 8px 0 6px;
 		}
 
@@ -123,20 +129,20 @@
 			pointer-events: none;
 		}
 
-		.menuBlock_avatar {
+		& .menuBlock_avatar {
 			height: 56px;
 			width: 56px;
 			border-radius: 50%;
 			overflow: hidden;
 		}
 
-		.loginName {
+		& .loginName {
 			margin: 10px 0 0;
 			font-size: 15px;
 			font-weight: 500;
 		}
 
-		.logoutBtn {
+		& .logoutBtn {
 			width: 100%;
 			margin-top: 12px;
 
@@ -156,8 +162,12 @@
 		}
 	}
 
-	.button_isactive {
+	.button_isActive {
 		background-color: var(--backgraund-color-hover-gray);
+
+		& svg {
+			transform: none;
+		}
 	}
 
 	.menuButton_avatar {

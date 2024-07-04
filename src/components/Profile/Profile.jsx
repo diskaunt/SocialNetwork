@@ -4,27 +4,46 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
 
-const Profile = (props) => {
+const Profile = ({
+  profilePage: { isFetching, profile, status, posts },
+  updateUserStatus,
+  addPost,
+  deletePost,
+  auth,
+}) => {
   return (
-    <div className={classes.content}>
-      {props.profilePage.profile === null || props.profilePage.isFetching ? (
-        <div className={classes.preloader}>
-          <Preloader />
-        </div>
-      ) : (
-        <>
+    <div className={classes.container}>
+      <div className={classes.profileInfo}>
+        {profile === null || isFetching ? (
+          <div className={classes.preloader}>
+            <Preloader />
+          </div>
+        ) : (
           <ProfileInfo
-            profile={props.profilePage.profile}
-            status={props.profilePage.status}
-            updateUserStatus={props.updateUserStatus}
+            profile={profile}
+            status={status}
+            updateUserStatus={updateUserStatus}
           />
-          <MyPosts
-            posts={props.profilePage.posts}
-            profile={props.profilePage.profile}
-            addPost={props.addPost}
-          />
-        </>
-      )}
+        )}
+      </div>
+      <div className={classes.myPosts}>
+        {auth?.userId === profile?.userId ? (
+          profile === null || isFetching ? (
+            <div className={classes.preloader}>
+              <Preloader />
+            </div>
+          ) : (
+            <MyPosts
+              posts={posts}
+              profile={profile}
+              addPost={addPost}
+              deletePost={deletePost}
+            />
+          )
+        ) : (
+          " "
+        )}
+      </div>
     </div>
   );
 };
