@@ -9,14 +9,14 @@ import { connect } from "react-redux";
 import { initializedApp } from "./redux/app-reduser";
 import CirclePreloader from "./components/common/preloader/CirclePrelloader";
 
-function App(props) {
+function App({initializedApp, initialized, ...props}) {
 	useEffect(() => {
-    props.initializedApp();
-  }, [props.initialized]);
+    initializedApp();
+  }, [initialized]);
   return (
 	<div className="app-wrapper">
 	<HeaderContainer />
-	{props.initialized? <><Sidebar />
+	{initialized? <><Sidebar />
 	<div className="appWrapperContent">
 		<Outlet />
 	</div></> : <CirclePreloader />}
