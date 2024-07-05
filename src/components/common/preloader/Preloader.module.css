@@ -1,5 +1,0 @@
-.item {
-	display: block;
-	width: clamp(50px, 7.5dvw, 80px);
-	margin: 0 auto;
-}
