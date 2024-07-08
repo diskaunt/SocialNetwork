@@ -19,7 +19,7 @@ const DialogsContainer = lazy(() =>
   import("./components/Dialogs/DialogsContainer")
 );
 const ProfileContainer = lazy(() =>
-  import("././components/Profile/ProfileContainer")
+  import("./components/Profile/ProfileContainer")
 );
 
 const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
