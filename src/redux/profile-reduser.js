@@ -5,6 +5,7 @@ const SET_USER_PROFILE = "3RACHA/profile/SET_USER_PROFILE";
 const SET_USER_STATUS = "3RACHA/profile/SET_USER_STATUS";
 const PROFILE_TOGGLE_IS_FETCHING = "3RACHA/profile/PROFILE_TOGGLE_IS_FETCHING";
 const DELETE_POST = "3RACHA/profile/DELETE_POST";
+const SET_USER_PHOTO ="3RACHA/profile/SET_USER_PHOTO"
 
 const initialState = {
   posts: [
@@ -41,6 +42,7 @@ const initialState = {
   ],
   profile: null,
   status: "",
+
   isFetching: false,
 };
 
@@ -75,6 +77,12 @@ const profileReducer = (state = initialState, action) => {
         posts: state.posts.filter((post) => post.id !== action.id),
       };
 
+		case SET_USER_PHOTO:
+			return {
+				...state,
+				profile: {...state.profile, photos: action.photos}
+
+			}
     default:
       return state;
   }
@@ -105,6 +113,11 @@ export const deletePost = (id) => ({
   id,
 });
 
+export const setUserPhoto = (photos) => ({
+	type: SET_USER_PHOTO,
+	photos
+})
+
 export const getUserProfile = (userId) => async (dispatch) => {
   dispatch(toggleIsFetching());
   let data = await profileAPI.getProfile(userId);
@@ -122,6 +135,14 @@ export const updateUserStatus = (status) => async (dispatch) => {
   if (!data.resultCode) {
     dispatch(setUserStatus(status));
   }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+	let data = await profileAPI.savePhoto(file);
+	if (!data.resultCode) {
+    dispatch(setUserPhoto(data.data.photos));
+  }
+
 };
 
 export default profileReducer;

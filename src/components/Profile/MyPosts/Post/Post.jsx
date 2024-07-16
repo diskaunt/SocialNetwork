@@ -1,13 +1,13 @@
 import React, { memo, useRef, useState } from "react";
 import classes from "./Post.module.css";
-import IconLike from "./svg/iconLike";
-import OptionPostIcon from "./svg/OptionPostIcon";
-import useMouseLeaveOutside from "../../../../hooks/useMouseLeaveOutside";
+import IconLike from "../../../../assets/svg/IconLike";
+import IconOptionPost from "../../../../assets/svg/IconOptionPost";
+import useMouseOverLeaveDebounce from "../../../../hooks/useMouseOverLeaveDebaunce";
 
 const Post = ({ src, name, date, deletePost, id, message, likesCount }) => {
   const [isOptionsSelect, setOptionsSelect] = useState(false);
   let optionsRef = useRef(null);
-  useMouseLeaveOutside(optionsRef, () => setOptionsSelect(false), 500);
+  useMouseOverLeaveDebounce(optionsRef, setOptionsSelect, 200);
   return (
     <>
       <div className={classes.imgWrapper}>
@@ -19,18 +19,15 @@ const Post = ({ src, name, date, deletePost, id, message, likesCount }) => {
       </div>
       <div
         ref={optionsRef}
-        onMouseOver={() => setOptionsSelect(true)}
         className={
           isOptionsSelect
             ? classes.options + " " + classes.optionsActive
             : classes.options
         }
       >
-        <OptionPostIcon />
-        <div className={classes.menuBlock}>
-          <div onClick={() => deletePost(id)} className={classes.menuItem}>
-            Delete an entry
-          </div>
+        <IconOptionPost />
+        <div className={classes.menuBlockWrapper}>
+          <MenuBlock deletePost={deletePost} id={id} />
         </div>
       </div>
       <div className={classes.wallPost}>{message}</div>
@@ -39,6 +36,16 @@ const Post = ({ src, name, date, deletePost, id, message, likesCount }) => {
         <span className={classes.likesCount}>{likesCount}</span>
       </div>
     </>
+  );
+};
+
+const MenuBlock = ({ deletePost, id }) => {
+  return (
+    <div className={classes.menuBlock}>
+      <div onClick={() => deletePost(id)} className={classes.menuItem}>
+        Delete an entry
+      </div>
+    </div>
   );
 };
 

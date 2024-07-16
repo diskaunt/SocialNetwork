@@ -8,7 +8,7 @@ import {
   required,
 } from "../../../utils/validators/validators";
 import { Textarea } from "../../common/FormsControls/FormsControls";
-import NoPostIcon from "./NoPostsIcon";
+import IconNoPosts from "../../../assets/svg/IconNoPosts";
 
 
 const MyPosts = ({posts, deletePost, profile, addPost}) => {
@@ -45,7 +45,7 @@ const MyPosts = ({posts, deletePost, profile, addPost}) => {
           postsElements
         ) : (
           <div className={classes.noPosts}>
-            <NoPostIcon />
+            <IconNoPosts />
             <div>There is not a single entry on the wall yet</div>
           </div>
         )}

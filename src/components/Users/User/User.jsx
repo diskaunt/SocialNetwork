@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./User.module.css";
 import { Link } from "react-router-dom";
-import FollowIcon from "./follow";
-import UnfollowIcon from "./unfollow";
+import IconFollow from "../../../assets/svg/IconFollow";
+import IconUnfollow from "../../../assets/svg/IconUnfollow";
 import { statusSlicer } from "../../../utils/object-helper";
 
 let User = ({
@@ -11,14 +11,16 @@ let User = ({
   follow,
   unfollow,
 }) => {
-
-	let newStatus = statusSlicer(status, 27)
+  let newStatus = statusSlicer(status, 27);
 
   return (
-		<div className={classes.userContainer} >
+    <div className={classes.userContainer}>
       <div className={classes.avatar}>
         <Link to={"/profile/" + id}>
-          <img src={photos.large ? photos.large : "http://dummyimage.com/205"} alt="" />
+          <img
+            src={photos.large ? photos.large : "http://dummyimage.com/205"}
+            alt=""
+          />
         </Link>
       </div>
       <div className={classes.content}>
@@ -34,7 +36,7 @@ let User = ({
                 unfollow(id);
               }}
             >
-              <UnfollowIcon />
+              <IconUnfollow />
             </button>
           ) : (
             <button
@@ -43,7 +45,7 @@ let User = ({
                 follow(id);
               }}
             >
-              <FollowIcon />
+              <IconFollow />
             </button>
           )}
         </div>

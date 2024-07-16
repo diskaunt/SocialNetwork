@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoPostIcon = (props) => (
+const IconNoPost = (props) => (
   <svg
     width="56"
     height="56"
@@ -28,4 +28,4 @@ const NoPostIcon = (props) => (
   </svg>
 );
 
-export default NoPostIcon
+export default IconNoPost

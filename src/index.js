@@ -29,6 +29,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const router = createBrowserRouter([
   {
     path: "/",
+		baseName: "https://diskaunt.github.io/SocialNetwork",
     element: <App />,
     errorElement: <NoMatch />,
     children: [

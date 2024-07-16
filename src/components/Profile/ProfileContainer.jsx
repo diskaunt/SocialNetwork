@@ -3,14 +3,13 @@ import {
   deletePost,
   getUserProfile,
   getUserStatus,
+  savePhoto,
   updateUserStatus,
 } from "../../redux/profile-reduser";
 import { connect } from "react-redux";
 import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { Navigate, useParams } from "react-router-dom";
-
-let fullsum = 0;
 
 let ProfileContainer = ({ getUserProfile, getUserStatus, auth, ...props }) => {
   let userId = useParams().userId;
@@ -20,8 +19,8 @@ let ProfileContainer = ({ getUserProfile, getUserStatus, auth, ...props }) => {
     userId && getUserStatus(userId);
   }, [userId]);
 
-	return userId ? (
-    <Profile auth={auth} {...props} />
+  return userId ? (
+    <Profile isOwner={userId === auth.userId} auth={auth} {...props} />
   ) : (
     <Navigate to={"/login"} />
   );
@@ -40,4 +39,5 @@ export default connect(mapStateToProps, {
   getUserStatus,
   updateUserStatus,
   deletePost,
+	savePhoto,
 })(ProfileContainer);

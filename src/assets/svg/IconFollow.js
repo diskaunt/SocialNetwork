@@ -1,6 +1,6 @@
 import React from "react";
 
-const FollowIcon = (props) => {
+const IconFollow = (props) => {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -14,4 +14,4 @@ const FollowIcon = (props) => {
   );
 };
 
-export default FollowIcon;
+export default IconFollow;

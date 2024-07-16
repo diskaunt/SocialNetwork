@@ -43,7 +43,7 @@ export const setAuthUserData = (email, id, login, isAuth) => ({
   payload: { email, userId: id, login, isAuth },
 });
 
-export const setUserProfile = (profile) => ({
+export const setUserPhoto = (profile) => ({
   type: SET_USER_PHOTO,
   photo: profile.photos.small,
 });
@@ -58,11 +58,10 @@ export const getAuthUserData = () => async (dispatch) => {
   if (data.resultCode === 0) {
     let { email, id, login } = data.data;
     dispatch(setAuthUserData(email, id, login, true));
+    let profile = await usersAPI.getProfile(id);
+    dispatch(setUserPhoto(profile));
   }
-  if (data.data.id) {
-    let profileId = await usersAPI.getProfile(data.data.id);
-    dispatch(setUserProfile(profileId));
-  }
+
   return data;
 };
 
