@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function Unfollow(props) {
+function IconUnfollow(props) {
   return (
     <svg fill="currentColor" viewBox="0 0 20 20" height="1em" width="1em" {...props}>
       <path
@@ -17,4 +17,4 @@ function Unfollow(props) {
   );
 }
 
-export default Unfollow;
+export default IconUnfollow;

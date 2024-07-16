@@ -6,19 +6,20 @@
 	gap: 20px;
 }
 
-
 .profileInfo {
-	min-height: 537px;
-	border-radius: var(--content-border-radius);
-	box-shadow: var(--shadow-effect);
-	background-color: var(--main-block-background-color);
+	min-height: 260px;
+	padding-top: 100px;
 	overflow: hidden;
 	z-index: 0;
 
 	&>.preloader {
 		display: flex;
 		align-items: center;
-		height: 100%;
+		min-height: 160px;
+		width: 100%;
+		border-radius: var(--content-border-radius);
+		box-shadow: var(--shadow-effect);
+		background-color: var(--main-block-background-color);
 	}
 }
 

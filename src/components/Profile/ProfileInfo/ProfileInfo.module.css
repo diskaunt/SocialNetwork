@@ -1,37 +1,24 @@
-
-.overPageCover {
-	position: relative;
-	height: 277px;
-	font-size: 0;
-
-	& img {
-		position: absolute;
-		top: 0px;
-		width: 100%;
-		height: 300px;
-		object-fit: cover;
-		object-position: center;
-		background-color: rgb(242, 242, 242);
-		z-index: -1;
-	}
-}
-
-.profileHeader {
+.container {
 	display: flex;
+	height: 100%;
+	min-height: 150px;
 	padding: 20px;
 	background-color: var(--main-block-background-color);
 	border-radius: var(--content-border-radius);
+	border-bottom: none;
 	box-shadow: var(--shadow-effect);
 }
 
-.profileHeaderImg {
+.avatar {
 	position: relative;
-	width: 150px;
 	height: 100%;
+	width: 150px;
 	flex-shrink: 0;
+	cursor: pointer;
+
 }
 
-.wrapperImg {
+.imgWrapper {
 	position: absolute;
 	top: -100px;
 	left: 0;
@@ -51,57 +38,15 @@
 	}
 }
 
-.profileInfo {
+.info {
 	width: 100%;
 	margin-left: 16px;
 }
 
-.fullName {
-	font-size: 21px;
-	font-weight: 600;
-	line-height: 26px;
-
-}
-
-.infoSection {
-	padding: 8px 0;
-}
-
-.infoHeadline {
-	padding-bottom: 8px;
-	color: rgb(0, 0, 0);
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 18px;
-}
-
-.info {
-	color: #000;
-}
-
-.contacts {
-	display: grid;
-	grid-template-columns: 130px auto;
-	gap: 12px;
-	margin-bottom: 8px;
-}
-
-.infoName {
-	color: var(--text-color-subhead-gray);
-}
-
-.job {
-	display: grid;
-	grid-template-columns: 130px auto;
-	gap: 12px;
-	margin-bottom: 8px;
-}
-
 .statusField {
-position: relative;
-width: 100%;
-min-height: 43px;
-
+	position: relative;
+	width: 100%;
+	min-height: 43px;
 }
 
 .statusFildActive {
@@ -132,4 +77,21 @@ min-height: 43px;
 	align-items: center;
 	color: var(--text-color-subhead-gray);
 	padding: 8px 0;
+}
+
+.menuBlockWrapper {
+	position: absolute;
+	width: max-content;
+	top: 55px;
+	left: 0;
+	z-index: 1;
+	transition: display .3s ease-out;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity .3s ease-in-out;
+}
+
+.optionsActive {
+	opacity: 1;
+	pointer-events: all;
 }

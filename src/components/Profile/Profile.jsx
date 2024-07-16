@@ -3,6 +3,7 @@ import classes from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/preloader/Preloader";
+import ProfileInfoPreloader from "../common/preloader/ProfileInfoPreloader";
 
 const Profile = ({
   profilePage: { isFetching, profile, status, posts },
@@ -10,19 +11,21 @@ const Profile = ({
   addPost,
   deletePost,
   auth,
+  isOwner,
+  savePhoto,
 }) => {
   return (
     <div className={classes.container}>
       <div className={classes.profileInfo}>
         {profile === null || isFetching ? (
-          <div className={classes.preloader}>
-            <Preloader />
-          </div>
+          <ProfileInfoPreloader />
         ) : (
           <ProfileInfo
+            isOwner={isOwner}
             profile={profile}
             status={status}
             updateUserStatus={updateUserStatus}
+            savePhoto={savePhoto}
           />
         )}
       </div>

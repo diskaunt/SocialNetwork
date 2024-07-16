@@ -1,0 +1,36 @@
+.fullName {
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 26px;
+
+}
+
+.infoSection {
+	padding: 8px 0;
+}
+
+.infoHeadline {
+	padding-bottom: 8px;
+	color: rgb(0, 0, 0);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.contacts {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+
+.infoItem {
+	color: var(--text-color-subhead-gray);
+}
+
+.job {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
+}

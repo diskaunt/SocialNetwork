@@ -1,6 +1,6 @@
 import React from "react";
 
-const OptionPostIcon = (props) => (
+const IconOptionPost = (props) => (
   <svg
     width="24"
     height="24"
@@ -27,4 +27,4 @@ const OptionPostIcon = (props) => (
   </svg>
 );
 
-export default OptionPostIcon;
+export default IconOptionPost;

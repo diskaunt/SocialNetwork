@@ -1,12 +1,12 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
-import IconSettings from "./svg/IconSetting";
-import IconProfile from "./svg/IconProfile";
-import IconNews from "./svg/IconNews";
-import IconMusic from "./svg/IconMusic";
-import IconMessage from "./svg/IconMessage";
-import IconUsers from "./svg/IconUsers";
+import IconSettings from "../../../assets/svg/IconSetting";
+import IconProfile from "../../../assets/svg/IconProfile";
+import IconNews from "../../../assets/svg/IconNews";
+import IconMusic from "../../../assets/svg/IconMusic";
+import IconMessage from "../../../assets/svg/IconMessage";
+import IconUsers from "../../../assets/svg/IconUsers";
 
 const Navbar = () => {
   return (
