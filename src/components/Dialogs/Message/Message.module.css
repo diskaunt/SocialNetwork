@@ -3,7 +3,7 @@
 	grid-template-areas:
 	"ava name date"
 	"ava text text";
-	grid-template-columns: 1fr 1fr 12fr;
+	grid-template-columns: 1fr auto 12fr;
 	gap: 7px;
 	padding: 6px 30px 7px 0;
   position: relative;

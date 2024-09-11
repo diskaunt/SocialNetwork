@@ -13,7 +13,7 @@
 	align-items: center;
 	justify-content: start;
 	gap: 24px;
-	padding: 32px 24px;
+	padding: 24px 24px;
 	margin: 0 auto;
 }
 
@@ -126,15 +126,22 @@
 			box-shadow: none;
 		}
 	}
-
 }
 
-.btn {
-	width: 100%;
+.captcha {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	margin-bottom: 4px;
 
-	&>button:disabled {
-		opacity: 30%;
+	& img {
+		object-fit: contain;
 	}
+}
+
+.btnWrapper {
+	width: 100%;
 }
 
 .line {

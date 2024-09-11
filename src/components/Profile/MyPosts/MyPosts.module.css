@@ -1,15 +1,7 @@
-.myPostsContainer {
+.container {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-}
-
-.newPost {
-	min-height: 203px;
-	background-color: var(--main-block-background-color);
-	box-shadow: var(--shadow-effect);
-	border-radius: var(--content-border-radius);
-	padding: 8px;
 }
 
 .header {
@@ -29,18 +21,12 @@
 	}
 }
 
-.btnWrapper {
-	padding: 0 13px 12px;
-
-	&>button {
-		display: block;
-		margin-left: auto;
-		min-height: 36px;
-
-		&:disabled {
-			opacity: 0.6;
-		}
-	}
+.newPost {
+	min-height: 180px;
+	background-color: var(--main-block-background-color);
+	box-shadow: var(--shadow-effect);
+	border-radius: var(--content-border-radius);
+	padding: 8px;
 }
 
 .posts {

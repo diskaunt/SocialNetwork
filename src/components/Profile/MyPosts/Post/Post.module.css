@@ -28,6 +28,7 @@
 
 .options {
 	position: relative;
+	justify-self: end;
 	align-self: start;
 	cursor: pointer;
 	grid-area: options;

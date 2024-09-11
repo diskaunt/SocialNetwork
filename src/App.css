@@ -6,16 +6,22 @@
 :root {
 	--backgraund-color-hover-gray: rgba(0, 16, 61, 0.04);
 	--main-color-blue: rgb(25, 154, 195);
+	--backgtound-color-editBtn: rgb(25, 154, 195, .1);
+	--backgtound-color-editBtn-hover: rgba(25, 155, 195, 0.25);
 	--content-border-radius: 20px;
 	--text-color-subhead-gray: #626d7a;
 	--text-color-secondary-gray: #818c99;
 	--text-color-link-blue: rgb(11, 73, 105);
 	--shadow-effect: 0px 0px 5px rgb(220, 225, 230);
+	--border-textarea-color: rgb(220, 225, 230);
 	--border-text-area: 1px solid rgb(220, 225, 230);
 	--main-block-background-color: rgba(255, 255, 255);
 	--user-cart-background-color: rgba(25, 155, 195, 0.1);
 	--body-background-color: #edeef0;
 	--line-background-color: rgb(220, 225, 230);
+	--outline-for-focus: 2px solid var(--main-color-blue);
+	--error-color-text: rgb(224, 22, 22);
+	--width-main: clamp(600px, 100dvw, 1136px);
 }
 
 html,
@@ -40,6 +46,12 @@ h4 {
 	margin: 0;
 }
 
+h3 {
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 26px;
+}
+
 img {
 	width: 100%;
 	height: 100%;
@@ -49,36 +61,51 @@ a {
 	text-decoration: none;
 	color: inherit;
 	cursor: pointer;
+
+	&:focus {
+		outline: var(--outline-for-focus);
+	}
+}
+
+input {
+	margin: 0;
+
+}
+
+select {
+	&:focus-visible {
+		outline: none;
+	}
 }
 
 button {
 	transition: opacity 0.3s;
 	opacity: 1;
 	cursor: pointer;
-	min-width: 118px;
-	min-height: 34px;
-	background-color: var(--main-color-blue);
+	font-family: 'Roboto Mono', monospace;
 	border: none;
-	color: #FFF;
-	border-radius: 10px;
-	font-size: 13px;
+	background-color: inherit;
+	font-weight: 500;
+	line-height: 20px;
+	font-size: 14px;
 
-	&:focus {
-		outline: none;
+	&:hover {
+		opacity: 0.7;
 	}
 
 	&:active {
 		opacity: 0.9;
 	}
 
-	&:hover {
-		opacity: 0.7;
-	}
+	/* &:focus {
+		outline: thick double var(--main-color-blue);
+	} */
 }
 
 input,
 textarea {
 	&:focus {
+		/* outline: var(--outline-for-focus); */
 		outline: none;
 	}
 
@@ -91,12 +118,12 @@ textarea {
 	text-align: center;
 }
 
-.app-wrapper {
+.appWrapper {
 	position: relative;
 	margin: 0 auto;
 	padding: 0 30px;
 	display: grid;
-	width: 1136px;
+	width: var(--width-main);
 	grid-template:
 		"header header" 60px
 		"nav content" auto
@@ -107,6 +134,7 @@ textarea {
 .appWrapperContent {
 	position: relative;
 	grid-area: content;
+	min-width: 480px;
 }
 
 p {

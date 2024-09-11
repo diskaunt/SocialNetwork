@@ -1,6 +1,5 @@
 import reportWebVitals from "./reportWebVitals";
-import store from "./redux/redux-store";
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -12,11 +11,13 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import LoginPage from "./components/Login/Login";
 import { lazy } from "react";
-import Preloader from "./components/common/preloader/Preloader";
 import { withSuspense } from "./hoc/withSuspense";
+import store from "./redux/redux-store";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const DialogsContainer = lazy(() =>
-  import("./components/Dialogs/DialogsContainer")
+  import("./components/Dialogs/Dialogs")
 );
 const ProfileContainer = lazy(() =>
   import("././components/Profile/ProfileContainer")
@@ -24,17 +25,16 @@ const ProfileContainer = lazy(() =>
 
 const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-		baseName: "https://diskaunt.github.io/SocialNetwork",
+    // baseName: "https://diskaunt.github.io/SocialNetwork",
     element: <App />,
     errorElement: <NoMatch />,
     children: [
       {
-        path: "/profile/:userId?",
+        path: "profile/:userId",
         element: withSuspense(ProfileContainer)(),
         errorElement: <NoMatch />,
       },
@@ -43,11 +43,11 @@ const router = createBrowserRouter([
         element: withSuspense(DialogsContainer)(),
         errorElement: <NoMatch />,
       },
-      { path: "news/", element: <News /> },
-      { path: "music/", element: <Music /> },
-      { path: "settings/", element: <Settings /> },
+      { path: "news", element: <News /> },
+      { path: "music", element: <Music /> },
+      { path: "settings", element: <Settings /> },
       {
-        path: "users/",
+        path: "friends",
         element: withSuspense(UsersContainer)(),
         errorElement: <NoMatch />,
       },

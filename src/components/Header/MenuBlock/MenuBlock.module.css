@@ -1,0 +1,32 @@
+.avatar {
+	height: 56px;
+	width: 56px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.loginName {
+	margin: 10px 0 0;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.btnWrapper {
+	width: 100%;
+	margin-top: 12px;
+
+}
+
+.btn {
+	padding: 0 12px;
+	color: #000;
+	width: 100%;
+
+	& svg {
+		fill: var(--main-color-blue);
+		box-sizing: content-box;
+		width: 20px;
+		height: 20px;
+		padding: 4px 12px 4px 0;
+	}
+}

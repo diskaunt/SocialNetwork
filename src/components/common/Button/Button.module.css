@@ -1,0 +1,13 @@
+.btn {
+	width: 100%;
+	min-width: 118px;
+	min-height: 32px;
+	padding: 0 16px;
+	background-color: var(--main-color-blue);
+	color: rgb(255, 255, 255);
+	border-radius: 10px;
+
+	&>button:disabled {
+		opacity: 30%;
+	}
+}

@@ -1,0 +1,41 @@
+.statusField {
+	position: relative;
+	width: 100%;
+	min-height: 43px;
+}
+
+.statusFildActive {
+	position: absolute;
+	width: 100%;
+	left: -8px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	color: var(--text-color-subhead-gray);
+	padding: 8px;
+	background-color: #fff;
+	border: var(--border-text-area);
+	border-radius: 8px;
+	transition: opacity .3s ease-in-out;
+
+	& input {
+		width: 100%;
+		border: var(--border-text-area);
+		border-radius: 5px;
+		padding: 5px;
+	}
+}
+
+.disable {
+	pointer-events: none;
+	opacity: 0;
+}
+
+.statusFildStatic {
+	display: flex;
+	min-height: 29px;
+	align-items: center;
+	color: var(--text-color-subhead-gray);
+	padding: 16px 0;
+}

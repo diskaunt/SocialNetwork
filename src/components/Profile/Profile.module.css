@@ -3,11 +3,11 @@
 	background-color: inherit;
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 16px;
 }
 
 .profileInfo {
-	min-height: 260px;
+	min-height: 330px;
 	padding-top: 100px;
 	overflow: hidden;
 	z-index: 0;
@@ -24,7 +24,7 @@
 }
 
 .myPosts {
-	min-height: 203px;
+	min-height: 392px;
 
 	&>.preloader {
 		height: 100%;

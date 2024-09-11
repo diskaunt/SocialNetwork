@@ -1,12 +1,27 @@
-.fullName {
-	font-size: 21px;
-	font-weight: 600;
-	line-height: 26px;
+.contact {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
+}
 
+.item {
+	color: var(--text-color-subhead-gray);
+}
+
+.job {
+	display: grid;
+	grid-template-columns: 130px auto;
+	gap: 12px;
+	margin-bottom: 8px;
 }
 
 .infoSection {
-	padding: 8px 0;
+	padding: 0 0 16px 0;
+
+	&:last-child {
+		padding: 0;
+	}
 }
 
 .infoHeadline {
@@ -17,20 +32,6 @@
 	line-height: 18px;
 }
 
-.contacts {
-	display: grid;
-	grid-template-columns: 130px auto;
-	gap: 12px;
-	margin-bottom: 8px;
-}
-
-.infoItem {
-	color: var(--text-color-subhead-gray);
-}
-
-.job {
-	display: grid;
-	grid-template-columns: 130px auto;
-	gap: 12px;
-	margin-bottom: 8px;
+.descriptions {
+	color: rgb(0, 0, 0);
 }
