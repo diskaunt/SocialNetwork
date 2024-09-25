@@ -13,22 +13,21 @@ import Profile from "./Profile";
 import { Navigate } from "react-router-dom";
 import { RootState } from "../../redux/redux-store";
 import {
-  AuthType,
-  ProfilePageType,
   ProfileType,
-  UsersType,
 } from "../../types/types";
 import { requestUsers } from "../../redux/users-reduser";
 import { useGetUserProfile } from "../../hooks/hooks";
 
-type MapStateToPropsType = {
-  profilePage: ProfilePageType;
-  auth: AuthType;
-  users: Array<UsersType>;
-  totalUsersCount: number;
-};
+// type MapStateToProps = {
+//   profilePage: ProfilePageType;
+//   auth: AuthType;
+//   users: Array<UsersType>;
+//   totalUsersCount: number;
+// };
 
-type MapDispatchPropsType = {
+type MapProps = ReturnType<typeof mapStateToProps>
+
+type MapDispatchProps = {
   addPost: (payload: {newPostText: string, fullName: string}) => void;
   getUserProfile: (userId: number) => void;
   getUserStatus: (userId: number) => void;
@@ -44,7 +43,7 @@ type MapDispatchPropsType = {
   ) => void;
 };
 
-type PropsType = MapStateToPropsType & MapDispatchPropsType;
+type Props = MapProps & MapDispatchProps;
 
 let ProfileContainer = ({
   getUserProfile,
@@ -52,7 +51,7 @@ let ProfileContainer = ({
   requestUsers,
   auth,
   ...props
-}: PropsType) => {
+}: Props) => {
   let id = useGetUserProfile(
     auth.userId,
     getUserProfile,
@@ -67,7 +66,7 @@ let ProfileContainer = ({
   );
 };
 
-const mapStateToProps = (state: RootState): MapStateToPropsType => {
+const mapStateToProps = (state: RootState) => {
   return {
     profilePage: state.profilePage,
     auth: state.auth,

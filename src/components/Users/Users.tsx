@@ -7,7 +7,7 @@ import Search from "../common/Search/Search";
 import { UsersType } from "../../types/types";
 import Menu from "./Menu";
 
-type PropsType = {
+type Props = {
   totalUsersCount: number;
   pageSize: number;
   currentPage: number;
@@ -20,7 +20,7 @@ type PropsType = {
   follow: (id: number) => void;
   unfollow: (id: number) => void;
   onPageChanged: (pageNumber: number) => void;
-  setSearchValue: (value: string) => void;
+  onSearch: (value: string) => void;
 };
 
 let Users = ({
@@ -36,14 +36,19 @@ let Users = ({
   follow,
   unfollow,
   onPageChanged,
-  setSearchValue,
-}: PropsType) => {
+  onSearch,
+}: Props) => {
+  let [portionNumber, setPortionNumber] = React.useState<number>(1);
   return (
     <>
       <div className={classes.container}>
         <div className={classes.pages}>
           <h1 className={classes.header}>Friends</h1>
-          <Search search={search} setSearchValue={setSearchValue} />
+          <Search
+            search={search}
+            onSearch={onSearch}
+            placeHolderValue={"Enter a request"}
+          />
           <div className={classes.user}>
             {isFetching ? (
               <div className={classes.preloader}>
@@ -66,9 +71,15 @@ let Users = ({
             currentPage={currentPage}
             totalItemsCount={totalUsersCount}
             pageSize={pageSize}
+            portionNumber={portionNumber}
+            setPortionNumber={setPortionNumber}
           />
         </div>
-        <Menu friend={friend} setFriend={setFriend} />
+        <Menu
+          friend={friend}
+          setFriend={setFriend}
+          setPortionNumber={setPortionNumber}
+        />
       </div>
     </>
   );

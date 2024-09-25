@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DialogType, MessageType } from "../types/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { DialogType, MessageType } from '../types/types';
 
 // const ADD_MESSAGE = "3RACHA/dialogs/ADD-MESSAGE";
 
@@ -7,66 +7,65 @@ const initialState = {
   dialogs: [
     {
       id: 0,
-      name: "Dimych",
+      name: 'Dimych',
     },
     {
       id: 1,
-      name: "Misha",
+      name: 'Misha',
     },
     {
       id: 2,
-      name: "Alina",
+      name: 'Alina',
     },
     {
       id: 3,
-      name: "Pasha",
+      name: 'Pasha',
     },
     {
       id: 4,
-      name: "Vanes",
+      name: 'Vanes',
     },
   ] as Array<DialogType>,
   messages: [
     {
       id: 0,
-      message: "Hi, how are you?",
+      message: 'Hi, how are you?',
     },
     {
       id: 1,
       message:
-        "how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?",
+        'how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?how is your it-kamasutra?',
     },
     {
       id: 2,
-      message: "yo",
+      message: 'yo',
     },
   ] as Array<MessageType>,
 };
-type InitialStateType = typeof initialState;
 
 const dialogsSlice = createSlice({
-  name: "dialogPage",
+  name: 'dialogPage',
   initialState,
   reducers: {
-    addMessage(state, action: PayloadAction<string>) {
+    sendMessage(state, action: PayloadAction<string>) {
       let newMessageBody = action.payload;
       let date = new Date();
       if (newMessageBody.trim().length > 0) {
         let newMessage = {
           id: state.messages.length,
-          date: date.toLocaleString("ru-RU"),
+          date: date.toLocaleString('ru-RU'),
           message: newMessageBody,
-          avatar: "",
+          avatar: '',
         };
-				state.messages = [...state.messages, newMessage];
+        state.messages = [...state.messages, newMessage];
       }
     },
   },
 });
 
-export const {addMessage} = dialogsSlice.actions
+export const { sendMessage } = dialogsSlice.actions;
 
-export default dialogsSlice.reducer
+export default dialogsSlice.reducer;
 
 // const dialogsReducer = (
 //   state: InitialStateType = initialState,

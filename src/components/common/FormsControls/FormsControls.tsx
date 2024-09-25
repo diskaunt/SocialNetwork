@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./FormsControls.module.css";
 import { FieldInputProps, FieldMetaState } from "react-final-form";
+import { useResizeTextarea } from "../../../hooks/hooks";
+
+type FormControls = {
+  input: FieldInputProps<string>;
+  meta: FieldMetaState<string>;
+	validlength?: number;
+	entertern?: boolean;
+};
 
 export const Textarea = ({
   input,
   meta: { error, touched },
   ...props
-}: {
-  input: FieldInputProps<string>;
-  meta: FieldMetaState<string>;
-}) => {
+}: FormControls) => {
+  const field = useRef<HTMLTextAreaElement>(null);
+
+	useResizeTextarea(field.current, props.validlength, props.entertern)
+
   const hasError = error && touched;
+
   return (
-    <div
-      className={
-        classes.textareaWrapper + " " + (hasError ? classes.error : "")
-      }
-    >
-      <textarea {...input} {...props} />
-      <span className={classes.errorText}>{hasError ? error : ""}</span>
-    </div>
+    <>
+      <div className={hasError ? classes.error : classes.field}>
+        <textarea ref={field} {...input} {...props} />
+      </div>
+      <span className={classes.errorText}>{hasError ? error : null}</span>
+    </>
   );
 };
 
@@ -27,18 +35,17 @@ export const Input = ({
   input,
   meta: { error, submitError, touched },
   ...props
-}: {
-  input: FieldInputProps<string>;
-  meta: FieldMetaState<string>;
-}) => {
+}: FormControls) => {
   const hasError = (error || submitError) && touched;
   return (
-    <div className={hasError ? classes.error : ""}>
-      <input {...input} {...props} />
+    <>
+      <div className={hasError ? classes.error : classes.field}>
+        <input {...input} {...props} />
+      </div>
       <span className={classes.errorText}>
-        {hasError ? error || submitError : ""}
+        {hasError ? error || submitError : null}
       </span>
-    </div>
+    </>
   );
 };
 

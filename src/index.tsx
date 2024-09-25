@@ -1,6 +1,6 @@
 import reportWebVitals from "./reportWebVitals";
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -14,17 +14,14 @@ import { lazy } from "react";
 import { withSuspense } from "./hoc/withSuspense";
 import store from "./redux/redux-store";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root") as HTMLElement);
 
-const DialogsContainer = lazy(() =>
-  import("./components/Dialogs/Dialogs")
-);
-const ProfileContainer = lazy(() =>
-  import("././components/Profile/ProfileContainer")
+const DialogsContainer = lazy(() => import("./components/Dialogs/Dialogs"));
+const ProfileContainer = lazy(
+  () => import("./components/Profile/ProfileContainer")
 );
 
 const UsersContainer = lazy(() => import("./components/Users/UsersContainer"));
-
 
 const router = createBrowserRouter([
   {
@@ -35,12 +32,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "profile/:userId",
-        element: withSuspense(ProfileContainer)(),
+        element: withSuspense(ProfileContainer),
         errorElement: <NoMatch />,
       },
       {
         path: "dialogs/*",
-        element: withSuspense(DialogsContainer)(),
+        element: withSuspense(DialogsContainer),
         errorElement: <NoMatch />,
       },
       { path: "news", element: <News /> },
@@ -48,7 +45,7 @@ const router = createBrowserRouter([
       { path: "settings", element: <Settings /> },
       {
         path: "friends",
-        element: withSuspense(UsersContainer)(),
+        element: withSuspense(UsersContainer),
         errorElement: <NoMatch />,
       },
       { path: "login", element: <LoginPage /> },

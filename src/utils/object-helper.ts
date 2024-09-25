@@ -1,5 +1,3 @@
-import { Field } from "react-final-form";
-import { RootState } from "../redux/redux-store";
 import { UsersType } from "../types/types";
 
 export const updateObjectInArray = (

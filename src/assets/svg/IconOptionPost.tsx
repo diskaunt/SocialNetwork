@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconOptionPost = (props) => (
+const IconOptionPost = (props: {[key: string]: any}) => (
   <svg
     width="24"
     height="24"

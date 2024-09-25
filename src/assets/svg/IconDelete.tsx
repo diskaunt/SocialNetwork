@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconDelete(props) {
+function IconDelete(props: {[key: string]: any}) {
   return (
     <svg
       viewBox="0 0 24 24"

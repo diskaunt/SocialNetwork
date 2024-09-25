@@ -1,6 +1,6 @@
-import { createSlice, ThunkAction, UnknownAction } from "@reduxjs/toolkit";
-import { getAuthUserData } from "./auth-reduser";
-import { RootState } from "./redux-store";
+import { createSlice, ThunkAction, UnknownAction } from '@reduxjs/toolkit';
+import { getAuthUserData } from './auth-reduser';
+import { RootState } from './redux-store';
 
 export interface InitialStateType {
   initialized: boolean;
@@ -11,7 +11,7 @@ const initialState: InitialStateType = {
 };
 
 const appSlice = createSlice({
-  name: "app",
+  name: 'app',
   initialState,
   reducers: {
     setInitialized(state) {
@@ -20,7 +20,7 @@ const appSlice = createSlice({
   },
 });
 
-type ThunkType = ThunkAction<Promise<void>, RootState, unknown, UnknownAction>
+type ThunkType = ThunkAction<Promise<void>, RootState, unknown, UnknownAction>;
 
 export const initializedApp = (): ThunkType => async (dispatch) => {
   let promises = [dispatch(getAuthUserData())];
@@ -57,5 +57,3 @@ export default appSlice.reducer;
 //     setTimeout(() => dispatch(setInitialized()), 500);
 //   }
 // };
-
-

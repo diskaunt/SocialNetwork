@@ -1,13 +1,9 @@
-import {
-  createSlice,
-  PayloadAction,
-  ThunkAction,
-  UnknownAction,
-} from "@reduxjs/toolkit";
-import { profileAPI, ResultCodes } from "../api/api";
-import { PhotosType, PostType, ProfileType, ThunkType } from "../types/types";
-import { setAuthPhoto } from "./auth-reduser";
-import store, { RootState } from "./redux-store";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ResultCodes } from '../api/api';
+import { profileAPI } from '../api/profileAPI';
+import { PhotosType, PostType, ProfileType, ThunkType } from '../types/types';
+import { setAuthPhoto } from './auth-reduser';
+import store from './redux-store';
 
 // const ADD_POST = "3RACHA/profile/ADD_POST";
 // const SET_USER_PROFILE = "3RACHA/profile/SET_USER_PROFILE";
@@ -51,15 +47,13 @@ const initialState = {
     // },
   ] as Array<PostType>,
   profile: null as ProfileType | null,
-  status: "" as string,
+  status: '' as string,
   photoError: null as string | null,
   isFetching: false as boolean,
 };
 
-type InitialStateType = typeof initialState;
-
 const profileSlice = createSlice({
-  name: "profilePage",
+  name: 'profilePage',
   initialState,
   reducers: {
     addPost(
@@ -73,7 +67,7 @@ const profileSlice = createSlice({
         newPost = {
           id: state.posts.length,
           name: fullName,
-          date: date.toLocaleString("ru-RU"),
+          date: date.toLocaleString('ru-RU'),
           message: newPostText,
           likesCount: Math.round(Math.random() * 100),
         };
@@ -106,7 +100,7 @@ const profileSlice = createSlice({
 });
 
 export const getUserProfile =
-  (userId: number | null): ThunkType<Promise<void>> =>
+  (userId: number | null): ThunkType =>
   async (dispatch) => {
     dispatch(toggleIsFetching());
     let data = await profileAPI.getProfile(userId);
@@ -115,14 +109,14 @@ export const getUserProfile =
   };
 
 export const getUserStatus =
-  (userId: number | null): ThunkType<Promise<void>> =>
+  (userId: number | null): ThunkType =>
   async (dispatch) => {
     let data = await profileAPI.getStatus(userId);
     dispatch(setUserStatus(data));
   };
 
 export const updateUserStatus =
-  (status: string): ThunkType<Promise<void>> =>
+  (status: string): ThunkType =>
   async (dispatch) => {
     let data = await profileAPI.updateStatus(status);
     if (data.resultCode === ResultCodes.Success) {
@@ -143,14 +137,16 @@ export const savePhoto =
     return data.messages;
   };
 
-export const saveProfile = (info: ProfileType): ThunkType<Promise<string | null>> => async (dispatch) => {
-  const userId = store.getState().auth.userId;
-  let data = await profileAPI.updateProfile(info);
-  if (data.resultCode === ResultCodes.Success) {
-    dispatch(getUserProfile(userId));
-    return null;
-  } else return data.messages[0];
-};
+export const saveProfile =
+  (info: ProfileType): ThunkType<Promise<string | null>> =>
+  async (dispatch) => {
+    const userId = store.getState().auth.userId;
+    let data = await profileAPI.updateProfile(info);
+    if (data.resultCode === ResultCodes.Success) {
+      dispatch(getUserProfile(userId));
+      return null;
+    } else return data.messages[0];
+  };
 
 export const {
   addPost,

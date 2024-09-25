@@ -16,5 +16,11 @@
 
 .newPostTextarea {
 	width: 100%;
-	padding: 20px 13px 4px 20px;
+	border: var(--border-text-area);
+	border-radius: 10px;
+	padding: 8px 8px;
+	resize: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }

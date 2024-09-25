@@ -1,26 +1,26 @@
-import React, { useRef } from "react";
+import React, { ComponentType, useRef } from "react";
 import classes from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { connect } from "react-redux";
-import { addMessage } from "../../redux/dialogs-reducer";
+import { sendMessage } from "../../redux/dialogs-reducer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 import { RootState } from "../../redux/redux-store";
 import NewMessageForm from "./NewMessageForm";
 import { DialogsPageType, DialogType, MessageType } from "../../types/types";
 
-type MapStateToPropsType = {
+type MapStateToProps = {
   dialogsPage: DialogsPageType;
 };
 
-type MapActionToPropsType = {
-  addMessage: (message: string) => void;
+type MapActionToProps = {
+  sendMessage: (message: string) => void;
 };
 
-type PropsType = MapStateToPropsType & MapActionToPropsType;
+type Props = MapStateToProps & MapActionToProps;
 
-const Dialogs = (props: PropsType) => {
+const Dialogs = (props: Props) => {
   let dialogsElements = props.dialogsPage.dialogs.map((dialog: DialogType) => (
     <DialogItem
       key={dialog.id}
@@ -50,10 +50,11 @@ const Dialogs = (props: PropsType) => {
 
   const scrollTo = useRef<null | HTMLDivElement>(null);
 
-  const onSubmit = async (values: { newMessageBody: string }) => {
-    await props.addMessage(values.newMessageBody);
+  const onSendMessage = async (values: { newMessageBody: string }, form: Record<string, any>) => {
+    await props.sendMessage(values.newMessageBody);
     scrollTo.current &&
       scrollTo.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.reset()
   };
 
   return (
@@ -62,7 +63,7 @@ const Dialogs = (props: PropsType) => {
       <div className={classes.messages}>
         <div className={classes.content}>
           <div className={classes.messagesElements}>{messagesElements}</div>
-          <NewMessageForm onSubmit={onSubmit} />
+          <NewMessageForm onSendMessage={onSendMessage} />
           <div ref={scrollTo}></div>
         </div>
       </div>
@@ -70,13 +71,13 @@ const Dialogs = (props: PropsType) => {
   );
 };
 
-let mapStateToProps = (state: RootState): MapStateToPropsType => {
+let mapStateToProps = (state: RootState): MapStateToProps => {
   return {
     dialogsPage: state.dialogsPage,
   };
 };
 
-export default compose(
+export default compose<ComponentType>(
   withAuthRedirect,
-  connect(mapStateToProps, { addMessage })
+  connect(mapStateToProps, { sendMessage })
 )(Dialogs);

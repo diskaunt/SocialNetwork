@@ -11,17 +11,19 @@ import {
   getTotalUsersCount,
   getUsers,
 } from "../../redux/users-selector";
-import { UsersType } from "../../types/types";
 import { RootState } from "../../redux/redux-store";
+import { useTrottle } from "../../hooks/hooks";
 
-type MapStatePropsType = {
-  currentPage: number;
-  pageSize: number;
-  users: Array<UsersType>;
-  totalUsersCount: number;
-  isFetching: boolean;
-  followingInProgress: Array<number>;
-};
+// type MapStatePropsType = {
+//   currentPage: number;
+//   pageSize: number;
+//   users: Array<UsersType>;
+//   totalUsersCount: number;
+//   isFetching: boolean;
+//   followingInProgress: Array<number>;
+// };
+
+type MapProps = ReturnType<typeof mapStateToProps>;
 
 type MapDispatchPropsType = {
   requestUsers: (
@@ -34,7 +36,7 @@ type MapDispatchPropsType = {
   unfollow: (id: number) => void;
 };
 
-type PropsType = MapStatePropsType & MapDispatchPropsType;
+type PropsType = MapProps & MapDispatchPropsType;
 
 const UsersComponent = ({
   currentPage,
@@ -46,11 +48,13 @@ const UsersComponent = ({
   const [friend, setFriend] = useState(true);
   useEffect(() => {
     requestUsers(currentPage, pageSize, search, friend);
-  }, [currentPage, pageSize, search, friend, requestUsers]);
+  }, [currentPage, pageSize, friend, requestUsers]);
 
   const onPageChanged = (pageNumber: number) => {
     currentPage !== pageNumber && requestUsers(pageNumber, pageSize);
   };
+
+  useTrottle(()=>requestUsers(currentPage, pageSize, search, friend), [search], 1500);
 
   return (
     <Users
@@ -58,15 +62,15 @@ const UsersComponent = ({
       currentPage={currentPage}
       pageSize={pageSize}
       search={search}
-			friend={friend}
-			setFriend={setFriend}
+      friend={friend}
+      setFriend={setFriend}
       onPageChanged={onPageChanged}
-      setSearchValue={setSearchValue}
+      onSearch={setSearchValue}
     />
   );
 };
 
-let mapStateToProps = (state: RootState): MapStatePropsType => {
+let mapStateToProps = (state: RootState) => {
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),

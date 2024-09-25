@@ -7,7 +7,7 @@ export const required: FildValidator = (value) => {
 export const maxLength =
   (max: number): FildValidator =>
   (value: string) => {
-    return value.length > max ? `Max length is ${max} symbols` : undefined;
+    return value?.length > max ? `Max length is ${max} symbols` : undefined;
   };
 
 export const composeValidators =

@@ -10,7 +10,7 @@ type PropsType = {
   posts: Array<PostType>;
   profile: ProfileType | null;
   deletePost: (value: number) => void;
-  addPost: (payload: {newPostText: string, fullName: string}) => void;
+  addPost: (payload: { newPostText: string; fullName: string }) => void;
 };
 
 const MyPosts = ({ posts, deletePost, profile, addPost }: PropsType) => {
@@ -22,26 +22,29 @@ const MyPosts = ({ posts, deletePost, profile, addPost }: PropsType) => {
         date={post.date || "date"}
         likesCount={post.likesCount}
         message={post.message}
-        photo={(profile?.photos && profile.photos.small) || "http://dummyimage.com/50"}
+        photo={
+          (profile?.photos && profile.photos.small) ||
+          "http://dummyimage.com/50"
+        }
         deletePost={deletePost}
       />
     </div>
   ));
 
-  const onAddPost = async (value: { newPostText: string }) => {
+  const onAddPost = async (values: {newPostText:string}, form: Record<string, any>) => {
     profile?.fullName &&
       (await addPost({
-        newPostText: value.newPostText,
+        newPostText: values.newPostText,
         fullName: profile.fullName,
       }));
-    value.newPostText = "";
+			form.reset()
   };
 
   return (
     <div className={classes.container}>
       <div className={classes.newPost}>
         <h3 className={classes.header}>My posts</h3>
-        <AddNewPostForm onSubmit={onAddPost} />
+        <AddNewPostForm onAddPost={onAddPost} />
       </div>
       <div className={classes.posts}>
         {posts.length ? (

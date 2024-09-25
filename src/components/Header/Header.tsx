@@ -1,4 +1,4 @@
-import React, { ElementRef, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import classes from "./Header.module.css";
 import { Link } from "react-router-dom";
 import MenuBlock from "./MenuBlock/MenuBlock";

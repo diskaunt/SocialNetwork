@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconClose(props) {
+function IconClose(props: {[key: string]: any}) {
   return (
     <svg fill="none" viewBox="0 0 24 24" height="20px" width="20px" {...props}>
       <path

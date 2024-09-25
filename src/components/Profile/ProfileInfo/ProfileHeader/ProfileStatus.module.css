@@ -19,12 +19,30 @@
 	border-radius: 8px;
 	transition: opacity .3s ease-in-out;
 
-	& input {
-		width: 100%;
-		border: var(--border-text-area);
-		border-radius: 5px;
-		padding: 5px;
-	}
+}
+
+.statusForm {
+	width: 100%;
+	display: grid;
+	grid-template:
+	"field field"
+	"fieldError fieldError" / minmax(auto, 134px) auto;
+
+}
+
+.statusFild {
+	width: 100%;
+	/* border: var(--border-text-area); */
+	/* border-radius: 5px; */
+	border: none;
+	border-bottom: var(--border-text-area);
+	padding: 5px;
+	resize: none;
+	overflow: hidden;
+}
+
+.btnWrapper {
+	max-width: fit-content;
 }
 
 .disable {

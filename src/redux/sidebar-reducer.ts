@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   friends: [],
@@ -7,13 +7,11 @@ const initialState = {
 type InitialStateType = typeof initialState;
 
 const sidebarSlice = createSlice({
-  name: "sidebarPage",
+  name: 'sidebarPage',
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
 });
 
-export const { } = sidebarSlice.actions;
+export const {} = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

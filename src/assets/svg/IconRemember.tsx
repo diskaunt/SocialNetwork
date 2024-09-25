@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconRemember = (props) => {
+const IconRemember = (props: {[key: string]: any}) => {
   return (
     <svg
       width="12"

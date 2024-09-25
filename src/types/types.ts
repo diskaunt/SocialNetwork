@@ -82,7 +82,7 @@ export type DialogsPageType = {
   messages: Array<MessageType>;
 };
 
-export type ThunkType<ReturnType> = ThunkAction<
+export type ThunkType<ReturnType = Promise<void>> = ThunkAction<
   ReturnType,
   RootState,
   unknown,

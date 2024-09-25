@@ -1,5 +1,5 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { RootState } from "./redux-store";
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from './redux-store';
 
 const getUsersSelector = (state: RootState) => {
   return state.usersPage.users;

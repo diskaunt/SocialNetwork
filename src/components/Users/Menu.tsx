@@ -1,13 +1,22 @@
 import * as React from "react";
 import classes from "./Users.module.css";
+import { getCurrentPage } from "../../redux/users-selector";
+import { useDispatch } from "react-redux";
+import { setCurrentPage } from "../../redux/users-reduser";
 
 type PropsType = {
   friend: boolean;
   setFriend: (friend: boolean) => void;
+	setPortionNumber: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Menu = ({ friend, setFriend }: PropsType) => {
-  const onFriend = () => setFriend(!friend);
+const Menu = ({ friend, setFriend, setPortionNumber }: PropsType) => {
+	const dispatch = useDispatch()
+  const onFriend = () => {
+    setFriend(!friend);
+		dispatch(setCurrentPage(1))
+		setPortionNumber(1)
+  };
   return (
     <div className={classes.menu}>
       <div className={classes.item}>

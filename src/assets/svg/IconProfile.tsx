@@ -1,6 +1,6 @@
-
 import * as React from "react";
-const IconProfile = (props) => {
+
+const IconProfile = (props: {[key: string]: any}) => {
   return (
     <svg fill="none" viewBox="0 0 24 24" height="1em" width="1em" {...props}>
       <path
@@ -18,5 +18,3 @@ const IconProfile = (props) => {
 };
 
 export default IconProfile;
-
-

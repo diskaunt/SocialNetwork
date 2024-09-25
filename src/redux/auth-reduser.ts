@@ -1,9 +1,9 @@
-import {
-  createSlice,
-  PayloadAction,
-} from "@reduxjs/toolkit";
-import { authAPI, ResultCodes, ResultCodesForCuptcha, securityAPI, usersAPI } from "../api/api";
-import { ThunkType } from "../types/types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ResultCodes, ResultCodesForCuptcha } from '../api/api';
+import { securityAPI } from '../api/api';
+import { authAPI } from '../api/authAPI';
+import { profileAPI } from '../api/profileAPI';
+import { ThunkType } from '../types/types';
 
 // const SET_USER_DATA = "3RACHA/auth/SET-USER-DATA";
 // const SET_USER_PHOTO = "3RACHA/auth/SET-USER-PHOTO";
@@ -20,10 +20,8 @@ const initialState = {
   captchaUrl: null as string | null, // if null, captcha is not reqired
 };
 
-type InitialStateType = typeof initialState;
-
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     setAuthUserData(
@@ -43,27 +41,26 @@ const authSlice = createSlice({
       state.captchaUrl = null;
     },
     setAuthPhoto(state, action: PayloadAction<string | null>) {
-			state.avatar = action.payload
-		},
+      state.avatar = action.payload;
+    },
     setAuthError(state, action: PayloadAction<string | null>) {
-			state.error = action.payload
-		},
+      state.error = action.payload;
+    },
     setCaptchaURL(state, action: PayloadAction<string | null>) {
-			state.captchaUrl = action.payload
-		},
+      state.captchaUrl = action.payload;
+    },
   },
 });
 
-export const getAuthUserData =
-  (): ThunkType<Promise<void>> => async (dispatch) => {
-    let data = await authAPI.me();
-    if (data.resultCode === ResultCodes.Success) {
-      let { email, id, login } = data.data;
-      dispatch(setAuthUserData({ email, id, login, isAuth: true }));
-      let profile = await usersAPI.getProfile(id);
-      dispatch(setAuthPhoto(profile.photos.small));
-    }
-  };
+export const getAuthUserData = (): ThunkType => async (dispatch) => {
+  let data = await authAPI.me();
+  if (data.resultCode === ResultCodes.Success) {
+    let { email, id, login } = data.data;
+    dispatch(setAuthUserData({ email, id, login, isAuth: true }));
+    let profile = await profileAPI.getProfile(id);
+    dispatch(setAuthPhoto(profile.photos.small));
+  }
+};
 
 export const login =
   (values: {
@@ -78,7 +75,7 @@ export const login =
     if (data.resultCode === ResultCodes.Success) {
       let { userId, token } = data.data;
       dispatch(getAuthUserData());
-      localStorage.setItem("sn-token", token);
+      localStorage.setItem('sn-token', token);
       dispatch(setAuthError(null));
     } else {
       if (data.resultCode === ResultCodesForCuptcha.CaptchaIsRequired) {
@@ -88,20 +85,21 @@ export const login =
       dispatch(setAuthError(errorMessage));
       return errorMessage;
     }
-		return null
+    return null;
   };
 
-export const getCaptchaUrl =
-  (): ThunkType<Promise<void>> => async (dispatch) => {
-    let data = await securityAPI.getCaptchaUrl();
-    dispatch(setCaptchaURL(data.url));
-  };
+export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
+  let data = await securityAPI.getCaptchaUrl();
+  dispatch(setCaptchaURL(data.url));
+};
 
-export const logout = (): ThunkType<Promise<void>> => async (dispatch) => {
+export const logout = (): ThunkType => async (dispatch) => {
   let data = await authAPI.logout();
   if (data.resultCode === ResultCodes.Success) {
-    dispatch(setAuthUserData({email: null, id: null, login: null, isAuth: false}));
-    localStorage.removeItem("sn-token");
+    dispatch(
+      setAuthUserData({ email: null, id: null, login: null, isAuth: false })
+    );
+    localStorage.removeItem('sn-token');
     dispatch(setAuthPhoto(null));
   }
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconFollow = (props) => {
+const IconFollow = (props: {[key: string]: any}) => {
   return (
     <svg
       viewBox="0 0 20 20"

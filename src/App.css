@@ -63,7 +63,7 @@ a {
 	cursor: pointer;
 
 	&:focus {
-		outline: var(--outline-for-focus);
+		/* outline: var(--outline-for-focus); */
 	}
 }
 
@@ -97,9 +97,9 @@ button {
 		opacity: 0.9;
 	}
 
-	/* &:focus {
-		outline: thick double var(--main-color-blue);
-	} */
+	&:focus {
+		/* outline: thick double var(--main-color-blue); */
+	}
 }
 
 input,

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconLike(props) {
+function IconLike(props: {[key: string]: any}) {
   return (
     <svg
       viewBox="0 0 1024 1024"

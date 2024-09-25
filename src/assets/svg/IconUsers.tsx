@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconUsers(props) {
+function IconUsers(props: {[key: string]: any}) {
   return (
     <svg
       viewBox="0 0 24 24"

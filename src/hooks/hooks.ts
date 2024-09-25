@@ -1,4 +1,4 @@
-import { MutableRefObject, RefObject, useEffect } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../redux/redux-store";
 import { useParams } from "react-router-dom";
@@ -10,8 +10,8 @@ export const useClickOutside = (
 ) => {
   const handleClick = (e: Event) => {
     if (
-     ( Boolean(menuRef.current) &&
-      !menuRef.current.contains(e.target)) &&
+      Boolean(menuRef.current) &&
+      !menuRef.current.contains(e.target) &&
       !buttonRef?.current.contains(e.target)
     ) {
       handler();
@@ -75,6 +75,25 @@ export const useMouseOverLeaveDebounce = (
   }, [ref, callback, ms]);
 };
 
+export const useTrottle = (
+  func: () => void,
+  search: [string],
+  delay: number
+) => {
+  let lastCall = useRef(Date.now());
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      const now = Date.now();
+      if (now - lastCall.current >= delay) {
+        lastCall.current = now;
+        func();
+      }
+    }, delay - (Date.now() - lastCall.current));
+
+		return () => clearTimeout(handler);
+  }, [delay, ...search]);
+};
+
 export const useGetUserProfile = (
   authId: number | null,
   getUserProfile: (userId: number) => void,
@@ -86,16 +105,15 @@ export const useGetUserProfile = (
     friend?: boolean
   ) => void
 ) => {
+  let id: number | null = null;
+  const { userId } = useParams();
+  if (userId === "me" && authId !== null) {
+    id = authId;
+  } else if (userId !== "me" && userId) {
+    id = +userId;
+  }
 
-	let id: number | null = null;
-	const { userId } = useParams();
-	if (userId === "me" && authId !== null) {
-		id = authId;
-	} else if (userId !== "me" && userId) {
-		id = +userId;
-	}
-	
-	useEffect(() => {
+  useEffect(() => {
     if (id !== null) {
       getUserProfile(id);
       getUserStatus(id);
@@ -103,6 +121,36 @@ export const useGetUserProfile = (
     }
   }, [getUserProfile, getUserStatus, id, requestUsers]);
   return id;
+};
+
+export const useResizeTextarea = (
+  textarea: HTMLTextAreaElement | null,
+  validlength: number = 200,
+  enterTern: boolean = false,
+  height: number = 40
+) => {
+  useEffect(() => {
+    let enterDisabled = (e: KeyboardEvent) => {
+      if (enterTern && e.key === "Enter") {
+        e.preventDefault();
+      }
+    };
+    if (textarea) {
+      textarea.style.height = height + "px";
+      textarea.addEventListener("keydown", enterDisabled);
+      if (textarea.scrollHeight < height + 13) {
+        textarea.style.height = height + "px";
+      }
+      if (textarea.scrollHeight > validlength) {
+        textarea.style.overflow = "auto";
+        textarea.style.height = validlength + "px";
+      } else {
+        textarea.style.overflow = "hidden";
+        textarea.style.height = textarea.scrollHeight + "px";
+      }
+      return textarea.removeEventListener("keypress", enterDisabled);
+    }
+  }, [textarea?.value]);
 };
 
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>();

@@ -1,44 +1,28 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Field, Form } from "react-final-form";
 import Button from "../common/Button/Button";
 import classes from "./Dialogs.module.css";
 import { Textarea } from "../common/FormsControls/FormsControls";
-import {
-  composeValidators,
-  maxLength,
-  required,
-} from "../../utils/validators/validators";
 
 type PropsType = {
-  onSubmit: (valuse:{newMessageBody: string}) => void;
+  onSendMessage: (
+    values: { newMessageBody: string },
+    form: Record<string, any>
+  ) => void;
 };
 
-const NewMessageForm = ({ onSubmit }: PropsType) => {
-  useEffect(() => {
-    // textarea.style.height = "auto";
-    // if (textarea.clientHeight < 54) {
-    //   textarea.style.height = 36 + "px";
-    // }
-    // if (textarea.scrollHeight > 201) {
-    //   textarea.style.overflow = "auto";
-    //   textarea.style.height = 201 + "px";
-    // } else {
-    //   textarea.style.overflow = "hidden";
-    //   textarea.style.height = textarea.scrollHeight + "px";
-    // }
-  }, []);
+const NewMessageForm = ({ onSendMessage }: PropsType) => {
   return (
     <Form
-      onSubmit={onSubmit}
-      initialValues={{}}
+      onSubmit={onSendMessage}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <form onSubmit={handleSubmit} className={classes.newMessageForm}>
-          <Field
+          <Field<string>
             name="newMessageBody"
             component={Textarea}
-            validate={composeValidators(required, maxLength(100))}
-            type="text"
+            // validate={composeValidators(maxLength(1000))}
             placeholder="Write a message..."
+            type="text"
             className={classes.newMessageFild}
           />
           <div className={classes.btnWrapper}>

@@ -4,11 +4,13 @@ import IconSearch from "../../../assets/svg/IconSearch";
 
 type PropsType = {
   search: string;
-  setSearchValue: (value: string) => void;
+  placeHolderValue?: string;
+  onSearch: (value: string) => void;
 };
 
-const Search = ({ search, setSearchValue }: PropsType) => {
+const Search = ({ search, placeHolderValue = "", onSearch }: PropsType) => {
   const searchRef = useRef(null);
+
   return (
     <div className={classes.searchContainer}>
       <div className={classes.inputWrapper}>
@@ -16,8 +18,9 @@ const Search = ({ search, setSearchValue }: PropsType) => {
           ref={searchRef}
           type="text"
           value={search}
+          placeholder={placeHolderValue}
           onChange={(e) => {
-            setSearchValue(e.target.value);
+            onSearch(e.target.value);
           }}
         />
       </div>

@@ -1,5 +1,6 @@
 import * as React from "react";
-const IconNews = (props) => {
+
+const IconNews = (props: {[key: string]: any}) => {
   return (
     <svg
       viewBox="0 0 24 24"

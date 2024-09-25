@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconSearch(props) {
+function IconSearch(props: {[key: string]: any}) {
   return (
     <svg
       viewBox="0 0 1024 1024"

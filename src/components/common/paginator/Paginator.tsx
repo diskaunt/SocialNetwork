@@ -1,23 +1,26 @@
 import * as React from "react";
 import classes from "./Paginator.module.css";
-import { useState } from "react";
 import IconChevronLeft from "./IconChevronLeft";
 import IconChevronRight from "./IconChevronRight";
 
 type PropsType = {
-  onPageChanged: (pageNumber: number) => void;
-  currentPage: number;
+  onPageChanged?: (pageNumber: number) => void;
+  currentPage?: number;
   totalItemsCount: number;
   pageSize: number;
   portionSize?: number;
+  portionNumber?: number;
+  setPortionNumber?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Paginator = ({
-  onPageChanged,
-  currentPage,
+  onPageChanged = () => {},
+  currentPage = 1,
   totalItemsCount,
   pageSize,
   portionSize = 8,
+  portionNumber = 1,
+  setPortionNumber = () => {},
 }: PropsType) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
   let pages: Array<number> = [];
@@ -26,45 +29,67 @@ const Paginator = ({
   }
 
   let portionCount = Math.ceil(pagesCount / portionSize);
-  let [portionNumber, setPortionNumber] = useState(1);
   let leftPortionNumber = (portionNumber - 1) * portionSize + 1;
   let rightPortionNumber = portionNumber * portionSize;
+
   return (
     <div className={classes.pagesWrapper}>
-      {portionNumber > 1 && (
-        <button
-          className={classes.chevronIcons}
-          onClick={() => {
-            setPortionNumber((prev) => prev - 1);
-            onPageChanged(rightPortionNumber - portionSize);
-          }}
-        >
-          <IconChevronLeft />
-        </button>
-      )}
+      <button
+        data-testid={portionNumber > 1 ? "chevron" : null}
+        className={
+          portionNumber > 1
+            ? classes.chevronIcons + " " + classes.pages
+            : classes.chevronIcons +
+              " " +
+              classes.pages +
+              " " +
+              classes.invisability
+        }
+        onClick={() => {
+          setPortionNumber((prev) => prev - 1);
+          onPageChanged(rightPortionNumber - portionSize);
+        }}
+      >
+        <IconChevronLeft />
+      </button>
+
       {pagesCount > 1 &&
         pages
           .filter((p) => p >= leftPortionNumber && p <= rightPortionNumber)
           .map((p) => (
-            <span
+            <button
               key={p}
+              data-testid="pageNumber"
               onClick={() => onPageChanged(p)}
-              className={currentPage === p ? classes.activePage : classes.pages}
+              className={
+                currentPage === p
+                  ? classes.activePage + " " + classes.pages
+                  : classes.pages
+              }
             >
               {p}
-            </span>
+            </button>
           ))}
-      {portionNumber < portionCount && (
-        <button
-          className={classes.chevronIcons}
-          onClick={() => {
-            setPortionNumber((prev) => prev + 1);
-            onPageChanged(leftPortionNumber + portionSize);
-          }}
-        >
-          <IconChevronRight />
-        </button>
-      )}
+
+      <button
+        data-testid={portionNumber < portionCount
+				? "chevron" : null}
+        className={
+          portionNumber < portionCount
+            ? classes.chevronIcons + " " + classes.pages
+            : classes.chevronIcons +
+              " " +
+              classes.pages +
+              " " +
+              classes.invisability
+        }
+        onClick={() => {
+          setPortionNumber((prev) => prev + 1);
+          onPageChanged(leftPortionNumber + portionSize);
+        }}
+      >
+        <IconChevronRight />
+      </button>
     </div>
   );
 };

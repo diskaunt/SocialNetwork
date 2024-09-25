@@ -11,7 +11,7 @@ import {
   UsersType,
 } from "../../types/types";
 
-type PropsType = {
+type Props = {
   profilePage: ProfilePageType;
   auth: AuthType;
   isOwner: boolean;
@@ -20,7 +20,7 @@ type PropsType = {
   updateUserStatus: (status: string) => void;
   addPost: (payload: {newPostText: string, fullName: string}) => void;
   deletePost: (id: number) => void;
-  savePhoto: (file: any) => Promise<any>;
+  savePhoto: (file: File) => Promise<any>;
   saveProfile: (info: ProfileType) => Promise<string | null>;
 };
 
@@ -35,7 +35,7 @@ const Profile = ({
   deletePost,
   savePhoto,
   saveProfile,
-}: PropsType) => {
+}: Props) => {
   return (
     <div className={classes.container}>
       <div className={classes.profileInfo}>

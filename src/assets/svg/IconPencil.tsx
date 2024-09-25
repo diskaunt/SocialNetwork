@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconPencil(props) {
+function IconPencil(props: {[key: string]: any}) {
   return (
     <svg
       fill="none"
