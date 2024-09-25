@@ -1,0 +1,54 @@
+.title {
+	padding: 15px 12px 9px;
+	color: rgb(0, 0, 0);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.countOfUsers {
+	font-weight: 500;
+	color: var(--text-color-subhead-gray)
+}
+
+.main {
+	width: 100%;
+	flex-grow: 1;
+}
+
+.users {
+	display: flex;
+	height: 100%;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	row-gap: clamp(13px, 10%, 25px);
+	padding-top: 4px;
+}
+
+.user {
+	width: 80px;
+	height: 97px;
+	border-radius: 8px;
+
+	&:hover {
+		background-color: var(--backgtound-color-editBtn);
+	}
+}
+
+.avatarWrapper {
+	height: 72px;
+	padding: 4px 8px;
+}
+
+.avatar {
+	border-radius: 100%;
+	overflow: hidden;
+}
+
+.name {
+	padding: 2px 4px 8px;
+	text-align: center;
+	max-height: 25px;
+	overflow: hidden;
+}

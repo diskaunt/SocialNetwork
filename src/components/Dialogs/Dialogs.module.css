@@ -31,30 +31,43 @@
 	margin-bottom: 34px;
 }
 
-.chatInputForm {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.newMessageForm {
+	display: grid;
+	grid-template:
+		"field btn" auto
+		"fieldError btn" auto
+		/ minmax(416px, 100%) auto;
+	column-gap: 12px;
+	align-items: start;
 	border-top: var(--border-text-area);
-	padding: 12px 12px 0 52px;
+	padding: 16px 16px 0 16px;
 	background-color: #f9f9f9;
+}
 
-	&>textarea {
-		display: flex;
-		margin: 0 56px 12px 7px;
-		width: 416px;
-		height: clamp(36px, 2rem, 201px);
-		border: var(--border-text-area);
-		border-radius: 10px;
-		padding: 8px 74px 9px 13px;
-		resize: none;
-		/* overflow: hidden; */
-		line-height: 17px;
+.newMessageFild {
+	display: flex;
+	width: 100%;
+	min-width: 416px;
+	height: 42px;
+	max-height: 201px;
+	border: var(--border-text-area);
+	border-radius: 10px;
+	padding: 12px 6px 12px 24px;
+	resize: none;
+	overflow: hidden;
+	line-height: 18px;
+
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }
 
 .btnWrapper {
-	margin-bottom: 9px;
+	grid-area: btn;
+	margin-bottom: 26px;
+	align-self: end;
+	margin-left: auto;
+	width: fit-content;
 
 	&>button:disabled {
 		opacity: 0.6;

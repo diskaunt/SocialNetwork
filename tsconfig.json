@@ -1,0 +1,29 @@
+{
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "declarationMap": true,
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // "noEmit": true
+  }
+}
