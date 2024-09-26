@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/SocialNetwork/static/css/main.e4558760.css",
-    "main.js": "/SocialNetwork/static/js/main.5b696fe2.js",
+    "main.js": "/SocialNetwork/static/js/main.072b72a6.js",
     "static/css/99.85e51cc1.chunk.css": "/SocialNetwork/static/css/99.85e51cc1.chunk.css",
     "static/js/99.a09b46ee.chunk.js": "/SocialNetwork/static/js/99.a09b46ee.chunk.js",
-    "static/css/236.ed8e4c88.chunk.css": "/SocialNetwork/static/css/236.ed8e4c88.chunk.css",
-    "static/js/236.12037db1.chunk.js": "/SocialNetwork/static/js/236.12037db1.chunk.js",
+    "static/css/236.19133ff1.chunk.css": "/SocialNetwork/static/css/236.19133ff1.chunk.css",
+    "static/js/236.6eb1541f.chunk.js": "/SocialNetwork/static/js/236.6eb1541f.chunk.js",
     "static/css/190.38edd3df.chunk.css": "/SocialNetwork/static/css/190.38edd3df.chunk.css",
     "static/js/190.385b1bec.chunk.js": "/SocialNetwork/static/js/190.385b1bec.chunk.js",
     "static/js/453.036876eb.chunk.js": "/SocialNetwork/static/js/453.036876eb.chunk.js",
     "index.html": "/SocialNetwork/index.html",
     "main.e4558760.css.map": "/SocialNetwork/static/css/main.e4558760.css.map",
-    "main.5b696fe2.js.map": "/SocialNetwork/static/js/main.5b696fe2.js.map",
+    "main.072b72a6.js.map": "/SocialNetwork/static/js/main.072b72a6.js.map",
     "99.85e51cc1.chunk.css.map": "/SocialNetwork/static/css/99.85e51cc1.chunk.css.map",
     "99.a09b46ee.chunk.js.map": "/SocialNetwork/static/js/99.a09b46ee.chunk.js.map",
-    "236.ed8e4c88.chunk.css.map": "/SocialNetwork/static/css/236.ed8e4c88.chunk.css.map",
-    "236.12037db1.chunk.js.map": "/SocialNetwork/static/js/236.12037db1.chunk.js.map",
+    "236.19133ff1.chunk.css.map": "/SocialNetwork/static/css/236.19133ff1.chunk.css.map",
+    "236.6eb1541f.chunk.js.map": "/SocialNetwork/static/js/236.6eb1541f.chunk.js.map",
     "190.38edd3df.chunk.css.map": "/SocialNetwork/static/css/190.38edd3df.chunk.css.map",
     "190.385b1bec.chunk.js.map": "/SocialNetwork/static/js/190.385b1bec.chunk.js.map",
     "453.036876eb.chunk.js.map": "/SocialNetwork/static/js/453.036876eb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e4558760.css",
-    "static/js/main.5b696fe2.js"
+    "static/js/main.072b72a6.js"
   ]
 }
