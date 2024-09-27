@@ -1,5 +1,5 @@
 import { UsersType } from "../types/types";
-import { instance, ResultCodes } from "./api";
+import { instance, Response, ResultCodes } from "./api";
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 6, term?: string, friend?: boolean) {
@@ -9,7 +9,7 @@ export const usersAPI = {
       )
       .then((response) => response.data);
   },
-  follow(id: number) {
+  follow(id: number){
     return instance
       .post<Response>("follow/" + id)
       .then((response) => response.data);

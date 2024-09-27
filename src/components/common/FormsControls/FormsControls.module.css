@@ -15,6 +15,7 @@
 .field {
 	grid-area: field;
 }
+
 .errorText {
 	grid-area: fieldError;
 	height: 16px;

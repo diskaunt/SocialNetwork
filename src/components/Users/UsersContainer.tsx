@@ -46,9 +46,9 @@ const UsersComponent = ({
 }: PropsType) => {
   const [search, setSearchValue] = useState("");
   const [friend, setFriend] = useState(true);
-  useEffect(() => {
+  React.useEffect(() => {
     requestUsers(currentPage, pageSize, search, friend);
-  }, [currentPage, pageSize, friend, requestUsers]);
+  }, [currentPage, pageSize, friend]);
 
   const onPageChanged = (pageNumber: number) => {
     currentPage !== pageNumber && requestUsers(pageNumber, pageSize);

@@ -2,7 +2,7 @@
   "name": "react-kabzda-1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https:/profile/me",
+  "homepage": "https://diskaunt.github.io/SocialNetwork/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@svgr/plugin-svgo": "^8.1.0",
@@ -39,7 +39,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+		"deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +67,7 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "^18.3.0",
+    "gh-pages": "6.1.1",
     "react-test-renderer": "^18.3.1"
   }
 }

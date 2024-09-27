@@ -15,34 +15,35 @@
 
 .contentWrapper {
 	display: flex;
-	height: 100%;
 	align-items: center;
 	justify-content: space-between;
+	height: 100%;
 	margin: 0 auto;
 	width: var(--width-main);
 	padding: 0 30px;
 	gap: 0;
 
-	& a {
-		display: inline-flex;
-		padding: 0 1em 0 0;
-		align-items: center;
-	}
+}
 
-	& h1 {
-		font-size: 20px;
-		display: flex;
-		align-items: center;
-		margin: 0;
-		height: 50px;
-		font-size: 20px;
-	}
+.logo {
+	display: flex;
+	padding: 0 1em 0 0;
+	align-items: center;
 
 	& img {
 		width: 50px;
 		object-fit: cover;
 	}
 }
+
+.title {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	height: 50px;
+	font-size: 20px;
+}
+
 
 .loginBlock {
 	height: 100%;
@@ -144,4 +145,3 @@
 		transform: none;
 	}
 }
-

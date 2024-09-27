@@ -69,7 +69,7 @@ const LoginForm = ({ login, captchaUrl }: PropsType) => {
             <label>
               <Field
                 name="rememberMe"
-                component={Input}
+                component={'input'}
                 type="checkbox"
                 className={classes.inputcheck}
               />
@@ -79,7 +79,7 @@ const LoginForm = ({ login, captchaUrl }: PropsType) => {
               <IconRemember />
             </div>
             <div className={classes.descr}>
-              <h3>Save Login Select</h3>
+              <h4>Save Login Select</h4>
               <span>
                 to save your account details for quick login on this device
               </span>

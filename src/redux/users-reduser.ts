@@ -1,3 +1,4 @@
+import { Response } from '../api/api';
 import { usersAPI } from '../api/usersAPI';
 import { ThunkType, UsersType } from '../types/types';
 import { updateObjectInArray } from '../utils/object-helper';
@@ -23,7 +24,7 @@ const usersSlice = createSlice({
   name: 'usersPage',
   initialState,
   reducers: {
-    followUnfollowSucces(
+    followUnfollowSuccess(
       state,
       action: PayloadAction<{
         userId: number;
@@ -78,13 +79,13 @@ type DispatchType = Dispatch<UnknownAction>;
 const _followUnfollowFlow = async (
   dispatch: DispatchType,
   id: number,
-  apiMethod: any,
+  apiMethod: (userId: number) => Promise<Response>,
   newObjectProps: { followed: boolean }
 ) => {
   dispatch(toggleFollowingProgress({ userId: id, isFetching: true }));
   let data = await apiMethod(id);
   if (!data.resultCode) {
-    dispatch(followUnfollowSucces({ userId: id, newObjectProps }));
+    dispatch(followUnfollowSuccess({ userId: id, newObjectProps }));
   }
   dispatch(toggleFollowingProgress({ userId: id, isFetching: true }));
 };
@@ -92,18 +93,18 @@ const _followUnfollowFlow = async (
 export const follow =
   (id: number): ThunkType =>
   async (dispatch) => {
-    _followUnfollowFlow(dispatch, id, usersAPI.follow, { followed: true });
+    await _followUnfollowFlow(dispatch, id, usersAPI.follow, { followed: true });
   };
 
 export const unfollow =
   (id: number): ThunkType =>
   async (dispatch) => {
-    _followUnfollowFlow(dispatch, id, usersAPI.delete, { followed: false });
+    await _followUnfollowFlow(dispatch, id, usersAPI.delete, { followed: false });
   };
 
 export default usersSlice.reducer;
 export const {
-  followUnfollowSucces,
+  followUnfollowSuccess,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
@@ -166,7 +167,7 @@ export const {
 //   : never;
 
 // export const actions = {
-//   followUnfollowSucces: (
+//   followUnfollowSuccess: (
 //     userId: number,
 //     newObjectProps: { followed: boolean }
 //   ) => ({

@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useEffect, useRef } from "react";
+import { MutableRefObject, useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../redux/redux-store";
 import { useParams } from "react-router-dom";
@@ -81,11 +81,13 @@ export const useTrottle = (
   delay: number
 ) => {
   let lastCall = useRef(Date.now());
+	let searchCall = useRef(search);
   useEffect(() => {
     const handler = setTimeout(() => {
       const now = Date.now();
-      if (now - lastCall.current >= delay) {
+      if (now - lastCall.current >= delay && searchCall.current !== search) {
         lastCall.current = now;
+				searchCall.current = search
         func();
       }
     }, delay - (Date.now() - lastCall.current));
