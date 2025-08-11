@@ -44,28 +44,32 @@
 	font-size: 20px;
 }
 
-
 .loginBlock {
+	display: flex;
 	height: 100%;
+	align-items: center;
 	color: var(----text-color-subhead-gray);
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 18px;
 }
 
 .loginBtn {
 	display: flex;
 	height: 100%;
+	padding: 5px 15px;
 	align-items: center;
+	border-radius: 2px;
 	cursor: pointer;
+
+	&:hover {
+		background-color: var(--backgtound-color-editBtn);
+	}
 
 	& a {
 		display: block;
 		transition: opacity 0.3s;
 
-		&:hover {
-			opacity: 0.7;
-		}
 	}
 }
 

@@ -1,5 +1,5 @@
 import { UsersType } from "../types/types";
-import { instance, Response, ResultCodes } from "./api";
+import { instance, APIResponse } from "./api";
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 6, term?: string, friend?: boolean) {
@@ -11,13 +11,13 @@ export const usersAPI = {
   },
   follow(id: number){
     return instance
-      .post<Response>("follow/" + id)
+      .post<APIResponse>("follow/" + id)
       .then((response) => response.data);
   },
 
   delete(id: number) {
     return instance
-      .delete<Response>("follow/" + id)
+      .delete<APIResponse>("follow/" + id)
       .then((response) => response.data);
   },
 };

@@ -14,46 +14,46 @@ import { lazy } from 'react';
 import { withSuspense } from './hoc/withSuspense';
 import store from './redux/redux-store';
 
-const root = createRoot(document.getElementById('root') as HTMLElement);
-
-const DialogsContainer = lazy(() => import('./components/Dialogs/Dialogs'));
-const ProfileContainer = lazy(
-  () => import('./components/Profile/ProfileContainer')
-);
-
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
-
-const router = createBrowserRouter(
-  [
+const root = createRoot(document.getElementById('root') as HTMLElement),
+  DialogsContainer = lazy(() => import('./components/Dialogs/Dialogs')),
+  ProfileContainer = lazy(
+    () => import('./components/Profile/ProfileContainer')
+  ),
+  UsersContainer = lazy(() => import('./components/Users/UsersContainer')),
+  router = createBrowserRouter(
+    [
+      {
+        path: '/',
+        element: <App />,
+        errorElement: <NoMatch />,
+        children: [
+          {
+            path: 'profile/:userId',
+            element: withSuspense(ProfileContainer),
+            errorElement: <NoMatch />,
+          },
+          {
+            path: 'dialogs/*',
+            element: withSuspense(DialogsContainer),
+            errorElement: <NoMatch />,
+          },
+          { path: 'news', element: <News /> },
+          { path: 'music', element: <Music /> },
+          { path: 'settings', element: <Settings /> },
+          {
+            path: 'friends',
+            element: withSuspense(UsersContainer),
+            errorElement: <NoMatch />,
+          },
+          { path: 'login', element: <LoginPage /> },
+        ],
+      },
+    ],
     {
-      path: '/',
-      element: <App />,
-      errorElement: <NoMatch />,
-      children: [
-        {
-          path: 'profile/:userId',
-          element: withSuspense(ProfileContainer),
-          errorElement: <NoMatch />,
-        },
-        {
-          path: 'dialogs/*',
-          element: withSuspense(DialogsContainer),
-          errorElement: <NoMatch />,
-        },
-        { path: 'news', element: <News /> },
-        { path: 'music', element: <Music /> },
-        { path: 'settings', element: <Settings /> },
-        {
-          path: 'friends',
-          element: withSuspense(UsersContainer),
-          errorElement: <NoMatch />,
-        },
-        { path: 'login', element: <LoginPage /> },
-      ],
-    },
-  ],
-  { basename: '/SocialNetwork/profile/me' }
-);
+      basename: '/SocialNetwork',
+      // basename: process.env.NODE_ENV === 'development' ? '/SocialNetwork' : '/SocialNetwork/profile/me'
+    }
+  );
 
 root.render(
   <React.StrictMode>
@@ -63,7 +63,17 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register(`${process.env.PUBLIC_URL}/service-worker.js`)
+      .then((registration) => {
+        console.log('SW registered: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+
 reportWebVitals();

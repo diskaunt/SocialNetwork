@@ -29,7 +29,7 @@ const Header = ({ logout, isAuth, login, avatar }: PropsType) => {
       <div className={classes.contentWrapper}>
         <Link className={classes.logo} to="/News">
           <img
-            src="https://i6.imageban.ru/out/2024/04/17/e6ef60ba95ab712c75a6294e3551c00a.png"
+            src={`${process.env.PUBLIC_URL}/logo.png`}
             alt="logo"
           />
           <h1 className={classes.title}>3RACHA</h1>

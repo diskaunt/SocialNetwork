@@ -40,7 +40,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-		"deploy": "npm run build && gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +68,7 @@
   "devDependencies": {
     "@types/react-test-renderer": "^18.3.0",
     "gh-pages": "6.1.1",
-    "react-test-renderer": "^18.3.1"
+    "react-test-renderer": "^18.3.1",
+    "workbox-webpack-plugin": "^7.3.0"
   }
 }
