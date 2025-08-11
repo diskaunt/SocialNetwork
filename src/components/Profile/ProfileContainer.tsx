@@ -6,17 +6,16 @@ import {
   savePhoto,
   saveProfile,
   updateUserStatus,
-} from "../../redux/profile-reduser";
-import { connect } from "react-redux";
-import * as React from "react";
-import Profile from "./Profile";
-import { Navigate } from "react-router-dom";
-import { RootState } from "../../redux/redux-store";
-import {
-  ProfileType,
-} from "../../types/types";
-import { requestUsers } from "../../redux/users-reduser";
-import { useGetUserProfile } from "../../hooks/hooks";
+} from '../../redux/profile-reduser';
+import { connect } from 'react-redux';
+import * as React from 'react';
+import Profile from './Profile';
+import { Navigate } from 'react-router-dom';
+import { RootState } from '../../redux/redux-store';
+import { ProfileType } from '../../types/types';
+import { requestUsers } from '../../redux/users-reduser';
+import { useGetUserProfile } from '../../hooks/hooks';
+import WithAuthorize from '../../hoc/WithAuthorize';
 
 // type MapStateToProps = {
 //   profilePage: ProfilePageType;
@@ -25,22 +24,27 @@ import { useGetUserProfile } from "../../hooks/hooks";
 //   totalUsersCount: number;
 // };
 
-type MapProps = ReturnType<typeof mapStateToProps>
+type MapProps = ReturnType<typeof mapStateToProps>;
 
 type MapDispatchProps = {
-  addPost: (payload: {newPostText: string, fullName: string}) => void;
+  addPost: (payload: { newPostText: string; fullName: string }) => void;
   getUserProfile: (userId: number) => void;
   getUserStatus: (userId: number) => void;
   updateUserStatus: (status: string) => void;
   deletePost: (id: number) => void;
   savePhoto: (file: any) => Promise<any>;
   saveProfile: (info: ProfileType) => Promise<string | null>;
-  requestUsers: (
-    currentPage: number,
-    pageSize: number,
-    search?: string,
-    friend?: boolean
-  ) => void;
+  requestUsers: ({
+    currentPage,
+    pageSize,
+    search,
+    friend,
+  }: {
+    currentPage: number;
+    pageSize: number;
+    search?: string;
+    friend?: boolean;
+  }) => void;
 };
 
 type Props = MapProps & MapDispatchProps;
@@ -59,10 +63,16 @@ let ProfileContainer = ({
     requestUsers
   );
 
-  return id ? (
-    <Profile isOwner={id === auth.userId} auth={auth} {...props} />
-  ) : (
-    <Navigate to={"/login"} />
+  return (
+    <WithAuthorize
+      isAuthorize={!!id}
+      components={{
+        Authorized: (
+          <Profile isOwner={id === auth.userId} auth={auth} {...props} />
+        ),
+        Unauthorized: <Navigate to={'/login'} />,
+      }}
+    />
   );
 };
 

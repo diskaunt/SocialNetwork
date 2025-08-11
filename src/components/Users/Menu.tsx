@@ -1,6 +1,5 @@
 import * as React from "react";
 import classes from "./Users.module.css";
-import { getCurrentPage } from "../../redux/users-selector";
 import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../../redux/users-reduser";
 

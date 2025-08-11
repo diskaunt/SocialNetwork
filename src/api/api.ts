@@ -37,7 +37,7 @@ type GetCaptchaUrl = {
   url: string;
 };
 
-export type Response<D = {}, RC = ResultCodes> = {
+export type APIResponse<D = {}, RC = ResultCodes> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;

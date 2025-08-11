@@ -15,28 +15,20 @@
 
 .contentWrapper {
 	display: flex;
-	height: 100%;
 	align-items: center;
 	justify-content: space-between;
+	height: 100%;
 	margin: 0 auto;
 	width: var(--width-main);
 	padding: 0 30px;
 	gap: 0;
 
-	& a {
-		display: inline-flex;
-		padding: 0 1em 0 0;
-		align-items: center;
-	}
+}
 
-	& h1 {
-		font-size: 20px;
-		display: flex;
-		align-items: center;
-		margin: 0;
-		height: 50px;
-		font-size: 20px;
-	}
+.logo {
+	display: flex;
+	padding: 0 1em 0 0;
+	align-items: center;
 
 	& img {
 		width: 50px;
@@ -44,27 +36,40 @@
 	}
 }
 
+.title {
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	height: 50px;
+	font-size: 20px;
+}
+
 .loginBlock {
+	display: flex;
 	height: 100%;
+	align-items: center;
 	color: var(----text-color-subhead-gray);
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 500;
 	line-height: 18px;
 }
 
 .loginBtn {
 	display: flex;
 	height: 100%;
+	padding: 5px 15px;
 	align-items: center;
+	border-radius: 2px;
 	cursor: pointer;
+
+	&:hover {
+		background-color: var(--backgtound-color-editBtn);
+	}
 
 	& a {
 		display: block;
 		transition: opacity 0.3s;
 
-		&:hover {
-			opacity: 0.7;
-		}
 	}
 }
 
@@ -144,4 +149,3 @@
 		transform: none;
 	}
 }
-

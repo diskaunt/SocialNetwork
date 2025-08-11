@@ -27,12 +27,12 @@ const Header = ({ logout, isAuth, login, avatar }: PropsType) => {
   return (
     <header className={classes.header}>
       <div className={classes.contentWrapper}>
-        <Link to="/News">
+        <Link className={classes.logo} to="/News">
           <img
-            src="https://i6.imageban.ru/out/2024/04/17/e6ef60ba95ab712c75a6294e3551c00a.png"
+            src={`${process.env.PUBLIC_URL}/logo.png`}
             alt="logo"
           />
-          <h1>3RACHA</h1>
+          <h1 className={classes.title}>3RACHA</h1>
         </Link>
         <div className={classes.loginBlock}>
           {isAuth ? (

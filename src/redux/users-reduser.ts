@@ -1,12 +1,7 @@
 import { usersAPI } from '../api/usersAPI';
-import { ThunkType, UsersType } from '../types/types';
+import { UsersType } from '../types/types';
 import { updateObjectInArray } from '../utils/object-helper';
-import {
-  createSlice,
-  Dispatch,
-  PayloadAction,
-  UnknownAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   users: [] as Array<UsersType>,
@@ -23,7 +18,7 @@ const usersSlice = createSlice({
   name: 'usersPage',
   initialState,
   reducers: {
-    followUnfollowSucces(
+    followUnfollowSuccess(
       state,
       action: PayloadAction<{
         userId: number;
@@ -41,6 +36,7 @@ const usersSlice = createSlice({
     setTotalUsersCount(state, action: PayloadAction<number>) {
       state.totalUsersCount = action.payload;
     },
+    //не используется , утратил актуальность после реализации extraReducers
     toggleIsFetching(state, action: PayloadAction<boolean>) {
       state.isFetching = action.payload;
     },
@@ -55,55 +51,125 @@ const usersSlice = createSlice({
           );
     },
   },
+  extraReducers: (builder) => {
+		// request Users
+    builder.addCase(requestUsers.pending, (state, action) => {
+      state.isFetching = true;
+    });
+    builder.addCase(requestUsers.fulfilled, (state, action) => {
+      const data = action.payload;
+      state.users = data.users;
+      state.totalUsersCount = data.totalCount;
+      state.currentPage = data.currentPage;
+      state.isFetching = false;
+    });
+    builder.addCase(requestUsers.rejected, (state, action) => {
+      state.isFetching = false;
+    });
+		// follow User
+    builder.addCase(follow.pending, (state, action) => {
+      state.followingInProgress.push(action.meta.arg);
+    });
+    builder.addCase(follow.fulfilled, (state, action) => {
+      if (!action.payload.resultCode) {
+        state.users = updateObjectInArray(state.users, 'id', {
+          userId: action.payload.id,
+          newObjectProps: { followed: action.payload.followed },
+        });
+        state.followingInProgress = state.followingInProgress.filter(
+          (id) => id !== action.payload.id
+        );
+      }
+    });
+    builder.addCase(follow.rejected, (state, action) => {
+      state.followingInProgress = state.followingInProgress.filter(
+        (id) => id !== action.meta.arg
+      );
+    });
+		// unfollow Users
+    builder.addCase(unfollow.pending, (state, action) => {
+      state.followingInProgress.push(action.meta.arg);
+    });
+    builder.addCase(unfollow.fulfilled, (state, action) => {
+      if (!action.payload.resultCode) {
+        state.users = updateObjectInArray(state.users, 'id', {
+          userId: action.payload.id,
+          newObjectProps: { followed: action.payload.followed },
+        });
+        state.followingInProgress = state.followingInProgress.filter(
+          (id) => id !== action.payload.id
+        );
+      }
+    });
+    builder.addCase(unfollow.rejected, (state, action) => {
+      state.followingInProgress = state.followingInProgress.filter(
+        (id) => id !== action.meta.arg
+      );
+    });
+  },
 });
 
-export const requestUsers =
-  (
-    currentPage: number,
-    pageSize: number,
-    search?: string,
-    friend?: boolean
-  ): ThunkType =>
-  async (dispatch) => {
-    dispatch(toggleIsFetching(true));
-    let data = await usersAPI.getUsers(currentPage, pageSize, search, friend);
-    dispatch(toggleIsFetching(false));
-    dispatch(setCurrentPage(currentPage));
-    dispatch(setUsers(data.items));
-    dispatch(setTotalUsersCount(data.totalCount));
-  };
-
-type DispatchType = Dispatch<UnknownAction>;
-
-const _followUnfollowFlow = async (
-  dispatch: DispatchType,
-  id: number,
-  apiMethod: any,
-  newObjectProps: { followed: boolean }
-) => {
-  dispatch(toggleFollowingProgress({ userId: id, isFetching: true }));
-  let data = await apiMethod(id);
-  if (!data.resultCode) {
-    dispatch(followUnfollowSucces({ userId: id, newObjectProps }));
+export const requestUsers = createAsyncThunk(
+  'requestUsers',
+  async (
+    {
+      currentPage,
+      pageSize,
+      search,
+      friend,
+    }: {
+      currentPage: number;
+      pageSize: number;
+      search?: string;
+      friend?: boolean;
+    },
+    thunkAPI
+  ) => {
+    try {
+      const data = await usersAPI.getUsers(
+        currentPage,
+        pageSize,
+        search,
+        friend
+      );
+      return {
+        users: data.items,
+        totalCount: data.totalCount,
+        currentPage: currentPage,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-  dispatch(toggleFollowingProgress({ userId: id, isFetching: true }));
-};
+);
 
-export const follow =
-  (id: number): ThunkType =>
-  async (dispatch) => {
-    _followUnfollowFlow(dispatch, id, usersAPI.follow, { followed: true });
-  };
+export const follow = createAsyncThunk(
+  'follow',
+  async (id: number, thunkAPI) => {
+    try {
+      let data = await usersAPI.follow(id);
+      return { id, resultCode: data.resultCode, followed: true };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
-export const unfollow =
-  (id: number): ThunkType =>
-  async (dispatch) => {
-    _followUnfollowFlow(dispatch, id, usersAPI.delete, { followed: false });
-  };
+export const unfollow = createAsyncThunk(
+  'unfollow',
+  async (id: number, thunkAPI) => {
+    try {
+      let data = await usersAPI.delete(id);
+      return { id, resultCode: data.resultCode, followed: false };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export default usersSlice.reducer;
 export const {
-  followUnfollowSucces,
+  followUnfollowSuccess,
   setUsers,
   setCurrentPage,
   setTotalUsersCount,
@@ -166,7 +232,7 @@ export const {
 //   : never;
 
 // export const actions = {
-//   followUnfollowSucces: (
+//   followUnfollowSuccess: (
 //     userId: number,
 //     newObjectProps: { followed: boolean }
 //   ) => ({

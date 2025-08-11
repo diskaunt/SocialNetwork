@@ -1,9 +1,9 @@
-import { instance, Response, ResultCodes, ResultCodesForCuptcha } from "./api";
+import { instance, APIResponse, ResultCodes, ResultCodesForCuptcha } from "./api";
 
 export const authAPI = {
   me() {
     return instance
-      .get<Response<MeResponseData>>("auth/me")
+      .get<APIResponse<MeAPIResponseData>>("auth/me")
       .then((response) => response.data);
   },
   login(
@@ -13,7 +13,7 @@ export const authAPI = {
     captcha?: string
   ) {
     return instance
-      .post<Response<LoginResponseData, ResultCodesForCuptcha | ResultCodes>>(
+      .post<APIResponse<LoginAPIResponseData, ResultCodesForCuptcha | ResultCodes>>(
         "auth/login",
         {
           email,
@@ -26,18 +26,18 @@ export const authAPI = {
   },
   logout() {
     return instance
-      .post<Response>("auth/logout")
+      .post<APIResponse>("auth/logout")
       .then((response) => response.data);
   },
 };
 
-type MeResponseData = {
+type MeAPIResponseData = {
   id: number;
   email: string;
   login: string;
 };
 
-type LoginResponseData = {
+type LoginAPIResponseData = {
   userId: number;
   token: string;
 };
