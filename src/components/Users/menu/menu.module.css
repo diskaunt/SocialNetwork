@@ -1,0 +1,34 @@
+.menu {
+	position: relative;
+	padding: 8px 8px 6px;
+	width: clamp(280px, 100%, 345px);
+	height: 166px;
+	border-radius: var(--content-border-radius);
+	background-color: var(--color-neutral-100);
+	box-shadow: var(--shadow-effect);
+	overflow: hidden;
+}
+
+.item {
+	height: 36px;
+	display: flex;
+	align-items: center;
+	margin: 0 0 2px;
+}
+
+.btn {
+	height: 100%;
+	width: 100%;
+	text-align: start;
+	padding: 4px 12px;
+	border-radius: 10px;
+
+	&:hover {
+		opacity: 1;
+		background-color: var(--color-blue-200);
+	}
+}
+
+.active {
+	background-color: var(--color-blue-200);
+}

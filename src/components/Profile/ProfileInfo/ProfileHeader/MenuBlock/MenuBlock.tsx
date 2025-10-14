@@ -1,8 +1,6 @@
-import * as React from "react";
-import classes from "./MenuBlock.module.css";
-import IconPicture from "../../../../../assets/svg/IconPicture";
-import IconPencil from "../../../../../assets/svg/IconPencil";
-import IconDelete from "../../../../../assets/svg/IconDelete";
+import * as React from 'react';
+import classes from './menuBlock.module.css';
+import Icon from '../../../../icon/Icon';
 
 type PropsType = {
   isOwner: boolean;
@@ -23,14 +21,14 @@ const MenuBlock = ({ isOwner, onModalOpen, savePhoto }: PropsType) => {
         className={classes.menuItem}
       >
         <span className={classes.icon}>
-          <IconPicture />
+          <Icon name={'IconPicture'} />
         </span>
         <span>Open a photo</span>
       </div>
       {isOwner ? (
         <>
           <div
-            data-modal="updateThePhoto"
+            data-modal='updateThePhoto'
             onClick={(e) =>
               e.currentTarget.dataset.modal &&
               onModalOpen(e.currentTarget.dataset.modal)
@@ -38,13 +36,13 @@ const MenuBlock = ({ isOwner, onModalOpen, savePhoto }: PropsType) => {
             className={classes.menuItem}
           >
             <span className={classes.icon}>
-              <IconPencil />
+              <Icon name='pencil' />
             </span>
             <span>Update the photo</span>
           </div>
           <div onClick={onPhotoDeleted} className={classes.menuItem}>
             <span className={classes.icon}>
-              <IconDelete />
+              <Icon name='delete' />
             </span>
             <span>Delete a photo</span>
           </div>

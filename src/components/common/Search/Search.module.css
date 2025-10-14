@@ -11,11 +11,11 @@
 		width: 48px;
 		min-width: 0;
 		height: 100%;
-		color: var(--text-color-secondary-gray);
+		color: var(--color-neutral-700);
 		outline: 0;
 		padding: 6px;
 		margin: 0;
-		background-color: var(--user-cart-background-color);
+		background-color: var(--color-blue-400);
 		border: var(--border-text-area);
 		border-radius: 0 6px 6px 0;
 	}

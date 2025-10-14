@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import classes from "./Search.module.css";
-import IconSearch from "../../../assets/svg/IconSearch";
+import classes from "./search.module.css";
+import Icon from "../../icon/Icon";
 
 type PropsType = {
   search: string;
@@ -26,7 +26,7 @@ const Search = ({ search, placeHolderValue = "", onSearch }: PropsType) => {
       </div>
       <div className={classes.buttonWrapper}>
         <button onClick={(e) => {}}>
-          <IconSearch />
+          <Icon name={'search'} />
         </button>
       </div>
     </div>

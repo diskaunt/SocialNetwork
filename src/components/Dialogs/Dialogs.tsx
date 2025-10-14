@@ -1,60 +1,90 @@
-import React, { ComponentType, useRef } from "react";
-import classes from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import { connect } from "react-redux";
-import { sendMessage } from "../../redux/dialogs-reducer";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
-import { RootState } from "../../redux/redux-store";
-import NewMessageForm from "./NewMessageForm";
-import { DialogsPageType, DialogType, MessageType } from "../../types/types";
+import React, { ComponentType, useEffect, useRef, useState } from 'react';
+import classes from './dialogs.module.css';
+import DialogItem from './dialogItem/DialogItem';
+import Message from './message/Message';
+import { connect } from 'react-redux';
+import { sendMessage } from '../../redux/dialogs-reducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
+import { RootState } from '../../redux/redux-store';
+import NewMessageForm from './NewMessageForm';
+import { DialogsPageType, DialogType, MessageType } from '../../types/types';
+import { useLocation, useParams } from 'react-router-dom';
 
 type MapStateToProps = {
   dialogsPage: DialogsPageType;
 };
 
 type MapActionToProps = {
-  sendMessage: (message: string) => void;
+  sendMessage: (payload: { id: number; newMessageBody: string }) => void;
+};
+
+type DialogParams = {
+  dialogId: string;
 };
 
 type Props = MapStateToProps & MapActionToProps;
 
 const Dialogs = (props: Props) => {
+  // let [selectedDialog, setSelectedDialog] = useState<number>(0);
+  // const location = useLocation();
+  // const currentPath = location.pathname;
+  // const selectedId = +currentPath.split('/')[currentPath.split('/').length - 1];
+  // if (!isNaN(selectedId) && selectedId !== selectedDialog) {
+  //   setSelectedDialog(selectedId);
+  // }
+
+  const { dialogId } = useParams<DialogParams>();
+  const selectedDialogId = parseInt(dialogId || '0', 10);
+
+  useEffect(() => {
+    if (!isNaN(selectedDialogId) && selectedDialogId > 0) {
+      // Загрузка данных или другая логика
+    }
+  }, [selectedDialogId]);
+
   let dialogsElements = props.dialogsPage.dialogs.map((dialog: DialogType) => (
     <DialogItem
       key={dialog.id}
       id={dialog.id}
-      name={dialog.name || "name"}
+      name={dialog.name || 'name'}
       avatar={
         dialog.avatar ||
-        "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
+        'https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png'
       }
+      messages={dialog.messages}
     />
   ));
 
-  let messagesElements = props.dialogsPage.messages.map(
-    (message: MessageType) => (
-      <Message
-        key={message.id}
-        id={message.id}
-        message={message.message}
-        avatar={
-          message.avatar ||
-          "https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png"
-        }
-        date={message.date}
-      />
-    )
-  );
+  let messagesElements = props.dialogsPage.dialogs[
+    selectedDialogId
+  ].messages.map((message: MessageType) => (
+    <Message
+      key={message.id}
+      id={message.id}
+      message={message.message}
+      avatar={
+        message.avatar ||
+        'https://i5.imageban.ru/out/2024/04/23/1bb19e775b66a89851ce626a69603c73.png'
+      }
+      date={message.date}
+    />
+  ));
 
   const scrollTo = useRef<null | HTMLDivElement>(null);
 
-  const onSendMessage = async (values: { newMessageBody: string }, form: Record<string, any>) => {
-    await props.sendMessage(values.newMessageBody);
+  // Функция отправки сообщения и сролинга к нему
+  const onSendMessage = async (
+    values: { newMessageBody: string },
+    form: Record<string, any>
+  ) => {
+    await props.sendMessage({
+      id: selectedDialogId,
+      newMessageBody: values.newMessageBody,
+    });
     scrollTo.current &&
-      scrollTo.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    form.reset()
+      scrollTo.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    form.reset();
   };
 
   return (

@@ -1,9 +1,9 @@
 import * as React from "react";
-import classes from "./Profile.module.css";
-import MyPosts from "./MyPosts/MyPosts";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import Preloader from "../common/Preloader/Preloader";
-import ProfileInfoPreloader from "../common/Preloader/ProfileInfoPreloader";
+import classes from "./profile.module.css";
+import MyPosts from "./myPosts/MyPosts";
+import ProfileInfo from "./profileInfo/ProfileInfo";
+import Preloader from "../common/preloader/preloader/Preloader";
+import ProfileInfoPreloader from "../common/preloader/profilePreloader/ProfileInfoPreloader";
 import {
   AuthType,
   ProfilePageType,

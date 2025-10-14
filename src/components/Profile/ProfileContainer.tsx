@@ -15,7 +15,7 @@ import { RootState } from '../../redux/redux-store';
 import { ProfileType } from '../../types/types';
 import { requestUsers } from '../../redux/users-reduser';
 import { useGetUserProfile } from '../../hooks/hooks';
-import WithAuthorize from '../../hoc/WithAuthorize';
+import WithAuthorize from '../../hoc/withAuthorize';
 
 // type MapStateToProps = {
 //   profilePage: ProfilePageType;

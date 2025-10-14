@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function IconChevronRight(props) {
+function ChevronRight(props) {
   return (
     <svg
       fill="none"
@@ -18,4 +18,4 @@ function IconChevronRight(props) {
   );
 }
 
-export default IconChevronRight;
+export default ChevronRight;

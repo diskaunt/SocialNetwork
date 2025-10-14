@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useState, useRef, memo } from "react";
-import classes from "./ProfileStatus.module.css";
-import Button from "../../../common/Button/Button";
+import classes from "./profileStatus.module.css";
+import Button from "../../../common/button/Button";
 import { useClickOutside } from "../../../../hooks/hooks";
 import { Field, Form } from "react-final-form";
-import { Textarea } from "../../../common/FormsControls/FormsControls";
+import { Textarea } from "../../../common/formsControls/FormsControls";
 import {
   composeValidators,
   maxLength,

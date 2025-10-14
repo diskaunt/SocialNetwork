@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import classes from "./Header.module.css";
+import classes from "./header.module.css";
 import { Link } from "react-router-dom";
-import MenuBlock from "./MenuBlock/MenuBlock";
-import MenuButton from "./MenuButton/MenuButton";
+import MenuBlock from "./menuBlock/MenuBlock";
+import MenuButton from "./menuButton/MenuButton";
 import { useClickOutside } from "../../hooks/hooks";
 
 type PropsType = {

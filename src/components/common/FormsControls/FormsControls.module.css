@@ -33,5 +33,5 @@
 }
 
 .selectFocus:hover {
-	border-color: var(--outline-for-focus);
+	border-color: var(--outline-focus);
 }

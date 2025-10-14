@@ -23,7 +23,7 @@
 
 .newPost {
 	min-height: 180px;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	box-shadow: var(--shadow-effect);
 	border-radius: var(--content-border-radius);
 	padding: 8px;
@@ -35,7 +35,7 @@
 	justify-content: center;
 	align-items: center;
 	min-height: 169px;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	box-shadow: var(--shadow-effect);
 	border-radius: var(--content-border-radius);
 	margin-bottom: 20px;
@@ -64,10 +64,12 @@
 }
 
 .noPosts {
-	color: var(--text-color-secondary-gray);
+	color: var(--color-neutral-700);
 	text-align: center;
 
 	& svg {
+		width: 56px;
+		height: 56px;
 		margin: 0 auto;
 		margin-bottom: 12px;
 	}

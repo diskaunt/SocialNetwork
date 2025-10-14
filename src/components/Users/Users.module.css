@@ -11,7 +11,7 @@
 	min-height: 414px;
 	overflow: hidden;
 	box-shadow: var(--shadow-effect);
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	margin-bottom: 20px;
 }
 
@@ -33,39 +33,4 @@
 	flex-wrap: wrap;
 	padding: 0 20px 20px;
 	gap: 21px 15px;
-}
-
-.menu {
-	position: relative;
-	padding: 8px 8px 6px;
-	width: clamp(280px, 100%, 345px);
-	height: 166px;
-	border-radius: var(--content-border-radius);
-	background-color: var(--main-block-background-color);
-	box-shadow: var(--shadow-effect);
-	overflow: hidden;
-}
-
-.item {
-	height: 36px;
-	display: flex;
-	align-items: center;
-	margin: 0 0 2px;
-}
-
-.btn {
-	height: 100%;
-	width: 100%;
-	text-align: start;
-	padding: 4px 12px;
-	border-radius: 10px;
-
-	&:hover {
-		opacity: 1;
-		background-color: var(--backgtound-color-editBtn);
-	}
-}
-
-.active {
-	background-color: var(--backgtound-color-editBtn);
 }

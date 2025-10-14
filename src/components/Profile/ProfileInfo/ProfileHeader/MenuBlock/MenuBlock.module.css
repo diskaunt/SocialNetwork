@@ -10,7 +10,7 @@
 	border: var(--border-text-area);
 	border-radius: 12px;
 	box-shadow: var(--shadow-effect);
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	cursor: pointer;
 }
 
@@ -27,13 +27,13 @@
 	transition: background-color .3s ease-out;
 
 	&:hover {
-		background-color: var(--body-background-color);
+		background-color: var(--color-neutral-400);
 	}
 }
 
 .icon {
 	display: flex;
-	color: var(--main-color-blue);
+	color: var(--color-base-blue);
 	margin-right: 10px;
 
 	& svg {

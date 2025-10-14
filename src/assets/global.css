@@ -1,0 +1,129 @@
+@import "./normalize.css";
+@import "./variables.css";
+
+@font-face {
+	font-family: 'Roboto';
+	src: url(./fonts/Roboto-VariableFont_wdth\,wght.woff2);
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Ndot 57';
+	src: url(./fonts/Ndot-57.woff2);
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Noto Sans Batak';
+	src: url(./fonts/NotoSansBatak-Regular.woff2);
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'NType 82';
+	src: url(./fonts//NType82-Regular.woff2);
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	box-sizing: border-box;
+	word-break: break-word;
+}
+
+html,
+body {
+	font-family: 'Noto Sans Batak', 'Roboto', monospace;
+}
+
+html {
+	margin-right: calc(-1 * (100vw - 100%));
+}
+
+body {
+	background-color: #edeef0;
+	font-size: 13px;
+	overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: 'Ndot 57', monospace;
+	margin: 0;
+}
+
+ul,
+ul li {
+	list-style: none;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+
+input {
+	margin: 0;
+
+}
+
+select {
+	&:focus-visible {
+		outline: none;
+	}
+}
+
+h3 {
+	font-size: 21px;
+	font-weight: 600;
+	line-height: 26px;
+}
+
+button {
+	transition: opacity 0.3s;
+	opacity: 1;
+	cursor: pointer;
+	border: none;
+	background-color: inherit;
+	font-weight: 500;
+	line-height: 20px;
+	font-size: 14px;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	&:active {
+		opacity: 0.9;
+	}
+
+	&:focus-visible {
+		outline: thick double var(--color-base-blue);
+	}
+}
+
+input,
+textarea {
+	&:focus {
+		/* outline: var(--outline-focus); */
+		outline: none;
+	}
+
+	&:active {
+		outline: none;
+	}
+}

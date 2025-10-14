@@ -1,13 +1,14 @@
-import "./App.css";
-import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import Sidebar from "./components/Sidebar/Sidebar";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import { initializedApp } from "./redux/app-reduser";
-import CirclePreloader from "./components/common/Preloader/CirclePrelloader";
-import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import './App.css';
+import React, { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import './assets/global.css';
+import Sidebar from './components/sidebar/Sidebar';
+import HeaderContainer from './components/header/HeaderContainer';
+import { initializedApp } from './redux/app-reduser';
+import CirclePreloader from './components/common/preloader/circlePreloader/CirclePreloader';
+import { useAppDispatch, useAppSelector } from './hooks/hooks';
 
-function App() {
+const App: React.FC = () => {
   const initialized = useAppSelector((state) => state.app.initialized);
   const dispatch = useAppDispatch();
   const catchAllUnhandledErrors = (event: PromiseRejectionEvent): any => {
@@ -15,21 +16,21 @@ function App() {
   };
   useEffect(() => {
     dispatch(initializedApp());
-    window.addEventListener("unhandledrejection", catchAllUnhandledErrors);
+    window.addEventListener('unhandledrejection', catchAllUnhandledErrors);
     return window.removeEventListener(
-      "unhandledrejection",
+      'unhandledrejection',
       catchAllUnhandledErrors
     );
   }, [initialized, dispatch]);
   return (
-    <div className="appWrapper">
+    <div className='appWrapper'>
       <HeaderContainer />
       {initialized ? (
         <>
           <Sidebar />
-          <div className="appWrapperContent">
+          <main className='appWrapperContent'>
             <Outlet />
-          </div>
+          </main>
         </>
       ) : (
         <CirclePreloader />

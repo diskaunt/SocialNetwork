@@ -13,7 +13,7 @@ import {
 } from '../../redux/users-selector';
 import { RootState } from '../../redux/redux-store';
 import { useTrottle } from '../../hooks/hooks';
-import WithAuthorize from '../../hoc/WithAuthorize';
+import WithAuthorize from '../../hoc/withAuthorize';
 import { Navigate } from 'react-router-dom';
 
 // type MapStatePropsType = {

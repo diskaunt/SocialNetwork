@@ -1,6 +1,6 @@
 .form {
 	position: relative;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	border-radius: var(--content-border-radius);
 	padding: 20px 12px;
 	width: 80dvw;
@@ -17,7 +17,7 @@
 	padding: 12px;
 
 	&:focus {
-		outline: 2px solid var(--main-color-blue);
+		outline: 2px solid var(--color-base-blue);
 	}
 
 	&:active {
@@ -97,7 +97,7 @@
 	border: var(--border-text-area);
 
 	& div:focus {
-		outline: var(--outline-for-focus);
+		outline: var(--outline-focus);
 	}
 }
 
@@ -108,7 +108,7 @@
 
 .error {
 	width: 50%;
-	color: var(--error-color-text);
+	color: var(--color-error);
 	margin: 0 auto;
 	padding-top: 8px;
 }

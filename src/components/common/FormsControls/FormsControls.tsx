@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import classes from "./FormsControls.module.css";
+import classes from "./formsControls.module.css";
 import { FieldInputProps, FieldMetaState } from "react-final-form";
 import { useResizeTextarea } from "../../../hooks/hooks";
 

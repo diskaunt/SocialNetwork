@@ -1,8 +1,8 @@
 import React from "react";
 import { Field, Form } from "react-final-form";
-import Button from "../common/Button/Button";
-import classes from "./Dialogs.module.css";
-import { Textarea } from "../common/FormsControls/FormsControls";
+import Button from "../common/button/Button";
+import classes from "./dialogs.module.css";
+import { Textarea } from "../common/formsControls/FormsControls";
 
 type PropsType = {
   onSendMessage: (

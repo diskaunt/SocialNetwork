@@ -1,11 +1,11 @@
 import * as React from "react";
-import classes from "./Users.module.css";
-import Preloader from "../common/Preloader/Preloader";
-import User from "./User/User";
-import Paginator from "../common/Paginator/Paginator";
-import Search from "../common/Search/Search";
+import classes from "./users.module.css";
+import Preloader from "../common/preloader/preloader/Preloader";
+import User from "./user/User";
+import Paginator from "../common/paginator/Paginator";
+import Search from "../common/search/Search";
 import { UsersType } from "../../types/types";
-import Menu from "./Menu";
+import Menu from "./menu/Menu";
 
 type Props = {
   totalUsersCount: number;

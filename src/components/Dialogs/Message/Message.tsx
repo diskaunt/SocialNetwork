@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Message.module.css"
+import classes from "./message.module.css"
 import { MessageType } from "../../../types/types";
 
 const Message = (props: MessageType) => {

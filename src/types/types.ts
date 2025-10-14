@@ -66,6 +66,7 @@ export type AuthType = {
 export type DialogType = {
   id: number;
   name: string;
+	messages: Array<MessageType>
   avatar?: string;
 };
 
@@ -79,7 +80,6 @@ export type MessageType = {
 
 export type DialogsPageType = {
   dialogs: Array<DialogType>;
-  messages: Array<MessageType>;
 };
 
 export type ThunkType<ReturnType = Promise<void>> = ThunkAction<
