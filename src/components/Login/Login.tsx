@@ -1,9 +1,9 @@
 import React from "react";
-import classes from "./Login.module.css";
+import classes from "./login.module.css";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reduser";
 import { Navigate } from "react-router-dom";
-import LoginForm from "./LoginForm";
+import LoginForm from "./loginForm/LoginForm";
 import { RootState } from "../../redux/redux-store";
 import logo from "public/logo.png"
 

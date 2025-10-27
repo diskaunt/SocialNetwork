@@ -1,0 +1,32 @@
+:root {
+
+	/* color */
+
+	--color-base-blue: rgb(25, 154, 195);
+	--color-base-blue-black: rgba(0, 0, 0, 1);
+	--color-base-blue-white: rgba(255, 255, 255, 1);
+	--color-error: rgba(224, 22, 22, 1);
+
+	--color-blue-100: rgba(0, 16, 61, 0.04);
+	--color-blue-200: rgb(25, 154, 195, .1);
+	--color-blue-300: rgba(25, 155, 195, 0.25);
+	--color-blue-400: rgba(25, 155, 195, 0.1);
+	--color-blue-500: rgba(11, 73, 105, 1);
+	--color-neutral-800: rgba(98, 109, 122, 1);
+	--color-neutral-700: rgba(129, 140, 153, 1);
+	--color-neutral-400: rgba(237, 238, 240, 1);
+	--color-neutral-200: rgba(220, 225, 230, 1);
+	--color-neutral-100: rgba(255, 255, 255, 1);
+
+	/* shadow */
+
+	--shadow-effect: 2px 2px 5px var(--color-neutral-200);
+	--shadow-effect-active: 0px 2px 0px 0px var(--color-neutral-200);
+
+	/* all */
+
+	--border-text-area: 1px solid var(--color-neutral-200);
+	--content-border-radius: 20px;
+	--outline-focus: 2px solid var(--color-base-blue);
+	--width-main: clamp(600px, 100dvw, 1136px);
+}

@@ -8,7 +8,7 @@
 
 .countOfUsers {
 	font-weight: 500;
-	color: var(--text-color-subhead-gray)
+	color: var(--color-neutral-800)
 }
 
 .main {
@@ -32,7 +32,7 @@
 	border-radius: 8px;
 
 	&:hover {
-		background-color: var(--backgtound-color-editBtn);
+		background-color: var(--color-blue-200);
 	}
 }
 

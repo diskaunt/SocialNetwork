@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "./Button.module.css";
+import classes from "./button.module.css";
 
 type PropsType = {
   children: React.ReactNode;

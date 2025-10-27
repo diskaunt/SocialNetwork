@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Field, Form } from "react-final-form";
-import { Textarea } from "../../common/FormsControls/FormsControls";
-import classes from "./AddNewPostForm.module.css";
-import Button from "../../common/Button/Button";
+import { Textarea } from "../../common/formsControls/FormsControls";
+import classes from "./addNewPostForm.module.css";
+import Button from "../../common/button/Button";
 
 type PropsType = {
   onAddPost: (values: { newPostText: string }, form: Record<string, any>) => void;

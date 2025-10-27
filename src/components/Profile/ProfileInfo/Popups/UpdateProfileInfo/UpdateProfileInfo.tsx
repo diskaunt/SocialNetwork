@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Fragment } from 'react';
-import IconClose from '../../../../../assets/svg/IconClose';
-import classes from './UpdateProfileInfo.module.css';
+import Close from '../../../../icon/icons/Close';
+import classes from './updateProfileInfo.module.css';
 import { Field, Form } from 'react-final-form';
 import {
   Input,
   Textarea,
-} from '../../../../common/FormsControls/FormsControls';
+} from '../../../../common/formsControls/FormsControls';
 import { FORM_ERROR } from 'final-form';
-import Button from '../../../../common/Button/Button';
+import Button from '../../../../common/button/Button';
 import { ContactsType, ProfileType } from '../../../../../types/types';
 
 type PropsType = {
@@ -138,7 +138,7 @@ const UpdateProfileInfo = ({
       />
       <button onClick={onModalClose} className={classes.closeWrapper}>
         <div className={classes.close}>
-          <IconClose />
+          <Close />
         </div>
       </button>
     </>

@@ -19,7 +19,7 @@
 		width: 100%;
 		border-radius: var(--content-border-radius);
 		box-shadow: var(--shadow-effect);
-		background-color: var(--main-block-background-color);
+		background-color: var(--color-neutral-100);
 	}
 }
 
@@ -28,7 +28,7 @@
 
 	&>.preloader {
 		height: 100%;
-		background-color: var(--main-block-background-color);
+		background-color: var(--color-neutral-100);
 		box-shadow: var(--shadow-effect);
 		border-radius: var(--content-border-radius);
 	}

@@ -50,21 +50,21 @@
 	height: 32px;
 	padding: 0 16px;
 	border-radius: 10px;
-	color: var(--text-color-link-blue);
+	color: var(--color-blue-500);
 	font-size: 14px;
 	line-height: 20px;
 	font-weight: 500;
 	opacity: 1;
-	background-color: var(--backgtound-color-editBtn);
+	background-color: var(--color-blue-200);
 	transition: all .3s ease-in-out;
 
 	&:hover {
-		background-color: var(--backgtound-color-editBtn-hover);
+		background-color: var(--color-blue-300);
 		opacity: 1;
 	}
 
 	&:focus {
-		outline: var(--outline-for-focus);
+		outline: var(--outline-focus);
 		opacity: 1;
 	}
 }

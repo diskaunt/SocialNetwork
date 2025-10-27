@@ -1,9 +1,8 @@
-import React, { memo, useRef, useState } from "react";
-import classes from "./Post.module.css";
-import IconLike from "../../../../assets/svg/IconLike";
-import IconOptionPost from "../../../../assets/svg/IconOptionPost";
-import { useMouseOverLeaveDebounce } from "../../../../hooks/hooks";
-import { PostType } from "../../../../types/types";
+import React, { memo, useRef, useState } from 'react';
+import classes from './post.module.css';
+import Icon from '../../../icon/Icon';
+import { useMouseOverLeaveDebounce } from '../../../../hooks/hooks';
+import { PostType } from '../../../../types/types';
 
 type PropsType = {
   photo: string;
@@ -25,7 +24,7 @@ const Post = ({
   return (
     <>
       <div className={classes.imgWrapper}>
-        <img src={photo} alt="avatar" />
+        <img src={photo} alt='avatar' />
       </div>
       <div className={classes.name}>
         <div>{name}</div>
@@ -35,18 +34,18 @@ const Post = ({
         ref={optionsRef}
         className={
           isOptionsSelect
-            ? classes.options + " " + classes.optionsActive
+            ? classes.options + ' ' + classes.optionsActive
             : classes.options
         }
       >
-        <IconOptionPost />
+        <Icon name='optionPost' />
         <div className={classes.menuBlockWrapper}>
           <MenuBlock deletePost={deletePost} id={id} />
         </div>
       </div>
       <div className={classes.wallPost}>{message}</div>
       <div className={classes.postBtn}>
-        <IconLike className={classes.svg} />
+        <Icon name='like' />
         <span className={classes.likesCount}>{likesCount}</span>
       </div>
     </>

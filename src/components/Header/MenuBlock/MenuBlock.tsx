@@ -1,7 +1,6 @@
 import React from "react";
-import classes from './MenuBlock.module.css'
-import IconLogout from "../../../assets/svg/IconLogout";
-import IconSettings from "../../../assets/svg/IconSetting";
+import classes from './menuBlock.module.css'
+import Icon from "../../icon/Icon";
 
 type PropsType = {
 	avatar: string | null;
@@ -22,11 +21,11 @@ const MenuBlock = ({ avatar, login, onLogout, menuBlockСondition }: PropsType) 
       <div className={classes.loginName}>{login}</div>
       <div className={classes.btnWrapper}>
 				<button disabled={!menuBlockСondition} className={classes.btn} onClick={()=>{}}>
-          <IconSettings />
+          <Icon name={'setting'} />
           Edit a profile
         </button>
         <button disabled={!menuBlockСondition} className={classes.btn} onClick={onLogout}>
-          <IconLogout />
+          <Icon name='logout' />
           Logout
         </button>
       </div>

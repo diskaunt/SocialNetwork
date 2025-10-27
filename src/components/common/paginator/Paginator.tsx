@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "./Paginator.module.css";
+import classes from "./paginator.module.css";
 import IconChevronLeft from "./IconChevronLeft";
 import IconChevronRight from "./IconChevronRight";
 

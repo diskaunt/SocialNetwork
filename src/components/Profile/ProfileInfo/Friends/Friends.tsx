@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import classes from "./Friends.module.css";
+import classes from "./friends.module.css";
 import { UsersType } from "../../../../types/types";
 import { Link } from "react-router-dom";
 import { textSlicer } from "../../../../utils/object-helper";

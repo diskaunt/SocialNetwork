@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useCallback, useRef, useState } from "react";
-import IconClose from "../../../../../assets/svg/IconClose";
-import IconUpload from "../../../../../assets/svg/IconUpload";
-import classes from "./UpdatePhoto.module.css";
+import Icon from "../../../../icon/Icon";
+import classes from "./updatePhoto.module.css";
 
 type PropsType = {
   onModalClose: () => void;
@@ -35,8 +34,8 @@ const UpdatePhoto = ({ onModalClose, savePhoto }: PropsType) => {
             ref={dragAndDropZoneRef}
             className={classes.dragAndDropUploadZone}
           >
-            <div className={classes.iconUploadWrapper}>
-              <IconUpload />
+            <div className={classes.iconWrapper}>
+              <Icon name={'Upload'} />
             </div>
             <div className={classes.inputWrapper}>
               <div className={classes.text}>Move the photo here or</div>
@@ -70,7 +69,7 @@ const UpdatePhoto = ({ onModalClose, savePhoto }: PropsType) => {
       </div>
       <button onClick={onModalClose} className={classes.closeWrapper}>
         <div className={classes.close}>
-          <IconClose />
+          <Icon name='close' />
         </div>
       </button>
     </>

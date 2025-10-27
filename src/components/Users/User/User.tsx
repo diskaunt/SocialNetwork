@@ -1,8 +1,7 @@
 import * as React from "react";
-import classes from "./User.module.css";
+import classes from "./user.module.css";
 import { Link } from "react-router-dom";
-import IconFollow from "../../../assets/svg/IconFollow";
-import IconUnfollow from "../../../assets/svg/IconUnfollow";
+import Icon from "../../icon/Icon";
 import { textSlicer } from "../../../utils/object-helper";
 import { UsersType } from "../../../types/types";
 
@@ -20,7 +19,7 @@ let User = ({
   unfollow,
 }: PropsType) => {
   let newStatus: string | null = textSlicer(status, 19);
-
+	
   return (
     <div className={classes.userContainer}>
       <div className={classes.avatar}>
@@ -44,7 +43,7 @@ let User = ({
                 unfollow(id);
               }}
             >
-              <IconUnfollow />
+              <Icon name='unfollow' />
             </button>
           ) : (
             <button
@@ -53,7 +52,7 @@ let User = ({
                 follow(id);
               }}
             >
-              <IconFollow />
+              <Icon name='follow' />
             </button>
           )}
         </div>

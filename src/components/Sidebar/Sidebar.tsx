@@ -1,6 +1,6 @@
 import * as React from "react";
-import classes from "./Sidebar.module.css";
-import Navbar from "./Navbar/Navbar"
+import classes from "./sidebar.module.css";
+import Navbar from "./navbar/Navbar"
 
 const Sidebar = () => {
   return (

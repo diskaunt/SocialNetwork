@@ -11,7 +11,7 @@
 	width: 100%;
 	display: flex;
 	padding: 20px;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	border-radius: var(--content-border-radius);
 	box-shadow: var(--shadow-effect);
 }
@@ -20,7 +20,7 @@
 	grid-area: info;
 	width: 100%;
 	padding: 20px;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	border-radius: var(--content-border-radius);
 	box-shadow: var(--shadow-effect);
 }
@@ -31,7 +31,7 @@
 	grid-area: friends;
 	width: 330px;
 	padding: 8px 5px;
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	border-radius: var(--content-border-radius);
 	box-shadow: var(--shadow-effect);
 }

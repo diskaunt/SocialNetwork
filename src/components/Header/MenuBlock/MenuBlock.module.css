@@ -23,7 +23,7 @@
 	width: 100%;
 
 	& svg {
-		fill: var(--main-color-blue);
+		fill: var(--color-base-blue);
 		box-sizing: content-box;
 		width: 20px;
 		height: 20px;

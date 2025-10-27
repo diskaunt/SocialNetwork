@@ -1,9 +1,9 @@
 import * as React from "react";
-import classes from "./ProfileHeader.module.css";
+import classes from "./profileHeader.module.css";
 import { useRef, useState } from "react";
 import { useMouseOverLeaveDebounce } from "../../../../hooks/hooks";
 import ProfileStatus from "./ProfileStatus";
-import MenuBlock from "./MenuBlock/MenuBlock";
+import MenuBlock from "./menuBlock/MenuBlock";
 import { PhotosType } from "../../../../types/types";
 
 type PropsType = {

@@ -1,7 +1,7 @@
 .container {
 	position: relative;
 	border-radius: var(--content-border-radius);
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	padding: 12px 0;
 }
 
@@ -10,12 +10,12 @@
 	padding: 12px 12px 24px;
 	font-size: 14px;
 	line-height: 16px;
-	border-bottom: 1px solid var(--line-background-color);
+	border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .main {
 	padding: 25px 20px;
-	border-bottom: 1px solid var(--line-background-color);
+	border-bottom: 1px solid var(--color-neutral-200);
 }
 
 .dragAndDropUploadZone {
@@ -25,18 +25,18 @@
 	align-items: center;
 	max-width: 416px;
 	min-height: 300px;
-	border: 3px dashed var(--main-color-blue);
+	border: 3px dashed var(--color-base-blue);
 	border-radius: 12px;
 	padding: 25px 50px;
 	margin: 0 auto;
 
 	&.dragover {
-		background-color: var(--backgraund-color-hover-gray);
+		background-color: var(--color-blue-100);
 	}
 }
 
-.iconUploadWrapper {
-	color: var(--main-color-blue);
+.iconWrapper {
+	color: var(--color-base-blue);
 	width: 81px;
 	height: 81px;
 }
@@ -68,7 +68,7 @@
 }
 
 .label {
-	color: var(--text-color-link-blue);
+	color: var(--color-blue-500);
 	padding: 5px 2px;
 	font-weight: 800;
 	transition: opacity 0.3s;
@@ -81,7 +81,7 @@
 }
 
 .input:focus+label {
-	outline: var(--main-color-blue) auto 5px;
+	outline: var(--color-base-blue) auto 5px;
 }
 
 .input:active+label {
@@ -98,7 +98,7 @@
 	padding: 12px;
 
 	&:focus {
-		outline: 2px solid var(--main-color-blue);
+		outline: 2px solid var(--color-base-blue);
 	}
 
 	&:active {
@@ -123,7 +123,7 @@
 }
 
 .error {
-	color: var(--error-color-text);
+	color: var(--color-error);
 	text-align: center;
 	min-height: 54px;
 	padding: 24px 24px 0;

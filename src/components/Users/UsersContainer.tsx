@@ -13,17 +13,8 @@ import {
 } from '../../redux/users-selector';
 import { RootState } from '../../redux/redux-store';
 import { useTrottle } from '../../hooks/hooks';
-import WithAuthorize from '../../hoc/WithAuthorize';
+import WithAuthorize from '../../hoc/withAuthorize';
 import { Navigate } from 'react-router-dom';
-
-// type MapStatePropsType = {
-//   currentPage: number;
-//   pageSize: number;
-//   users: Array<UsersType>;
-//   totalUsersCount: number;
-//   isFetching: boolean;
-//   followingInProgress: Array<number>;
-// };
 
 type MapProps = ReturnType<typeof mapStateToProps>;
 

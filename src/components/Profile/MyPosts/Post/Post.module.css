@@ -16,7 +16,7 @@
 .name {
 	padding-top: 7px;
 	align-self: start;
-	color: var(--text-color-link-blue);
+	color: var(--color-blue-500);
 	font-size: 13px;
 	font-weight: 500;
 	line-height: 16px;
@@ -32,7 +32,7 @@
 	align-self: start;
 	cursor: pointer;
 	grid-area: options;
-	color: var(--text-color-secondary-gray);
+	color: var(--color-neutral-700);
 }
 
 .optionsActive {
@@ -65,7 +65,7 @@
 	border: var(--border-text-area);
 	border-radius: 12px;
 	box-shadow: var(--shadow-effect);
-	background-color: var(--main-block-background-color);
+	background-color: var(--color-neutral-100);
 	transition: opacity .3s ease-in;
 	opacity: 0;
 	z-index: 1;
@@ -84,7 +84,7 @@
 	transition: background-color .3s ease-in, opacity .3s ease-in;
 
 	&:hover {
-		background-color: var(--body-background-color);
+		background-color: var(--color-neutral-400);
 	}
 }
 
@@ -105,7 +105,7 @@
 }
 
 .svg {
-	fill: var(--main-color-blue);
+	fill: var(--color-base-blue);
 	height: 20px;
 	width: 20px;
 	flex-shrink: 0;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import classes from "./Info.module.css";
+import classes from "./info.module.css";
 import { ContactsType } from "../../../../types/types";
 
 type PropsType = {

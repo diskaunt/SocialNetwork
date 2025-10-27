@@ -1,6 +1,6 @@
 import React from 'react';
-import classes from './MenuButton.module.css';
-import IconArrowTop from '../../../assets/svg/IconArrowTop';
+import classes from './menuButton.module.css';
+import Icon from '../../icon/Icon';
 
 type PropsType = {
   avatar: string | null;
@@ -14,7 +14,7 @@ const MenuButton = ({ avatar, onSwitch, menuBlockСondition }: PropsType) => {
       <div className={classes.avatarWrapper}>
         <img alt='avatar' src={avatar || 'http://dummyimage.com/32'}></img>
       </div>
-      <IconArrowTop />
+      <Icon name='arrowTop' />
     </button>
   );
 };

@@ -12,7 +12,7 @@
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 8px;
-	color: var(--text-color-subhead-gray);
+	color: var(--color-neutral-800);
 	padding: 8px;
 	background-color: #fff;
 	border: var(--border-text-area);
@@ -54,6 +54,6 @@
 	display: flex;
 	min-height: 29px;
 	align-items: center;
-	color: var(--text-color-subhead-gray);
+	color: var(--color-neutral-800);
 	padding: 16px 0;
 }
