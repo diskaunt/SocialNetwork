@@ -19,7 +19,7 @@ let User = ({
   unfollow,
 }: PropsType) => {
   let newStatus: string | null = textSlicer(status, 19);
-
+	
   return (
     <div className={classes.userContainer}>
       <div className={classes.avatar}>
